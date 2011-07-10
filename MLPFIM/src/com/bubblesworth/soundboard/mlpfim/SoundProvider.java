@@ -23,11 +23,11 @@ import android.util.Log;
  */
 public class SoundProvider extends ContentProvider implements BaseColumns {
 	private static final String TAG = "SoundProvider";
-	
+
 	private static final String AUTHORITY = "com.bubblesworth.soundboard.mlpfim.soundprovider";
 
 	private static final String SOUNDDIR = "pony sounds v4";
-	
+
 	private class SoundInfo {
 		public int id;
 		public String category;
@@ -35,31 +35,32 @@ public class SoundProvider extends ContentProvider implements BaseColumns {
 		public String description;
 		public String filetype;
 	};
-	
+
 	private SoundInfo sounds[];
-	
+
 	private static final int TRACKS = 1;
 	private static final int TRACKS_ID = 2;
 	private static final int ASSETS_ID = 4;
-	
+
 	private static final UriMatcher URI_MATCHER = new UriMatcher(UriMatcher.NO_MATCH);
 	static {
 		URI_MATCHER.addURI( AUTHORITY, "tracks", TRACKS );
 		URI_MATCHER.addURI( AUTHORITY, "tracks/#", TRACKS_ID );
 		URI_MATCHER.addURI( AUTHORITY, "assets/#", ASSETS_ID );
 	}
-	
+
 	public static final Uri CONTENT_URI = 
             Uri.parse("content://" + AUTHORITY);
 	public static final Uri TRACK_URI =
             Uri.parse(CONTENT_URI+"/tracks");
 	// We reflect _ID and _COUNT from BaseColumns
 	public static final String DESCRIPTION = "description";
+	public static final String ACTION = "action";
 	public static final String ASSET = "asset";
 
 	public static final Uri ASSET_URI =
             Uri.parse(CONTENT_URI+"/assets");
-	
+
 	/* (non-Javadoc)
 	 * @see android.content.ContentProvider#delete(android.net.Uri, java.lang.String, java.lang.String[])
 	 */
@@ -77,11 +78,11 @@ public class SoundProvider extends ContentProvider implements BaseColumns {
 		int match = URI_MATCHER.match(uri);
 		switch (match) {
 		case TRACKS:
-			return "vnd.android.cursor.dir/vnd.com.bubblesworth.soundboard.track";
+			return getContext().getResources().getString(R.string.mime_type_tracks);
 		case TRACKS_ID:
-			return "vnd.android.cursor.item/vnd.com.bubblesworth.soundboard.track";
+			return getContext().getResources().getString(R.string.mime_type_track);
 		case ASSETS_ID:
-			return "vnd.android.cursor.item/vnd.com.bubblesworth.soundboard.asset";
+			return getContext().getResources().getString(R.string.mime_type_asset);
 		default:
 			return null;
 		}
@@ -155,19 +156,19 @@ public class SoundProvider extends ContentProvider implements BaseColumns {
 	private Cursor queryTracks(String[] projection, String selection, String[] selectionArgs,
 			String sortOrder) {
 		if (projection == null) {
-			projection = new String[] { _ID, _COUNT, DESCRIPTION, ASSET };
+			projection = new String[] { _ID, _COUNT, DESCRIPTION, ACTION, ASSET };
 		}
 		// TODO: Selection and sorting
 		MatrixCursor result = new MatrixCursor(projection, sounds.length);
 		for (SoundInfo sound:sounds) {
 			MatrixCursor.RowBuilder row = result.newRow();
-			populateRow(row, projection, sound);			
+			populateRow(row, projection, sound);
 		}
 		if (result.getCount() == 0)
 			return null;
 		return result;
 	}
-	
+
 	private Cursor queryTrack(long id, String[] projection) {
 		if (id >= sounds.length || id < 0)
 			return null;
@@ -177,20 +178,22 @@ public class SoundProvider extends ContentProvider implements BaseColumns {
 		populateRow(row, projection, sound);
 		return result;
 	}
-	
+
 	private void populateRow(MatrixCursor.RowBuilder row, String[] columns, SoundInfo sound) {
 		for (String column: columns) {
 			if (column.equals(_ID))
 				row.add(sound.id);
 			else if (column.equals(DESCRIPTION))
 				row.add(sound.description);
+			else if (column.equals(ACTION))
+				row.add("com.bubblesworth.soundboard.mlpfim.PLAY");
 			else if (column.equals(ASSET))
 				row.add(ContentUris.withAppendedId(ASSET_URI, (long)sound.id).toString());
 			else // TODO: _COUNT
 				row.add(null);
 		}
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see android.content.ContentProvider#update(android.net.Uri, android.content.ContentValues, java.lang.String, java.lang.String[])
 	 */
@@ -227,5 +230,5 @@ public class SoundProvider extends ContentProvider implements BaseColumns {
 			throw new FileNotFoundException();
 		}
 	}
-	
+
 }
