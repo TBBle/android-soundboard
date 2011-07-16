@@ -26,7 +26,7 @@ public class SoundProvider extends ContentProvider implements BaseColumns {
 	
 	private static final String AUTHORITY = "com.bubblesworth.soundboard.mlpfim.soundprovider";
 
-	private static final String SOUNDDIR = "pony_sounds_v4";
+	private static final String SOUNDDIR = "pony sounds v4";
 	
 	private class SoundInfo {
 		public int id;
