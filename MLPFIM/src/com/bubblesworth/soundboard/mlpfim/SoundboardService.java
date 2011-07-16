@@ -96,8 +96,7 @@ public class SoundboardService extends Service {
 	 */
 	@Override
 	public void onDestroy() {
-		// TODO Auto-generated method stub
-		super.onDestroy();
+		looper.quit();
 	}
 
 	/* (non-Javadoc)
