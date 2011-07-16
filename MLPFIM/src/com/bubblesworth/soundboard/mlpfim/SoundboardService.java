@@ -25,15 +25,15 @@ import android.util.Log;
  */
 public class SoundboardService extends Service {
 	private static final String TAG = "SoundboardService";
-	
+
 	private Looper looper;
 	private ServiceHandler handler;
-	
+
 	private final class ServiceHandler extends Handler {
 		public ServiceHandler(Looper looper) {
 			super(looper);
 		}
-		
+
 		private final class StopOnCompletion implements OnCompletionListener {
 			private int msgId;
 			StopOnCompletion(int msgId) {
@@ -45,12 +45,12 @@ public class SoundboardService extends Service {
 				stopSelf(msgId);
 			}
 		}
-		
+
 		@Override
 		public void handleMessage(Message msg) {
 			Intent intent = (Intent)msg.obj;
 			Uri uri = intent.getData();
-			
+
 			try {
 				AssetFileDescriptor afd = getContentResolver().openAssetFileDescriptor(uri, "r");
 				MediaPlayer mp = new MediaPlayer();
@@ -64,7 +64,7 @@ public class SoundboardService extends Service {
 			}
 		}
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see android.app.Service#onBind(android.content.Intent)
 	 */
@@ -85,7 +85,7 @@ public class SoundboardService extends Service {
 		// background priority so CPU-intensive work will not disrupt our UI.
 		HandlerThread thread = new HandlerThread(TAG+"HandlerThread", Process.THREAD_PRIORITY_BACKGROUND);
 		thread.start();
-		
+
 		// Get the HandlerThread's Looper and use it for our Handler 
 		looper = thread.getLooper();
 		handler = new ServiceHandler(looper);
