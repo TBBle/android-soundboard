@@ -1,5 +1,7 @@
 package com.bubblesworth.soundboard.mlpfim;
 
+import com.bubblesworth.soundboard.SoundColumns;
+
 import android.app.ListActivity;
 import android.content.ContentUris;
 import android.content.Intent;
@@ -20,12 +22,12 @@ public class SoundChooserActivity extends ListActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		widgetConfig = getIntent().getAction().equals("com.bubblesworth.soundboard.APPWIDGET_CONFIGURE");
-		String[] columns = {SoundProvider._ID, SoundProvider.DESCRIPTION};
+		String[] columns = {SoundColumns._ID, SoundColumns.DESCRIPTION};
 		Cursor cur = managedQuery(SoundProvider.TRACK_URI, columns, null, null, null);
 		SimpleCursorAdapter adapter = new SimpleCursorAdapter(this,
 				android.R.layout.simple_list_item_1,
 				cur,
-				new String[] {SoundProvider.DESCRIPTION},
+				new String[] {SoundColumns.DESCRIPTION},
 				new int[] {android.R.id.text1}
 				);
 		setListAdapter(adapter);
@@ -43,11 +45,11 @@ public class SoundChooserActivity extends ListActivity {
 			setResult(RESULT_OK, resultValue);
 			finish();
 		} else {
-			String[] columns = {SoundProvider.ACTION, SoundProvider.ASSET};
+			String[] columns = {SoundColumns.ACTION, SoundColumns.ASSET};
 			Cursor cur = managedQuery(uri, columns, null, null, null);
 			if (cur.moveToFirst()) {
-				String action = cur.getString(cur.getColumnIndex(SoundProvider.ACTION));
-				String asset = cur.getString(cur.getColumnIndex(SoundProvider.ASSET));
+				String action = cur.getString(cur.getColumnIndex(SoundColumns.ACTION));
+				String asset = cur.getString(cur.getColumnIndex(SoundColumns.ASSET));
 				Intent intent = new Intent(action);
 				intent.setData(Uri.parse(asset));
 				startService(intent);

@@ -17,9 +17,9 @@
                 <category android:name="android.intent.category.DEFAULT"></category>
             </intent-filter>
         </activity>
-        <service android:name=".SoundboardService">
+        <service android:name="com.bubblesworth.soundboard.SoundboardService">
             <intent-filter>
-                <action android:name="com.bubblesworth.soundboard.mlpfim.PLAY"></action>
+                <action android:name="com.bubblesworth.soundboard.PLAY"></action>
                 <data android:mimeType="@string/mime_type_asset"></data>
                 <category android:name="android.intent.category.DEFAULT"></category>
             </intent-filter>

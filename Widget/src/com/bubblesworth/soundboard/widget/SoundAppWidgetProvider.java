@@ -13,6 +13,8 @@ import android.net.Uri;
 import android.util.Log;
 import android.widget.RemoteViews;
 
+import com.bubblesworth.soundboard.SoundColumns;
+
 /**
  * @author tbble
  *
@@ -48,10 +50,6 @@ public class SoundAppWidgetProvider extends AppWidgetProvider {
 	static private class SoundAppWidgetUpdater implements Runnable {
 		private static final String TAG = "SoundAppWidgetUpdater";
 
-		// TODO: Copied from SoundProvider.java. They should be in an interface or something.
-		private static final String ACTION = "action";
-		private static final String ASSET = "asset";
-
 		private static final int cpQueryRepeat = 5000;
 
 		private Context context;
@@ -74,7 +72,7 @@ public class SoundAppWidgetProvider extends AppWidgetProvider {
 		public void run() {
 			// Query the ContentProvider at the Uri for the "action" and "asset" tags
 			//Log.d(TAG, "getContentResolver#"  + appWidgetId + ": " + uri.toString());
-			String[] columns = {ACTION, ASSET};
+			String[] columns = {SoundColumns.ACTION, SoundColumns.ASSET};
 			Cursor cur;
 			do {
 				// TODO: Give up eventually...
@@ -91,8 +89,8 @@ public class SoundAppWidgetProvider extends AppWidgetProvider {
 			} while (cur == null);
 
 			if (cur.moveToFirst()) {
-				String action = cur.getString(cur.getColumnIndex(ACTION));
-				String asset = cur.getString(cur.getColumnIndex(ASSET));
+				String action = cur.getString(cur.getColumnIndex(SoundColumns.ACTION));
+				String asset = cur.getString(cur.getColumnIndex(SoundColumns.ASSET));
 				Intent intent = new Intent(action);
 				intent.setData(Uri.parse(asset));
 				PendingIntent pendingIntent = PendingIntent.getService(context, 0, intent, 0);

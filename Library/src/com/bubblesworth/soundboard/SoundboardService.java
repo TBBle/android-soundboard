@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.bubblesworth.soundboard.mlpfim;
+package com.bubblesworth.soundboard;
 
 import java.io.IOException;
 
@@ -70,7 +70,6 @@ public class SoundboardService extends Service {
 	 */
 	@Override
 	public IBinder onBind(Intent arg0) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

@@ -14,14 +14,15 @@ import android.content.res.AssetFileDescriptor;
 import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.net.Uri;
-import android.provider.BaseColumns;
 import android.util.Log;
+
+import com.bubblesworth.soundboard.SoundColumns;
 
 /**
  * @author tbble
  *
  */
-public class SoundProvider extends ContentProvider implements BaseColumns {
+public class SoundProvider extends ContentProvider implements SoundColumns {
 	private static final String TAG = "SoundProvider";
 
 	private static final String AUTHORITY = "com.bubblesworth.soundboard.mlpfim.soundprovider";
@@ -53,13 +54,12 @@ public class SoundProvider extends ContentProvider implements BaseColumns {
             Uri.parse("content://" + AUTHORITY);
 	public static final Uri TRACK_URI =
             Uri.parse(CONTENT_URI+"/tracks");
-	// We reflect _ID and _COUNT from BaseColumns
-	public static final String DESCRIPTION = "description";
-	public static final String ACTION = "action";
-	public static final String ASSET = "asset";
 
 	public static final Uri ASSET_URI =
             Uri.parse(CONTENT_URI+"/assets");
+
+	// We reflect _ID and _COUNT from BaseColumns
+	// We reflect DESCRIPTION, ACTION, ASSET from SoundColumns
 
 	/* (non-Javadoc)
 	 * @see android.content.ContentProvider#delete(android.net.Uri, java.lang.String, java.lang.String[])
@@ -124,11 +124,9 @@ public class SoundProvider extends ContentProvider implements BaseColumns {
 				}
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			Log.e(TAG, "onCreate", e);
 			sounds = new SoundInfo[0];
 		}
-		// TODO Auto-generated method stub
 		return false;
 	}
 
@@ -186,7 +184,7 @@ public class SoundProvider extends ContentProvider implements BaseColumns {
 			else if (column.equals(DESCRIPTION))
 				row.add(sound.description);
 			else if (column.equals(ACTION))
-				row.add("com.bubblesworth.soundboard.mlpfim.PLAY");
+				row.add("com.bubblesworth.soundboard.PLAY");
 			else if (column.equals(ASSET))
 				row.add(ContentUris.withAppendedId(ASSET_URI, (long)sound.id).toString());
 			else // TODO: _COUNT
