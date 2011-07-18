@@ -5,18 +5,20 @@ package com.bubblesworth.soundboard.widget;
 
 import android.app.Activity;
 import android.appwidget.AppWidgetManager;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 
 /**
  * @author tbble
  *
  */
 public class SoundAppWidgetConfigActivity extends Activity {
-	//private static final String TAG = "SoundAppWidgetConfigActivity";
+	private static final String TAG = "SoundAppWidgetConfigActivity";
 
 	private static final String STATEKEY_WASRUNNING = "com.bubblesworth.soundboard.widget.SoundAppWidgetConfigActivity.WASRUNNING";
 
@@ -48,7 +50,14 @@ public class SoundAppWidgetConfigActivity extends Activity {
 			// it, since APPWIDGET_CONFIG isn't exported from android.appwidget.action
 			// either.
 			Intent intent = new Intent("com.bubblesworth.soundboard.APPWIDGET_CONFIGURE");
-			startActivityForResult(intent, 0);
+			try {
+				startActivityForResult(intent, 0);
+			} catch (ActivityNotFoundException e) {
+				// TODO: Show the user something informational here.
+				Log.e(TAG, "No activities for " + intent, e);
+				finish();
+				return;
+			}
 		}
 	}
 
