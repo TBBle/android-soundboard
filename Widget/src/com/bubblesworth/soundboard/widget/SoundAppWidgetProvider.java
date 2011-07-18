@@ -72,7 +72,7 @@ public class SoundAppWidgetProvider extends AppWidgetProvider {
 		public void run() {
 			// Query the ContentProvider at the Uri for the "action" and "asset" tags
 			//Log.d(TAG, "getContentResolver#"  + appWidgetId + ": " + uri.toString());
-			String[] columns = {SoundColumns.ACTION, SoundColumns.ASSET};
+			String[] columns = {SoundColumns.ACTION, SoundColumns.ASSET, SoundColumns.ICON};
 			Cursor cur;
 			do {
 				// TODO: Give up eventually...
@@ -98,6 +98,15 @@ public class SoundAppWidgetProvider extends AppWidgetProvider {
 					return;
 				RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.soundappwidget);
 				views.setOnClickPendingIntent(R.id.widgetIcon, pendingIntent);
+
+				try {
+					views.setImageViewUri(R.id.widgetIcon, Uri.parse(
+							cur.getString(cur.getColumnIndexOrThrow(SoundColumns.ICON))
+							));
+				} catch (IllegalArgumentException e) {
+					Log.e(TAG, "Missing ICON column", e);
+					views.setImageViewResource(R.id.widgetIcon, R.drawable.noicon);
+				}
 				appWidgetManager.updateAppWidget(appWidgetId, views);
 			}
 			cur.close();
