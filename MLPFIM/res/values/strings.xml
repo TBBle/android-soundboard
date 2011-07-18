@@ -2,6 +2,7 @@
 <resources>
     <string name="app_name">MLP FiM Soundboard</string>
     <string name="mime_type_asset">vnd.android.cursor.item/vnd.com.bubblesworth.soundboard.mlpfim.asset</string>
+    <string name="mime_type_icon">vnd.android.cursor.item/vnd.com.bubblesworth.soundboard.mlpfim.icon</string>
     <string name="mime_type_track">vnd.android.cursor.item/vnd.com.bubblesworth.soundboard.track</string>
     <string name="mime_type_tracks">vnd.android.cursor.item/vnd.com.bubblesworth.soundboard.track</string>
 </resources>

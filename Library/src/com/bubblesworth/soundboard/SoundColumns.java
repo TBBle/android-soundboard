@@ -8,5 +8,5 @@ public interface SoundColumns extends BaseColumns {
 	public static final String DESCRIPTION = "description";
 	public static final String ACTION = "action";
 	public static final String ASSET = "asset";
-
+	public static final String ICON = "icon";
 }

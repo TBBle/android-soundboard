@@ -35,6 +35,7 @@ public class SoundProvider extends ContentProvider implements SoundColumns {
 		public String track;
 		public String description;
 		public String filetype;
+		public int iconResource;
 	};
 
 	private SoundInfo sounds[];
@@ -42,24 +43,30 @@ public class SoundProvider extends ContentProvider implements SoundColumns {
 	private static final int TRACKS = 1;
 	private static final int TRACKS_ID = 2;
 	private static final int ASSETS_ID = 4;
+	private static final int ICONS_ID = 6;
 
 	private static final UriMatcher URI_MATCHER = new UriMatcher(UriMatcher.NO_MATCH);
 	static {
 		URI_MATCHER.addURI( AUTHORITY, "tracks", TRACKS );
 		URI_MATCHER.addURI( AUTHORITY, "tracks/#", TRACKS_ID );
 		URI_MATCHER.addURI( AUTHORITY, "assets/#", ASSETS_ID );
+		URI_MATCHER.addURI( AUTHORITY, "icons/#", ICONS_ID );
 	}
 
 	public static final Uri CONTENT_URI = 
             Uri.parse("content://" + AUTHORITY);
+
 	public static final Uri TRACK_URI =
             Uri.parse(CONTENT_URI+"/tracks");
 
 	public static final Uri ASSET_URI =
             Uri.parse(CONTENT_URI+"/assets");
 
+	public static final Uri ICON_URI =
+            Uri.parse(CONTENT_URI+"/icons");
+
 	// We reflect _ID and _COUNT from BaseColumns
-	// We reflect DESCRIPTION, ACTION, ASSET from SoundColumns
+	// We reflect DESCRIPTION, ACTION, ASSET, ICON from SoundColumns
 
 	/* (non-Javadoc)
 	 * @see android.content.ContentProvider#delete(android.net.Uri, java.lang.String, java.lang.String[])
@@ -83,6 +90,8 @@ public class SoundProvider extends ContentProvider implements SoundColumns {
 			return getContext().getResources().getString(R.string.mime_type_track);
 		case ASSETS_ID:
 			return getContext().getResources().getString(R.string.mime_type_asset);
+		case ICONS_ID:
+			return getContext().getResources().getString(R.string.mime_type_icon);
 		default:
 			return null;
 		}
@@ -112,6 +121,8 @@ public class SoundProvider extends ContentProvider implements SoundColumns {
 			sounds = new SoundInfo[soundCount];
 			soundCount = 0;
 			for (String category: getContext().getAssets().list(SOUNDDIR)) {
+				String iconName = category.replace(" ", "").toLowerCase();
+				int iconResource = getContext().getResources().getIdentifier( "drawable/cat_" + iconName, null, "com.bubblesworth.soundboard.mlpfim" );
 				for (String track: getContext().getAssets().list(SOUNDDIR + "/" + category) ) {
 					int dotPos = track.lastIndexOf(".");
 					sounds[soundCount] = new SoundInfo();
@@ -120,6 +131,7 @@ public class SoundProvider extends ContentProvider implements SoundColumns {
 					sounds[soundCount].track = track.substring(0, dotPos);
 					sounds[soundCount].filetype = track.substring(dotPos + 1);
 					sounds[soundCount].description = category + " - " + sounds[soundCount].track;
+					sounds[soundCount].iconResource = iconResource;
 					soundCount++;
 				}
 			}
@@ -146,6 +158,9 @@ public class SoundProvider extends ContentProvider implements SoundColumns {
 		case ASSETS_ID:
 			return null;
 			//return queryAsset(ContentUris.parseId(uri));
+		case ICONS_ID:
+			return null;
+			//return queryIcon(ContentUris.parseId(uri));
 		default:
 			return null;
 		}
@@ -154,7 +169,7 @@ public class SoundProvider extends ContentProvider implements SoundColumns {
 	private Cursor queryTracks(String[] projection, String selection, String[] selectionArgs,
 			String sortOrder) {
 		if (projection == null) {
-			projection = new String[] { _ID, _COUNT, DESCRIPTION, ACTION, ASSET };
+			projection = new String[] { _ID, _COUNT, DESCRIPTION, ACTION, ASSET, ICON };
 		}
 		// TODO: Selection and sorting
 		MatrixCursor result = new MatrixCursor(projection, sounds.length);
@@ -187,6 +202,8 @@ public class SoundProvider extends ContentProvider implements SoundColumns {
 				row.add("com.bubblesworth.soundboard.PLAY");
 			else if (column.equals(ASSET))
 				row.add(ContentUris.withAppendedId(ASSET_URI, (long)sound.id).toString());
+			else if (column.equals(ICON))
+				row.add(ContentUris.withAppendedId(ICON_URI, (long)sound.id).toString());
 			else // TODO: _COUNT
 				row.add(null);
 		}
@@ -209,23 +226,27 @@ public class SoundProvider extends ContentProvider implements SoundColumns {
 			throws FileNotFoundException {
 		if (!mode.equals("r"))
 			throw new FileNotFoundException();
-		int match = URI_MATCHER.match(uri);
-		switch (match) {
-			case ASSETS_ID:
-				break;
-			default:
-				throw new FileNotFoundException();
-		}
 		long id = ContentUris.parseId(uri);
 		if (id >= sounds.length || id < 0)
 			throw new FileNotFoundException();
 		SoundInfo sound = sounds[(int)id];
-		try {
-			String assetPath = SOUNDDIR + "/" + sound.category + "/" + sound.track + "." + sound.filetype;
-			return getContext().getAssets().openFd(assetPath);
-		} catch (IOException e) {
-			Log.e(TAG, "openAssetFileDescriptor", e);
-			throw new FileNotFoundException();
+
+		int match = URI_MATCHER.match(uri);
+		switch (match) {
+			case ASSETS_ID:
+				String assetPath = SOUNDDIR + "/" + sound.category + "/" + sound.track + "." + sound.filetype;
+				try {
+					return getContext().getAssets().openFd(assetPath);
+				} catch (IOException e) {
+					Log.e(TAG, "openAssetFileDescriptor", e);
+					throw new FileNotFoundException(e.getLocalizedMessage());
+				}
+			case ICONS_ID:
+				if (sound.iconResource == 0)
+					return getContext().getResources().openRawResourceFd(R.drawable.icon);
+				return getContext().getResources().openRawResourceFd(sound.iconResource);
+			default:
+				throw new FileNotFoundException();
 		}
 	}
 
