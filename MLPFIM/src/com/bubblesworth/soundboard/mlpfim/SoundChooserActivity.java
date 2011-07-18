@@ -22,13 +22,13 @@ public class SoundChooserActivity extends ListActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		widgetConfig = getIntent().getAction().equals("com.bubblesworth.soundboard.APPWIDGET_CONFIGURE");
-		String[] columns = {SoundColumns._ID, SoundColumns.DESCRIPTION};
+		String[] columns = {SoundColumns._ID, SoundColumns.DESCRIPTION, SoundColumns.ICON};
 		Cursor cur = managedQuery(SoundProvider.TRACK_URI, columns, null, null, null);
 		SimpleCursorAdapter adapter = new SimpleCursorAdapter(this,
-				android.R.layout.simple_list_item_1,
+				R.layout.icon_list_item,
 				cur,
-				new String[] {SoundColumns.DESCRIPTION},
-				new int[] {android.R.id.text1}
+				new String[] {SoundColumns.DESCRIPTION, SoundColumns.ICON},
+				new int[] {R.id.listText, R.id.listIcon}
 				);
 		setListAdapter(adapter);
 		if (widgetConfig) {
