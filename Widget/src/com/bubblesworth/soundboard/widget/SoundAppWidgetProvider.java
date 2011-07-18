@@ -74,6 +74,9 @@ public class SoundAppWidgetProvider extends AppWidgetProvider {
 			//Log.d(TAG, "getContentResolver#"  + appWidgetId + ": " + uri.toString());
 			String[] columns = {SoundColumns.ACTION, SoundColumns.ASSET, SoundColumns.ICON};
 			Cursor cur;
+			RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.soundappwidget);
+			views.setImageViewResource(R.id.widgetIcon, R.drawable.loading);
+			appWidgetManager.updateAppWidget(appWidgetId, views);
 			do {
 				// TODO: Give up eventually...
 				// Can we detect that no ContentResolver will ever exist?
@@ -88,15 +91,29 @@ public class SoundAppWidgetProvider extends AppWidgetProvider {
 				}
 			} while (cur == null);
 
+			views.setImageViewResource(R.id.widgetIcon, R.drawable.error);
 			if (cur.moveToFirst()) {
-				String action = cur.getString(cur.getColumnIndex(SoundColumns.ACTION));
-				String asset = cur.getString(cur.getColumnIndex(SoundColumns.ASSET));
-				Intent intent = new Intent(action);
-				intent.setData(Uri.parse(asset));
+				Intent intent = new Intent();
+				try {
+					intent.setAction(cur.getString(cur.getColumnIndexOrThrow(SoundColumns.ACTION)));
+				} catch (IllegalArgumentException e) {
+					Log.e(TAG, "Missing ACTION column", e);
+					return;
+				}
+
+				try {
+					intent.setData(Uri.parse(
+							cur.getString(cur.getColumnIndexOrThrow(SoundColumns.ASSET))
+							));
+				} catch (IllegalArgumentException e) {
+					Log.e(TAG, "Missing ASSET column", e);
+					return;
+				}
+
 				PendingIntent pendingIntent = PendingIntent.getService(context, 0, intent, 0);
 				if (pendingIntent == null)
 					return;
-				RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.soundappwidget);
+
 				views.setOnClickPendingIntent(R.id.widgetIcon, pendingIntent);
 
 				try {
@@ -107,9 +124,9 @@ public class SoundAppWidgetProvider extends AppWidgetProvider {
 					Log.e(TAG, "Missing ICON column", e);
 					views.setImageViewResource(R.id.widgetIcon, R.drawable.noicon);
 				}
-				appWidgetManager.updateAppWidget(appWidgetId, views);
 			}
 			cur.close();
+			appWidgetManager.updateAppWidget(appWidgetId, views);
 		}
 	}
 }
