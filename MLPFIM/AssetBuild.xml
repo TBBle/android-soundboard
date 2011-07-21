@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="MLPFILAssetBuild" default="all" basedir="." xmlns:ac="antlib:net.sf.antcontrib">
+	<!-- Pull in ant-contrib -->
+	<taskdef resource="net/sf/antcontrib/antcontrib.properties"/>
+
+	<!-- Mapping from shelltoontv's MLP User Icons to category icon names -->
+	<mapper id="caticons_shelltoontv">
+		<chainedmapper>
+			<flattenmapper/>
+			<firstmatchmapper>
+				<globmapper from="applebloom1.png" to="cat_applebloom.png"/>
+				<globmapper from="applejack1.png" to="cat_applejack.png"/>
+				<globmapper from="bigmac1.png" to="cat_bigmacintosh.png"/>
+				<globmapper from="braeburn1.png" to="cat_braeburn.png"/>
+				<!--globmapper from="" to="cat_carrottop.png"/-->
+				<!--globmapper from="" to="cat_cmc.png"/-->
+				<globmapper from="drwhooves1.png" to="cat_drwhoof.png"/>
+				<globmapper from="fluttershy1.png" to="cat_fluttershy.png"/>
+				<!--globmapper from="" to="cat_gilda.png"/-->
+				<!--globmapper from="" to="cat_luna.png"/-->
+				<!--globmapper from="" to="cat_nightmaremoon.png"/-->
+				<!--globmapper from="" to="cat_owl.png"/-->
+				<globmapper from="photofinish1.png" to="cat_photofinish.png"/>
+				<globmapper from="pinkiepie1.png" to="cat_pinkiepie.png"/>
+				<!--globmapper from="" to="cat_princesscelestia.png"/-->
+				<globmapper from="rainbowdash1.png" to="cat_rainbowdash.png"/>
+				<globmapper from="rarity1.png" to="cat_rarity.png"/>
+				<!--globmapper from="" to="cat_roseluck.png"/-->
+				<!--globmapper from="" to="cat_sapphireshores.png"/-->
+				<globmapper from="scootaloo1.png" to="cat_scootaloo.png"/>
+				<globmapper from="spike1.png" to="cat_spike.png"/>
+				<!--globmapper from="" to="cat_stevenmagnet.png"/-->
+				<globmapper from="sweetiebelle1.png" to="cat_sweetiebelle.png"/>
+				<globmapper from="trixie1nomagic.png" to="cat_trixie.png"/>
+				<globmapper from="twilightsparkle1.png" to="cat_twilightsparkle.png"/>
+				<!--globmapper from="" to="cat_zecora.png"/-->
+			</firstmatchmapper>
+		</chainedmapper>
+	</mapper>
+
+	<union id="res_shelltoontv">
+	<fileset dir="../../SrcAssets/MLP User Icons Vol 1/" />
+	<fileset dir="../../SrcAssets/mlp_user_icons_vol__2_by_shelltoontv-d3h2go1/" />
+	</union>
+
+	<description>Build assets for MLPFIM</description>
+	<target name="all" description="Build all assets">
+		<!-- Process shelltoontv's icons into category icons -->
+		<ac:for list="ldpi,mdpi,hdpi,xhdpi" param="density">
+			<sequential>
+				<resize mapperref="caticons_shelltoontv" resourceref="res_shelltoontv" density="@{density}"/>
+			</sequential>
+		</ac:for>
+	</target>
+
+	<target name="clean" description="Clean all built assets">
+		<!-- Process shelltoontv's icons into category icons -->
+		<ac:for list="ldpi,mdpi,hdpi,xhdpi" param="density">
+			<sequential>
+				<resizeClean mapperref="caticons_shelltoontv" resourceref="res_shelltoontv" density="@{density}"/>
+			</sequential>
+		</ac:for>
+	</target>
+
+	<!-- Macros -->
+
+	<!-- Convert the supplied dp value to a pixel value for the supplied dpi -->
+	<macrodef name="dptopx">
+		<attribute name="result"/>
+		<attribute name="dpval"/>
+		<attribute name="density"/>
+		<sequential>
+			<!-- Not checking for tvdpi -->
+			<condition property="dpi" value="160">
+				<or>
+					 <equals arg1="@{density}" arg2="mdpi"/>
+					 <equals arg1="@{density}" arg2="nodpi"/>
+				</or>
+			</condition>
+			<condition property="dpi" value="120">
+				 <equals arg1="@{density}" arg2="ldpi"/>
+			</condition>
+			<condition property="dpi" value="240">
+				 <equals arg1="@{density}" arg2="hdpi"/>
+			</condition>
+			<condition property="dpi" value="320">
+				 <equals arg1="@{density}" arg2="xhdpi"/>
+			</condition>
+			<fail message="Unsupported density @{density}" unless="dpi"/>
+			<math result="@{result}">
+				<multiply>
+					<multiply>
+						<num value="@{dpval}"/>
+						<divide arg1="${dpi}" arg2="160"/>
+					</multiply>
+					<num value="1"/>
+				</multiply>
+			</math>
+			<var name="dpi" unset="true"/>
+		</sequential>
+	</macrodef>
+
+	<!-- Lanczos resize the sourceResources to the given dp dimensions for the given density -->
+	<!-- Applies the given mapper and outputs them into the appropriate res/drawable- folder -->
+	<macrodef name="resize">
+		<attribute name="widthdp" default="72"/>
+		<attribute name="heightdp" default="72"/>
+		<attribute name="density" default="mdpi"/>
+		<attribute name="mapperref"/>
+		<attribute name="resourceref"/>
+		<sequential>
+			<dptopx result="width" dpval="@{widthdp}" density="@{density}"/>
+			<dptopx result="height" dpval="@{heightdp}" density="@{density}"/>
+			<mkdir dir="res/drawable-@{density}"/>
+			<apply vmlauncher="false" executable="convert" dest="res/drawable-@{density}" parallel="false" append="true" skipemptyfilesets="true">
+				<resources refid="@{resourceref}"/>
+				<mapper refid="@{mapperref}"/>
+				<srcfile/>
+				<arg value="-filter"/>
+				<arg value="Lanczos"/>
+				<arg value="-resize"/>
+				<arg value=" ${width}x${height}"/>
+				<!-- Debug - Write the density on the image
+				<arg value="-gravity"/>
+				<arg value="south"/>
+				<arg value="-stroke"/>
+				<arg value="#000C"/>
+				<arg value="-strokewidth"/>
+				<arg value="2"/>
+				<arg value="-annotate"/>
+				<arg value="0"/>
+				<arg value="@{density}"/>
+				<arg value="-stroke"/>
+				<arg value="none"/>
+				<arg value="-fill"/>
+				<arg value="white"/>
+				<arg value="-annotate"/>
+				<arg value="0"/>
+				<arg value="@{density}"/>
+				-->
+				<targetfile/>
+			</apply>
+			<var name="width" unset="true"/>
+			<var name="height" unset="true"/>
+		</sequential>
+	</macrodef>
+
+	<!-- Clean up the output of the resize macro -->
+	<macrodef name="resizeClean">
+		<attribute name="density" default="mdpi"/>
+		<attribute name="mapperref"/>
+		<attribute name="resourceref"/>
+		<sequential>
+			<apply vmlauncher="false" executable="rm" dest="res/drawable-@{density}" parallel="true" append="true" skipemptyfilesets="true" addsourcefile="false" force="true">
+				<resources refid="@{resourceref}"/>
+				<mapper refid="@{mapperref}"/>
+				<targetfile/>
+			</apply>
+		</sequential>
+	</macrodef>
+</project>
