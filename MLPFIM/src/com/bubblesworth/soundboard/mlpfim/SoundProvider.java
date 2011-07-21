@@ -121,7 +121,7 @@ public class SoundProvider extends ContentProvider implements SoundColumns {
 			sounds = new SoundInfo[soundCount];
 			soundCount = 0;
 			for (String category: getContext().getAssets().list(SOUNDDIR)) {
-				String iconName = category.replace(" ", "").toLowerCase();
+				String iconName = category.replace(" ", "").replace(".", "").toLowerCase();
 				int iconResource = getContext().getResources().getIdentifier( "drawable/cat_" + iconName, null, "com.bubblesworth.soundboard.mlpfim" );
 				for (String track: getContext().getAssets().list(SOUNDDIR + "/" + category) ) {
 					int dotPos = track.lastIndexOf(".");
