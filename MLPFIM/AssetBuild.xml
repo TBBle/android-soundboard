@@ -14,6 +14,7 @@
 				<globmapper from="braeburn1.png" to="cat_braeburn.png"/>
 				<!--globmapper from="" to="cat_carrottop.png"/-->
 				<!--globmapper from="" to="cat_cmc.png"/-->
+				<globmapper from="derpyhooves1.png" to="cat_derpy.png"/>
 				<globmapper from="drwhooves1.png" to="cat_drwhoof.png"/>
 				<globmapper from="fluttershy1.png" to="cat_fluttershy.png"/>
 				<!--globmapper from="" to="cat_gilda.png"/-->
