@@ -3,5 +3,6 @@
   xmlns:android="http://schemas.android.com/apk/res/android"
   android:orientation="vertical" android:layout_width="72dip" android:layout_height="72dip">
     <ImageView android:src="@drawable/loading" android:id="@+id/widgetIcon" android:layout_width="72dip" android:layout_height="72dip"></ImageView>
+    <TextView android:layout_width="wrap_content" android:textSize="12sp" android:textColor="#FFFFFF" android:layout_height="wrap_content" android:layout_gravity="center_horizontal|bottom" android:id="@+id/widgetLabel" android:maxLines="1" android:gravity="center_horizontal" android:ellipsize="end" android:shadowRadius="3" android:shadowColor="#000000" android:visibility="gone"></TextView>
     
 </FrameLayout>

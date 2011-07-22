@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.util.Log;
+import android.view.View;
 import android.widget.RemoteViews;
 
 import com.bubblesworth.soundboard.SoundColumns;
@@ -72,7 +73,7 @@ public class SoundAppWidgetProvider extends AppWidgetProvider {
 		public void run() {
 			// Query the ContentProvider at the Uri for the "action" and "asset" tags
 			//Log.d(TAG, "getContentResolver#"  + appWidgetId + ": " + uri.toString());
-			String[] columns = {SoundColumns.ACTION, SoundColumns.ASSET, SoundColumns.ICON};
+			String[] columns = {SoundColumns.ACTION, SoundColumns.ASSET, SoundColumns.ICON, SoundColumns.DESCRIPTION};
 			Cursor cur;
 			RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.soundappwidget);
 			views.setImageViewResource(R.id.widgetIcon, R.drawable.loading);
@@ -123,6 +124,15 @@ public class SoundAppWidgetProvider extends AppWidgetProvider {
 				} catch (IllegalArgumentException e) {
 					Log.e(TAG, "Missing ICON column", e);
 					views.setImageViewResource(R.id.widgetIcon, R.drawable.noicon);
+				}
+				try {
+					String description = cur.getString(cur.getColumnIndexOrThrow(SoundColumns.DESCRIPTION));
+					if (description.length() > 0) {
+						views.setTextViewText(R.id.widgetLabel, description);
+						views.setViewVisibility(R.id.widgetLabel, View.VISIBLE );
+					}
+				} catch (IllegalArgumentException e) {
+					Log.e(TAG, "Missing DESCRIPTION column", e);
 				}
 			}
 			cur.close();
