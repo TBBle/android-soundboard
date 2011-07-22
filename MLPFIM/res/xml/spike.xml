@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<category id="spike" description="Spike">
+	<description id="anouthouse">An outhouse?</description>
+	<description id="anotherdonutextrasprinkles">Another donut...</description>
+	<description id="canyoudothatcanyouexplodetwice">Can you explode twice?</description>
+	<description id="dudethatscreepy">Dude, that's creepy</description>
+	<description id="howdoyouknow">How do you know?</description>
+	<description id="icantevenworkwiththat">I can't even work with that</description>
+	<description id="igotnothing">I got nothing</description>
+	<description id="isitzombies">Is it zombies?</description>
+	<description id="nooooooooooooo">NOOOOOOOOO</description>
+	<description id="whatwhatswrong">What? What's wrong?</description>
+</category>

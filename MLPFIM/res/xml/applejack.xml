@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<category id="applejack" description="Applejack">
+	<description id="allyourspartner">All yours partner</description>
+	<description id="bereadyforaride">Be ready for a ride</description>
+	<description id="canthearyouimasleep">Can't hear you, I'm asleep</description>
+	<description id="dontyouuseyourfancymathematicstomuddletheissue">fancy mathemeatics</description>
+	<description id="geronimo">GERONIMO</description>
+	<description id="helpingtheponyfolks">Helping the ponyfolks</description>
+	<description id="hinthint">Hint, hint</description>
+	<description id="hmmmmnah">Hmmmmm, nah</description>
+	<description id="hohothereloverboy">Hoho there, lover boy</description>
+	<description id="itoldyouso">I told you so</description>
+	<description id="imapplejack">I'm Applejack</description>
+	<description id="oooohoooo">OooOooOoo</description>
+	<description id="oopssry">Oops, sorry</description>
+	<description id="thatswhatallthefussisabout">That's what all the fuss is...</description>
+	<description id="whatintarnation">What in tarnation?</description>
+	<description id="whatinthehayisthatsupposedtomean">What in the hay...?</description>
+	<description id="whoareyoucallingababy">Who are you calling a baby?</description>
+	<description id="yeehaw">YEEHAW</description>
+	<description id="yourewelcome">You're welcome</description>
+</category>

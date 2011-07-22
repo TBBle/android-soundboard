@@ -6,11 +6,17 @@ package com.bubblesworth.soundboard.mlpfim;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import org.xmlpull.v1.XmlPullParserException;
+
 import android.content.ContentProvider;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.UriMatcher;
 import android.content.res.AssetFileDescriptor;
+import android.content.res.AssetManager;
+import android.content.res.Resources;
+import android.content.res.Resources.NotFoundException;
+import android.content.res.XmlResourceParser;
 import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.net.Uri;
@@ -34,7 +40,6 @@ public class SoundProvider extends ContentProvider implements SoundColumns {
 		public String category;
 		public String track;
 		public String description;
-		public String filetype;
 		public int iconResource;
 	};
 
@@ -105,6 +110,13 @@ public class SoundProvider extends ContentProvider implements SoundColumns {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	// This is what Android allows in filenames that're referenced in R.drawable
+	// Note that '.' is also not allowed, as Android's only allowing that for
+	// the extension, it's stripped for things going into R.drawable
+	private String idifyName( String name ) {
+		return name.toLowerCase().replaceAll("[^a-z0-9_]", "");
+	}
 
 	/* (non-Javadoc)
 	 * @see android.content.ContentProvider#onCreate()
@@ -112,27 +124,83 @@ public class SoundProvider extends ContentProvider implements SoundColumns {
 	@Override
 	public boolean onCreate() {
 		try {
+			AssetManager assets = getContext().getAssets();
+			Resources resources = getContext().getResources();
 			int soundCount = 0;
-			for (String category: getContext().getAssets().list(SOUNDDIR)) {
-				for (@SuppressWarnings("unused") String track: getContext().getAssets().list(SOUNDDIR + "/" + category) ) {
-					soundCount++;
-				}
+			for (String category: assets.list(SOUNDDIR)) {
+				soundCount+= assets.list(SOUNDDIR + "/" + category).length;
 			}
 			sounds = new SoundInfo[soundCount];
 			soundCount = 0;
-			for (String category: getContext().getAssets().list(SOUNDDIR)) {
-				String iconName = category.replace(" ", "").replace(".", "").toLowerCase();
-				int iconResource = getContext().getResources().getIdentifier( "drawable/cat_" + iconName, null, "com.bubblesworth.soundboard.mlpfim" );
-				for (String track: getContext().getAssets().list(SOUNDDIR + "/" + category) ) {
-					int dotPos = track.lastIndexOf(".");
+			for (String category: assets.list(SOUNDDIR)) {
+				String categoryId = idifyName(category);
+				int descriptionXmlResource = resources.getIdentifier( "xml/" + categoryId, null, "com.bubblesworth.soundboard.mlpfim" );
+				XmlResourceParser xrp = null;
+				String categoryName = category;
+				try{
+					xrp = resources.getXml( descriptionXmlResource );
+					int eventType = xrp.getEventType();
+					// Skip anything before the first tag
+					while (eventType != XmlResourceParser.START_TAG) {
+						eventType = xrp.next();
+					}
+					// Expect that we just hit a category tag
+					xrp.require(XmlResourceParser.START_TAG, null, "category");
+					// Check the category id
+					String tagId = xrp.getAttributeValue(null, "id"); 
+					if ( !tagId.equals( categoryId ) ) {
+						throw new XmlPullParserException( "Got id " + tagId + " but expected id " + categoryId + " (" + xrp.getPositionDescription() + ")", xrp, null);
+					}
+					// Grab the description element
+					categoryName = xrp.getAttributeValue(null, "description");
+				} catch (NotFoundException e) {
+					Log.e(TAG, "Failed to find category description resource", e);
+				} catch (XmlPullParserException e) {
+					Log.e(TAG, "Failed to parse category description", e);
+					xrp.close();
+					xrp = null;
+				}
+				int iconResource = resources.getIdentifier( "drawable/cat_" + categoryId, null, "com.bubblesworth.soundboard.mlpfim" );
+				for (String track: assets.list(SOUNDDIR + "/" + category) ) {
 					sounds[soundCount] = new SoundInfo();
 					sounds[soundCount].id = soundCount;
 					sounds[soundCount].category = category;
-					sounds[soundCount].track = track.substring(0, dotPos);
-					sounds[soundCount].filetype = track.substring(dotPos + 1);
-					sounds[soundCount].description = category + " - " + sounds[soundCount].track;
+					sounds[soundCount].track = track;
 					sounds[soundCount].iconResource = iconResource;
+
+					int dotPos = track.lastIndexOf(".");
+					String description = track.substring(0, dotPos);
+					String trackId = idifyName(description);
+					if (xrp != null) {
+						try {
+							xrp.nextTag();
+							xrp.require(XmlResourceParser.START_TAG, null, "description" );
+							String tagId = xrp.getAttributeValue(null, "id"); 
+							if ( !tagId.equals( trackId ) ) {
+								throw new XmlPullParserException( "Got id " + tagId + " but expected id " + trackId + " (" + xrp.getPositionDescription() + ")", xrp, null);
+							}
+							description = xrp.nextText();
+							xrp.require(XmlResourceParser.END_TAG, null, "description");
+						} catch (XmlPullParserException e) {
+							Log.e(TAG, "Failed to parse sound description for trackId " + trackId, e);
+							xrp.close();
+							xrp = null;
+						}
+					}
+					if (iconResource == 0)
+						description = categoryName + " - " + description;
+					sounds[soundCount].description = description;
 					soundCount++;
+				}
+				if (xrp != null) {
+					try {
+						xrp.nextTag();
+						xrp.require(XmlResourceParser.END_TAG, null, "category");
+					} catch (XmlPullParserException e) {
+						Log.e(TAG, "Didn't finish the category file", e);
+					}
+					xrp.close();
+					xrp = null;
 				}
 			}
 		} catch (IOException e) {
@@ -234,7 +302,7 @@ public class SoundProvider extends ContentProvider implements SoundColumns {
 		int match = URI_MATCHER.match(uri);
 		switch (match) {
 			case ASSETS_ID:
-				String assetPath = SOUNDDIR + "/" + sound.category + "/" + sound.track + "." + sound.filetype;
+				String assetPath = SOUNDDIR + "/" + sound.category + "/" + sound.track;
 				try {
 					return getContext().getAssets().openFd(assetPath);
 				} catch (IOException e) {

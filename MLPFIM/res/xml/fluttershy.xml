@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<category id="fluttershy" description="Fluttershy">
+	<description id="crying">(crying)</description>
+	<description id="comeout">Come out!</description>
+	<description id="crazylaugh">(crazy laughing)</description>
+	<description id="iamsofrustrated">I am so frustrated...</description>
+	<description id="idontwannatalkaboutit">I don't wanna talk about it</description>
+	<description id="illcatchyouyeatmypretties">I'll catch you yet...</description>
+	<description id="imfluttershy">I'm Fluttershy</description>
+	<description id="imsosrytohavescaredyou">I'm so sorry to have...</description>
+	<description id="idliketobeatree">I'd like to be a tree</description>
+	<description id="kicksomething">Kick something</description>
+	<description id="oopsie">Oopsie</description>
+	<description id="prettyplease">Pretty please</description>
+	<description id="wait">WAIT!</description>
+	<description id="waytogo">Way to go</description>
+	<description id="yay">Yay</description>
+	<description id="yourockwoohoo">You rock, woohoo</description>
+	<description id="youregoingtoloveme">You're going to love me!</description>
+	<description id="youresuchaloudmouth">You're such a loudmouth</description>
+	<description id="yourethecutestthingever">You're the cutest thing ever</description>
+</category>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<category id="zecora" description="Zecora">
+	<description id="beware">Beware!</description>
+	<description id="haveyougonemad">Have you gone mad?</description>
+	<description id="howdareyou">How dare you?</description>
+	<description id="yourdoom">Your doom</description>
+</category>

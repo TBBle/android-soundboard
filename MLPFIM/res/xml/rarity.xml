@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<category id="rarity" description="Rarity">
+	<description id="butithoughtyouwantedwhining">I thought you wanted whining</description>
+	<description id="doesntevenmakesense">Doesn't even make sense</description>
+	<description id="dumbrock">Dumb rock</description>
+	<description id="gentlyplease">Gently, please</description>
+	<description id="howcouldyou">How could you?</description>
+	<description id="imsopathetic">I'm so pathetic</description>
+	<description id="idea">IDEA</description>
+	<description id="itison">It is on</description>
+	<description id="leavemealone">Leave me alone!</description>
+	<description id="please">Please</description>
+	<description id="pruneyhooves">Pruney hooves</description>
+	<description id="takethatyouruffian">Take that you ruffian!</description>
+	<description id="tellme">Tell me!</description>
+	<description id="thankyou">Thank you</description>
+	<description id="thingattheplace">The thing at the place</description>
+	<description id="thisiswhining">This is whining</description>
+	<description id="wahahaha">WAHAHA</description>
+	<description id="whatevershallwedo">What ever shall we do?</description>
+	<description id="youmust">You must!</description>
+</category>

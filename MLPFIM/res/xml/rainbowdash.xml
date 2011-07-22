@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<category id="rainbowdash" description="Raibow Dash">
+	<description id="10secondsflat">10 seconds flat</description>
+	<description id="areyouaspy">Are you a spy?</description>
+	<description id="booo">Boooo</description>
+	<description id="iamtheironpony">I am the Iron Pony</description>
+	<description id="ihatelosing">I hate losing</description>
+	<description id="iknowitsgonnabesoawesome">I know it's gonna be so awesome</description>
+	<description id="ilovefunthings">I love fun things</description>
+	<description id="imonit">I'm on it</description>
+	<description id="itneedstobeabout20cooler">It needs to be about 20% cooler</description>
+	<description id="itsalltrue">It's all true</description>
+	<description id="laughing">(laughing)</description>
+	<description id="mylifeisruined">My life is ruined</description>
+	<description id="omgomgomg">OMG OMG OMG</description>
+	<description id="pinkieusorandom">Pinkie, you're random</description>
+	<description id="soundslikesourapplestome">Sounds like sour apples to me</description>
+	<description id="timetotakeouttheadorabletrash">Time to take out the...</description>
+	<description id="whatdoyouhaveinmind">What do you have in mind?</description>
+	<description id="whoareyoucallingachump">Who are you calling a chump?</description>
+	<description id="youwannadothisthehardway">Wanna do this the hard way?</description>
+</category>

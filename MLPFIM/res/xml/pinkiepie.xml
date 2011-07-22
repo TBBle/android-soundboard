@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<category id="pinkiepie" description="Pinkie Pie">
+	<description id="ahaiknewit">Aha, I knew it</description>
+	<description id="areyoulocointhecoco">Are you loco in the coco?</description>
+	<description id="boring">Boring</description>
+	<description id="forever">FOREVER</description>
+	<description id="gasp">(gasp)</description>
+	<description id="giggle">(giggle)</description>
+	<description id="help">HELP</description>
+	<description id="heythatswhatisaid">Hey, that's what I said</description>
+	<description id="hiimpinkiepie">Hi, I'm Pinkie Pie...</description>
+	<description id="howequestriawasmade">How Equestria was made</description>
+	<description id="iknowhowitgoesallright">I know how it goes, alright</description>
+	<description id="imjustgladnoneofthemponiesshowedup">I'm just glad...</description>
+	<description id="oatmealareyoucraz">Oatmeal, are you craz...</description>
+	<description id="okidokiloki">Oki doki Loki</description>
+	<description id="ouithatiscorrectmadame">Out, that is correct...</description>
+	<description id="pinkiepiestyle">Pinkie Pie style</description>
+	<description id="thatssonotrue">That's so not true</description>
+	<description id="twitchatwitch">Twitcha twitch</description>
+	<description id="youreallyneedtogetoutmore">You really need to get out more</description>
+</category>
