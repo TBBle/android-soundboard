@@ -18,7 +18,6 @@
 				<globmapper from="fluttershy1.png" to="cat_fluttershy.png"/>
 				<!--globmapper from="" to="cat_gilda.png"/-->
 				<!--globmapper from="" to="cat_luna.png"/-->
-				<!--globmapper from="" to="cat_nightmaremoon.png"/-->
 				<globmapper from="photofinish1.png" to="cat_photofinish.png"/>
 				<globmapper from="pinkiepie1.png" to="cat_pinkiepie.png"/>
 				<globmapper from="rainbowdash1.png" to="cat_rainbowdash.png"/>
@@ -65,6 +64,19 @@
 
 	<fileset id="res_blackm3sh" dir="../../SrcAssets/BlackM3sh/"/>
 
+	<!-- Mapping MoongazePonies's assets to category icon names -->
+	<mapper id="caticons_moongazeponies">
+		<chainedmapper>
+			<flattenmapper/>
+			<firstmatchmapper>
+				<!-- This ones under Creative Commons Attribution-Noncommercial-Share Alike 3.0 License -->
+				<globmapper from="nightmare_moon___no_hair_by_moongazeponies-d3jw389.png" to="cat_nightmaremoon.png"/>
+			</firstmatchmapper>
+		</chainedmapper>
+	</mapper>
+
+	<fileset id="res_moongazeponies" dir="../../SrcAssets/MoongazePonies/"/>
+
 	<!-- Mapping Capt-Nemo's assets to category icon names -->
 	<mapper id="caticons_capt-nemo">
 		<chainedmapper>
@@ -86,6 +98,7 @@
 				<resize mapperref="caticons_shelltoontv" resourceref="res_shelltoontv" density="@{density}"/>
 				<resize mapperref="caticons_atomicgreymon" resourceref="res_atomicgreymon" density="@{density}"/>
 				<resize mapperref="caticons_blackm3sh" resourceref="res_blackm3sh" density="@{density}"/>
+				<resize mapperref="caticons_moongazeponies" resourceref="res_moongazeponies" density="@{density}"/>
 				<resize mapperref="caticons_capt-nemo" resourceref="res_capt-nemo" density="@{density}"/>
 			</sequential>
 		</ac:for>
@@ -98,6 +111,7 @@
 				<resizeClean mapperref="caticons_shelltoontv" resourceref="res_shelltoontv" density="@{density}"/>
 				<resizeClean mapperref="caticons_atomicgreymon" resourceref="res_atomicgreymon" density="@{density}"/>
 				<resizeClean mapperref="caticons_blackm3sh" resourceref="res_blackm3sh" density="@{density}"/>
+				<resizeClean mapperref="caticons_moongazeponies" resourceref="res_moongazeponies" density="@{density}"/>
 				<resizeClean mapperref="caticons_capt-nemo" resourceref="res_capt-nemo" density="@{density}"/>
 			</sequential>
 		</ac:for>
