@@ -23,7 +23,6 @@
 				<!--globmapper from="" to="cat_owl.png"/-->
 				<globmapper from="photofinish1.png" to="cat_photofinish.png"/>
 				<globmapper from="pinkiepie1.png" to="cat_pinkiepie.png"/>
-				<!--globmapper from="" to="cat_princesscelestia.png"/-->
 				<globmapper from="rainbowdash1.png" to="cat_rainbowdash.png"/>
 				<globmapper from="rarity1.png" to="cat_rarity.png"/>
 				<!--globmapper from="" to="cat_roseluck.png"/-->
@@ -42,6 +41,18 @@
 	<fileset dir="../../SrcAssets/MLP User Icons Vol 1/" />
 	<fileset dir="../../SrcAssets/mlp_user_icons_vol__2_by_shelltoontv-d3h2go1/" />
 	</union>
+
+	<!-- Mapping BlackM3sh's assets to category icon names -->
+	<mapper id="caticons_blackm3sh">
+		<chainedmapper>
+			<flattenmapper/>
+			<firstmatchmapper>
+				<globmapper from="princess_celestia_by_blackm3sh-d3fykd8.png" to="cat_princesscelestia.png"/>
+			</firstmatchmapper>
+		</chainedmapper>
+	</mapper>
+
+	<fileset id="res_blackm3sh" dir="../../SrcAssets/BlackM3sh/"/>
 
 	<!-- Mapping Capt-Nemo's assets to category icon names -->
 	<mapper id="caticons_capt-nemo">
@@ -62,6 +73,7 @@
 		<ac:for list="ldpi,mdpi,hdpi,xhdpi" param="density">
 			<sequential>
 				<resize mapperref="caticons_shelltoontv" resourceref="res_shelltoontv" density="@{density}"/>
+				<resize mapperref="caticons_blackm3sh" resourceref="res_blackm3sh" density="@{density}"/>
 				<resize mapperref="caticons_capt-nemo" resourceref="res_capt-nemo" density="@{density}"/>
 			</sequential>
 		</ac:for>
@@ -72,6 +84,7 @@
 		<ac:for list="ldpi,mdpi,hdpi,xhdpi" param="density">
 			<sequential>
 				<resizeClean mapperref="caticons_shelltoontv" resourceref="res_shelltoontv" density="@{density}"/>
+				<resizeClean mapperref="caticons_blackm3sh" resourceref="res_blackm3sh" density="@{density}"/>
 				<resizeClean mapperref="caticons_capt-nemo" resourceref="res_capt-nemo" density="@{density}"/>
 			</sequential>
 		</ac:for>
