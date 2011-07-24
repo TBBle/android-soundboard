@@ -30,7 +30,6 @@
 				<!--globmapper from="" to="cat_sapphireshores.png"/-->
 				<globmapper from="scootaloo1.png" to="cat_scootaloo.png"/>
 				<globmapper from="spike1.png" to="cat_spike.png"/>
-				<!--globmapper from="" to="cat_stevenmagnet.png"/-->
 				<globmapper from="sweetiebelle1.png" to="cat_sweetiebelle.png"/>
 				<globmapper from="trixie1nomagic.png" to="cat_trixie.png"/>
 				<globmapper from="twilightsparkle1.png" to="cat_twilightsparkle.png"/>
@@ -44,12 +43,26 @@
 	<fileset dir="../../SrcAssets/mlp_user_icons_vol__2_by_shelltoontv-d3h2go1/" />
 	</union>
 
+	<!-- Mapping Capt-Nemo's assets to category icon names -->
+	<mapper id="caticons_capt-nemo">
+		<chainedmapper>
+			<flattenmapper/>
+			<firstmatchmapper>
+				<!-- This ones under Creative Commons Attribution-Share Alike 3.0 License -->
+				<globmapper from="it__s_so_truuuuue_by_capt_nemo-d3hmrgp.png" to="cat_stevenmagnet.png"/>
+			</firstmatchmapper>
+		</chainedmapper>
+	</mapper>
+
+	<fileset id="res_capt-nemo" dir="../../SrcAssets/Capt-Nemo/"/>
+
 	<description>Build assets for MLPFIM</description>
 	<target name="all" description="Build all assets">
 		<!-- Process shelltoontv's icons into category icons -->
 		<ac:for list="ldpi,mdpi,hdpi,xhdpi" param="density">
 			<sequential>
 				<resize mapperref="caticons_shelltoontv" resourceref="res_shelltoontv" density="@{density}"/>
+				<resize mapperref="caticons_capt-nemo" resourceref="res_capt-nemo" density="@{density}"/>
 			</sequential>
 		</ac:for>
 	</target>
@@ -59,6 +72,7 @@
 		<ac:for list="ldpi,mdpi,hdpi,xhdpi" param="density">
 			<sequential>
 				<resizeClean mapperref="caticons_shelltoontv" resourceref="res_shelltoontv" density="@{density}"/>
+				<resizeClean mapperref="caticons_capt-nemo" resourceref="res_capt-nemo" density="@{density}"/>
 			</sequential>
 		</ac:for>
 	</target>
