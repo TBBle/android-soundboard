@@ -22,7 +22,6 @@
 				<globmapper from="pinkiepie1.png" to="cat_pinkiepie.png"/>
 				<globmapper from="rainbowdash1.png" to="cat_rainbowdash.png"/>
 				<globmapper from="rarity1.png" to="cat_rarity.png"/>
-				<!--globmapper from="" to="cat_roseluck.png"/-->
 				<!--globmapper from="" to="cat_sapphireshores.png"/-->
 				<globmapper from="scootaloo1.png" to="cat_scootaloo.png"/>
 				<globmapper from="spike1.png" to="cat_spike.png"/>
@@ -90,6 +89,18 @@
 
 	<fileset id="res_capt-nemo" dir="../../SrcAssets/Capt-Nemo/"/>
 
+	<!-- Mapping pageturner1988's assets to category icon names -->
+	<mapper id="caticons_pageturner1988">
+		<chainedmapper>
+			<flattenmapper/>
+			<firstmatchmapper>
+				<globmapper from="rose_sidelong_look_by_pageturner1988-d3hw4qj.png" to="cat_roseluck.png"/>
+			</firstmatchmapper>
+		</chainedmapper>
+	</mapper>
+
+	<fileset id="res_pageturner1988" dir="../../SrcAssets/pageturner1988/"/>
+
 	<description>Build assets for MLPFIM</description>
 	<target name="all" description="Build all assets">
 		<!-- Process shelltoontv's icons into category icons -->
@@ -100,6 +111,7 @@
 				<resize mapperref="caticons_blackm3sh" resourceref="res_blackm3sh" density="@{density}"/>
 				<resize mapperref="caticons_moongazeponies" resourceref="res_moongazeponies" density="@{density}"/>
 				<resize mapperref="caticons_capt-nemo" resourceref="res_capt-nemo" density="@{density}"/>
+				<resize mapperref="caticons_pageturner1988" resourceref="res_pageturner1988" density="@{density}"/>
 			</sequential>
 		</ac:for>
 	</target>
@@ -113,6 +125,7 @@
 				<resizeClean mapperref="caticons_blackm3sh" resourceref="res_blackm3sh" density="@{density}"/>
 				<resizeClean mapperref="caticons_moongazeponies" resourceref="res_moongazeponies" density="@{density}"/>
 				<resizeClean mapperref="caticons_capt-nemo" resourceref="res_capt-nemo" density="@{density}"/>
+				<resizeClean mapperref="caticons_pageturner1988" resourceref="res_pageturner1988" density="@{density}"/>
 			</sequential>
 		</ac:for>
 	</target>
