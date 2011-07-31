@@ -2,6 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="match_parent"
   android:orientation="horizontal" android:layout_height="?android:attr/listPreferredItemHeight">
-    <ImageView android:layout_alignParentTop="true" android:layout_alignParentBottom="true" android:src="@drawable/icon" android:id="@+id/listIcon" android:layout_width="wrap_content" android:layout_height="match_parent"></ImageView>
+    <ImageView android:layout_alignParentTop="true" android:layout_alignParentBottom="true" android:src="@drawable/cat_twilightsparkle" android:id="@+id/listIcon" android:layout_width="72dp" android:layout_height="72dp"></ImageView>
     <TextView android:layout_toRightOf="@+id/listIcon" android:layout_alignParentTop="true" android:id="@+id/listText" android:layout_width="match_parent" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge" android:gravity="center_vertical" android:layout_alignParentBottom="true" android:layout_alignParentRight="true"></TextView>
 </RelativeLayout>
