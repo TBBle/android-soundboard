@@ -60,8 +60,8 @@
 		<!-- Delete icons created by the "all" rule -->
 		<ac:for list="ldpi,mdpi,hdpi,xhdpi" param="density">
 			<sequential>
-				<resize mapperref="icon" resourceref="assets" density="@{density}"/>
-				<resize mapperref="caticons" resourceref="assets" density="@{density}"/>
+				<resizeClean mapperref="icon" resourceref="assets" density="@{density}"/>
+				<resizeClean mapperref="caticons" resourceref="assets" density="@{density}"/>
 			</sequential>
 		</ac:for>
 	</target>
