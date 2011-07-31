@@ -3,6 +3,14 @@
 	<!-- Pull in ant-contrib -->
 	<taskdef resource="net/sf/antcontrib/antcontrib.properties"/>
 
+	<!-- Mapping from ShelltoonTV's Fluttershy Icon set to application icon -->
+	<mapper id="icon_shelltoontv">
+		<chainedmapper>
+			<flattenmapper/>
+			<globmapper from="Fluttershy11.png" to="icon.png"/>
+		</chainedmapper>
+	</mapper>
+
 	<!-- Mapping from shelltoontv's MLP User Icons to category icon names -->
 	<mapper id="caticons_shelltoontv">
 		<chainedmapper>
@@ -33,6 +41,7 @@
 	<union id="res_shelltoontv">
 	<fileset dir="../../SrcAssets/MLP User Icons Vol 1/" />
 	<fileset dir="../../SrcAssets/mlp_user_icons_vol__2_by_shelltoontv-d3h2go1/" />
+	<fileset dir="../../SrcAssets/fluttershy_user_icons_vol__1_by_shelltoontv-d3ekodw/" />
 	<fileset dir="../../SrcAssets/ShelltoonTV/" />
 	</union>
 
@@ -131,6 +140,7 @@
 		<!-- Process shelltoontv's icons into category icons -->
 		<ac:for list="ldpi,mdpi,hdpi,xhdpi" param="density">
 			<sequential>
+				<resize mapperref="icon_shelltoontv" resourceref="res_shelltoontv" widthdp="48" heightdp="48" density="@{density}"/>
 				<resize mapperref="caticons_shelltoontv" resourceref="res_shelltoontv" density="@{density}"/>
 				<resize mapperref="caticons_atomicgreymon" resourceref="res_atomicgreymon" density="@{density}"/>
 				<resize mapperref="caticons_blackm3sh" resourceref="res_blackm3sh" density="@{density}"/>
@@ -147,6 +157,7 @@
 		<!-- Process shelltoontv's icons into category icons -->
 		<ac:for list="ldpi,mdpi,hdpi,xhdpi" param="density">
 			<sequential>
+				<resizeClean mapperref="icon_shelltoontv" resourceref="res_shelltoontv" widthdp="48" heightdp="48" density="@{density}"/>
 				<resizeClean mapperref="caticons_shelltoontv" resourceref="res_shelltoontv" density="@{density}"/>
 				<resizeClean mapperref="caticons_atomicgreymon" resourceref="res_atomicgreymon" density="@{density}"/>
 				<resizeClean mapperref="caticons_blackm3sh" resourceref="res_blackm3sh" density="@{density}"/>
