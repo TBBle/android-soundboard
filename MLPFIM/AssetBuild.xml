@@ -12,7 +12,6 @@
 				<globmapper from="applejack1.png" to="cat_applejack.png"/>
 				<globmapper from="bigmac1.png" to="cat_bigmacintosh.png"/>
 				<globmapper from="braeburn1.png" to="cat_braeburn.png"/>
-				<!--globmapper from="" to="cat_carrottop.png"/-->
 				<globmapper from="derpyhooves1.png" to="cat_derpy.png"/>
 				<globmapper from="drwhooves1.png" to="cat_drwhoof.png"/>
 				<globmapper from="fluttershy1.png" to="cat_fluttershy.png"/>
@@ -102,6 +101,19 @@
 
 	<fileset id="res_pageturner1988" dir="../../SrcAssets/pageturner1988/"/>
 
+	<!-- Mapping SirLeandrea's assets to category icon names -->
+	<mapper id="caticons_sirleandrea">
+		<chainedmapper>
+			<flattenmapper/>
+			<firstmatchmapper>
+				<!-- This one's under Creative Commons Attribution-Noncommercial-Share Alike 3.0 License -->
+				<globmapper from="carrot_cake_by_sirleandrea-d3hd94p.png" to="cat_carrottop.png"/>
+			</firstmatchmapper>
+		</chainedmapper>
+	</mapper>
+
+	<fileset id="res_sirleandrea" dir="../../SrcAssets/SirLeandrea/"/>
+
 	<description>Build assets for MLPFIM</description>
 	<target name="all" description="Build all assets">
 		<!-- Process shelltoontv's icons into category icons -->
@@ -113,6 +125,7 @@
 				<resize mapperref="caticons_moongazeponies" resourceref="res_moongazeponies" density="@{density}"/>
 				<resize mapperref="caticons_capt-nemo" resourceref="res_capt-nemo" density="@{density}"/>
 				<resize mapperref="caticons_pageturner1988" resourceref="res_pageturner1988" density="@{density}"/>
+				<resize mapperref="caticons_sirleandrea" resourceref="res_sirleandrea" density="@{density}"/>
 			</sequential>
 		</ac:for>
 	</target>
@@ -127,6 +140,7 @@
 				<resizeClean mapperref="caticons_moongazeponies" resourceref="res_moongazeponies" density="@{density}"/>
 				<resizeClean mapperref="caticons_capt-nemo" resourceref="res_capt-nemo" density="@{density}"/>
 				<resizeClean mapperref="caticons_pageturner1988" resourceref="res_pageturner1988" density="@{density}"/>
+				<resizeClean mapperref="caticons_sirleandrea" resourceref="res_sirleandrea" density="@{density}"/>
 			</sequential>
 		</ac:for>
 	</target>
