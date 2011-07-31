@@ -42,8 +42,15 @@
 	</firstmatchmapper>
 
 	<firstmatchmapper id="caticons-srccrop">
-		<globmapper handledirsep="true" from="happy_luna_by_blackm3sh-d3jowkk.png" to="2136x2136+0+111"/>
-		<globmapper handledirsep="true" from="gilda_vector_by_peachspices-d3jminl.png" to="1260x1080+378+0"/>
+		<globmapper handledirsep="true" from="sapphire_shores_by_shelltoontv-d3bnado.png" to="1300x1300+721+0"/>
+		<globmapper handledirsep="true" from="zecora_by_shelltoontv-d3bsgph.png" to="1500x1500+1282+0"/>
+		<globmapper handledirsep="true" from="owloysius_by_atomicgreymon-d3hnd8k.png" to="2500x2500+0+0"/>
+		<globmapper handledirsep="true" from="princess_celestia_by_blackm3sh-d3fykd8.png" to="1200x1200+748+500"/>
+		<globmapper handledirsep="true" from="happy_luna_by_blackm3sh-d3jowkk.png" to="692x692+184+322"/>
+		<globmapper handledirsep="true" from="nightmare_moon___no_hair_by_moongazeponies-d3jw389.png" to="1300x1300+508+320"/>
+		<globmapper handledirsep="true" from="gilda_vector_by_peachspices-d3jminl.png" to="450x450+560+342"/>
+		<globmapper handledirsep="true" from="rose_sidelong_look_by_pageturner1988-d3hw4qj.png" to="1200x1200+1236+0"/>
+		<globmapper handledirsep="true" from="carrot_cake_by_sirleandrea-d3hd94p.png" to="1890x1890+1610+0"/>
 	</firstmatchmapper>
 
 	<fileset id="assets" dir="../../SrcAssets/MLPFIM" />
