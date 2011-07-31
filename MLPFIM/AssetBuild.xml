@@ -157,7 +157,7 @@
 		<!-- Process shelltoontv's icons into category icons -->
 		<ac:for list="ldpi,mdpi,hdpi,xhdpi" param="density">
 			<sequential>
-				<resizeClean mapperref="icon_shelltoontv" resourceref="res_shelltoontv" widthdp="48" heightdp="48" density="@{density}"/>
+				<resizeClean mapperref="icon_shelltoontv" resourceref="res_shelltoontv" density="@{density}"/>
 				<resizeClean mapperref="caticons_shelltoontv" resourceref="res_shelltoontv" density="@{density}"/>
 				<resizeClean mapperref="caticons_atomicgreymon" resourceref="res_atomicgreymon" density="@{density}"/>
 				<resizeClean mapperref="caticons_blackm3sh" resourceref="res_blackm3sh" density="@{density}"/>
