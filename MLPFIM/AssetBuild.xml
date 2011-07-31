@@ -7,41 +7,44 @@
 	<globmapper id="icon" handledirsep="true" from="fluttershy_user_icons_vol__1_by_shelltoontv-d3ekodw/Fluttershy11.png" to="icon.png"/>
 
 	<!-- Mapping from assets to category icon names -->
-	<mapper id="caticons">
-		<firstmatchmapper>
-			<globmapper handledirsep="true" from="MLP User Icons Vol 1/applebloom1.png" to="cat_applebloom.png"/>
-			<globmapper handledirsep="true" from="MLP User Icons Vol 1/applejack1.png" to="cat_applejack.png"/>
-			<globmapper handledirsep="true" from="mlp_user_icons_vol__2_by_shelltoontv-d3h2go1/bigmac1.png" to="cat_bigmacintosh.png"/>
-			<globmapper handledirsep="true" from="mlp_user_icons_vol__2_by_shelltoontv-d3h2go1/braeburn1.png" to="cat_braeburn.png"/>
-			<globmapper handledirsep="true" from="MLP User Icons Vol 1/derpyhooves1.png" to="cat_derpy.png"/>
-			<globmapper handledirsep="true" from="mlp_user_icons_vol__2_by_shelltoontv-d3h2go1/drwhooves1.png" to="cat_drwhoof.png"/>
-			<globmapper handledirsep="true" from="MLP User Icons Vol 1/fluttershy1.png" to="cat_fluttershy.png"/>
-			<globmapper handledirsep="true" from="mlp_user_icons_vol__2_by_shelltoontv-d3h2go1/photofinish1.png" to="cat_photofinish.png"/>
-			<globmapper handledirsep="true" from="MLP User Icons Vol 1/pinkiepie1.png" to="cat_pinkiepie.png"/>
-			<globmapper handledirsep="true" from="MLP User Icons Vol 1/rainbowdash1.png" to="cat_rainbowdash.png"/>
-			<globmapper handledirsep="true" from="MLP User Icons Vol 1/rarity1.png" to="cat_rarity.png"/>
-			<globmapper handledirsep="true" from="sapphire_shores_by_shelltoontv-d3bnado.png" to="cat_sapphireshores.png"/>
-			<globmapper handledirsep="true" from="MLP User Icons Vol 1/scootaloo1.png" to="cat_scootaloo.png"/>
-			<globmapper handledirsep="true" from="MLP User Icons Vol 1/spike1.png" to="cat_spike.png"/>
-			<globmapper handledirsep="true" from="MLP User Icons Vol 1/sweetiebelle1.png" to="cat_sweetiebelle.png"/>
-			<globmapper handledirsep="true" from="MLP User Icons Vol 1/trixie1nomagic.png" to="cat_trixie.png"/>
-			<globmapper handledirsep="true" from="MLP User Icons Vol 1/twilightsparkle1.png" to="cat_twilightsparkle.png"/>
-			<globmapper handledirsep="true" from="zecora_by_shelltoontv-d3bsgph.png" to="cat_zecora.png"/>
-			<globmapper handledirsep="true" from="cutie_mark_crusaders____yay_by_atomicgreymon-d3akttt.png" to="cat_cmc.png"/>
-			<globmapper handledirsep="true" from="owloysius_by_atomicgreymon-d3hnd8k.png" to="cat_owl.png"/>
-			<globmapper handledirsep="true" from="princess_celestia_by_blackm3sh-d3fykd8.png" to="cat_princesscelestia.png"/>
-			<globmapper handledirsep="true" from="happy_luna_by_blackm3sh-d3jowkk-cropped2136wide111yoffset.png" to="cat_luna.png"/>
-			<!-- This one's under Creative Commons Attribution-Noncommercial-Share Alike 3.0 License -->
-			<globmapper handledirsep="true" from="nightmare_moon___no_hair_by_moongazeponies-d3jw389.png" to="cat_nightmaremoon.png"/>
-			<!-- This one's under Creative Commons Attribution-Share Alike 3.0 License -->
-			<globmapper handledirsep="true" from="it__s_so_truuuuue_by_capt_nemo-d3hmrgp.png" to="cat_stevenmagnet.png"/>
-			<!-- This one's under Creative Commons Attribution-Noncommercial 3.0 License -->
-			<globmapper handledirsep="true" from="gilda_vector_by_peachspices-d3jminl-cropped1260wide378xoffset.png" to="cat_gilda.png"/>
-			<globmapper handledirsep="true" from="rose_sidelong_look_by_pageturner1988-d3hw4qj.png" to="cat_roseluck.png"/>
-			<!-- This one's under Creative Commons Attribution-Noncommercial-Share Alike 3.0 License -->
-			<globmapper handledirsep="true" from="carrot_cake_by_sirleandrea-d3hd94p.png" to="cat_carrottop.png"/>
-		</firstmatchmapper>
-	</mapper>
+	<firstmatchmapper id="caticons">
+		<globmapper handledirsep="true" from="MLP User Icons Vol 1/applebloom1.png" to="cat_applebloom.png"/>
+		<globmapper handledirsep="true" from="MLP User Icons Vol 1/applejack1.png" to="cat_applejack.png"/>
+		<globmapper handledirsep="true" from="mlp_user_icons_vol__2_by_shelltoontv-d3h2go1/bigmac1.png" to="cat_bigmacintosh.png"/>
+		<globmapper handledirsep="true" from="mlp_user_icons_vol__2_by_shelltoontv-d3h2go1/braeburn1.png" to="cat_braeburn.png"/>
+		<globmapper handledirsep="true" from="MLP User Icons Vol 1/derpyhooves1.png" to="cat_derpy.png"/>
+		<globmapper handledirsep="true" from="mlp_user_icons_vol__2_by_shelltoontv-d3h2go1/drwhooves1.png" to="cat_drwhoof.png"/>
+		<globmapper handledirsep="true" from="MLP User Icons Vol 1/fluttershy1.png" to="cat_fluttershy.png"/>
+		<globmapper handledirsep="true" from="mlp_user_icons_vol__2_by_shelltoontv-d3h2go1/photofinish1.png" to="cat_photofinish.png"/>
+		<globmapper handledirsep="true" from="MLP User Icons Vol 1/pinkiepie1.png" to="cat_pinkiepie.png"/>
+		<globmapper handledirsep="true" from="MLP User Icons Vol 1/rainbowdash1.png" to="cat_rainbowdash.png"/>
+		<globmapper handledirsep="true" from="MLP User Icons Vol 1/rarity1.png" to="cat_rarity.png"/>
+		<globmapper handledirsep="true" from="sapphire_shores_by_shelltoontv-d3bnado.png" to="cat_sapphireshores.png"/>
+		<globmapper handledirsep="true" from="MLP User Icons Vol 1/scootaloo1.png" to="cat_scootaloo.png"/>
+		<globmapper handledirsep="true" from="MLP User Icons Vol 1/spike1.png" to="cat_spike.png"/>
+		<globmapper handledirsep="true" from="MLP User Icons Vol 1/sweetiebelle1.png" to="cat_sweetiebelle.png"/>
+		<globmapper handledirsep="true" from="MLP User Icons Vol 1/trixie1nomagic.png" to="cat_trixie.png"/>
+		<globmapper handledirsep="true" from="MLP User Icons Vol 1/twilightsparkle1.png" to="cat_twilightsparkle.png"/>
+		<globmapper handledirsep="true" from="zecora_by_shelltoontv-d3bsgph.png" to="cat_zecora.png"/>
+		<globmapper handledirsep="true" from="cutie_mark_crusaders____yay_by_atomicgreymon-d3akttt.png" to="cat_cmc.png"/>
+		<globmapper handledirsep="true" from="owloysius_by_atomicgreymon-d3hnd8k.png" to="cat_owl.png"/>
+		<globmapper handledirsep="true" from="princess_celestia_by_blackm3sh-d3fykd8.png" to="cat_princesscelestia.png"/>
+		<globmapper handledirsep="true" from="happy_luna_by_blackm3sh-d3jowkk.png" to="cat_luna.png"/>
+		<!-- This one's under Creative Commons Attribution-Noncommercial-Share Alike 3.0 License -->
+		<globmapper handledirsep="true" from="nightmare_moon___no_hair_by_moongazeponies-d3jw389.png" to="cat_nightmaremoon.png"/>
+		<!-- This one's under Creative Commons Attribution-Share Alike 3.0 License -->
+		<globmapper handledirsep="true" from="it__s_so_truuuuue_by_capt_nemo-d3hmrgp.png" to="cat_stevenmagnet.png"/>
+		<!-- This one's under Creative Commons Attribution-Noncommercial 3.0 License -->
+		<globmapper handledirsep="true" from="gilda_vector_by_peachspices-d3jminl.png" to="cat_gilda.png"/>
+		<globmapper handledirsep="true" from="rose_sidelong_look_by_pageturner1988-d3hw4qj.png" to="cat_roseluck.png"/>
+		<!-- This one's under Creative Commons Attribution-Noncommercial-Share Alike 3.0 License -->
+		<globmapper handledirsep="true" from="carrot_cake_by_sirleandrea-d3hd94p.png" to="cat_carrottop.png"/>
+	</firstmatchmapper>
+
+	<firstmatchmapper id="caticons-srccrop">
+		<globmapper handledirsep="true" from="happy_luna_by_blackm3sh-d3jowkk.png" to="2136x2136+0+111"/>
+		<globmapper handledirsep="true" from="gilda_vector_by_peachspices-d3jminl.png" to="1260x1080+378+0"/>
+	</firstmatchmapper>
 
 	<fileset id="assets" dir="../../SrcAssets/MLPFIM" />
 
@@ -51,7 +54,7 @@
 		<ac:for list="ldpi,mdpi,hdpi,xhdpi" param="density">
 			<sequential>
 				<resize mapperref="icon" resourceref="assets" widthdp="48" heightdp="48" density="@{density}"/>
-				<resize mapperref="caticons" resourceref="assets" density="@{density}"/>
+				<resize mapperref="caticons" cropref="caticons-srccrop" resourceref="assets" widthdp="72" heightdp="72" density="@{density}"/>
 			</sequential>
 		</ac:for>
 	</target>
@@ -66,98 +69,160 @@
 		</ac:for>
 	</target>
 
-	<!-- Macros -->
+	<!-- Tasks -->
 
-	<!-- Convert the supplied dp value to a pixel value for the supplied dpi -->
-	<macrodef name="dptopx">
-		<attribute name="result"/>
-		<attribute name="dpval"/>
-		<attribute name="density"/>
-		<sequential>
-			<!-- Not checking for tvdpi -->
-			<condition property="dpi" value="160">
-				<or>
-					 <equals arg1="@{density}" arg2="mdpi"/>
-					 <equals arg1="@{density}" arg2="nodpi"/>
-				</or>
-			</condition>
-			<condition property="dpi" value="120">
-				 <equals arg1="@{density}" arg2="ldpi"/>
-			</condition>
-			<condition property="dpi" value="240">
-				 <equals arg1="@{density}" arg2="hdpi"/>
-			</condition>
-			<condition property="dpi" value="320">
-				 <equals arg1="@{density}" arg2="xhdpi"/>
-			</condition>
-			<fail message="Unsupported density @{density}" unless="dpi"/>
-			<math result="@{result}">
-				<multiply>
-					<multiply>
-						<num value="@{dpval}"/>
-						<divide arg1="${dpi}" arg2="160"/>
-					</multiply>
-					<num value="1"/>
-				</multiply>
-			</math>
-			<var name="dpi" unset="true"/>
-		</sequential>
-	</macrodef>
-
-	<!-- Lanczos resize the sourceResources to the given dp dimensions for the given density -->
+	<!-- Lanczos resize the resourceref to the given dp dimensions for the given density -->
 	<!-- Applies the given mapper and outputs them into the appropriate res/drawable- folder -->
-	<macrodef name="resize">
-		<attribute name="widthdp" default="72"/>
-		<attribute name="heightdp" default="72"/>
-		<attribute name="density" default="mdpi"/>
-		<attribute name="mapperref"/>
+	<!-- Reads crops to apply to the source image (in ImageMagick -geometry format) from
+	     the cropref attribute. -->
+	<scriptdef name="resize" language="javascript">
+		<attribute name="widthdp"/>
+		<attribute name="heightdp"/>
+		<attribute name="density"/>
 		<attribute name="resourceref"/>
-		<sequential>
-			<dptopx result="width" dpval="@{widthdp}" density="@{density}"/>
-			<dptopx result="height" dpval="@{heightdp}" density="@{density}"/>
-			<mkdir dir="res/drawable-@{density}"/>
-			<apply vmlauncher="false" executable="convert" dest="res/drawable-@{density}" parallel="false" append="true" skipemptyfilesets="true">
-				<resources refid="@{resourceref}"/>
-				<mapper refid="@{mapperref}"/>
-				<srcfile/>
-				<arg value="-filter"/>
-				<arg value="Lanczos"/>
-				<arg value="-resize"/>
-				<arg value="${width}x${height}"/>
-				<arg value="-background"/>
-				<arg value="transparent"/>
-				<arg value="-compose"/>
-				<arg value="Copy"/>
-				<arg value="-gravity"/>
-				<arg value="center"/>
-				<arg value="-extent"/>
-				<arg value="${width}x${height}"/>
-				<!-- Debug - Write the density on the image
-				<arg value="-gravity"/>
-				<arg value="south"/>
-				<arg value="-stroke"/>
-				<arg value="#000C"/>
-				<arg value="-strokewidth"/>
-				<arg value="2"/>
-				<arg value="-annotate"/>
-				<arg value="0"/>
-				<arg value="@{density}"/>
-				<arg value="-stroke"/>
-				<arg value="none"/>
-				<arg value="-fill"/>
-				<arg value="white"/>
-				<arg value="-annotate"/>
-				<arg value="0"/>
-				<arg value="@{density}"/>
-				-->
-				<targetfile/>
-			</apply>
-			<var name="width" unset="true"/>
-			<var name="height" unset="true"/>
-		</sequential>
-	</macrodef>
+		<attribute name="mapperref"/>
+		<attribute name="cropref"/>
+		<![CDATA[
+		// Theory of operation:
+		// We need to create an apply task and a mapper for each possible resize, and one for no-resize.
+		function makeResizeApply( density, targetSize, crops ) {
+			task = project.createTask( "apply" );
+			task.setVMLauncher( false );
+			task.setExecutable( "convert" );
+			task.setDest( java.io.File( project.getBaseDir(), "res/drawable-" + density ) );
+			task.setParallel( false );
+			task.setAppend( true );
+			task.setSkipEmptyFilesets( true );
+			task.createSrcfile();
+			if ( crops != "" ) {
+				arg = task.createArg();
+				arg.setValue( "-crop" );
+				arg = task.createArg();
+				arg.setValue( crops );
+				arg = task.createArg();
+				arg.setValue( "+repage" );
+			}
+			arg = task.createArg();
+			arg.setValue( "-filter" );
+			arg = task.createArg();
+			arg.setValue( "Lanczos" );
+			arg = task.createArg();
+			arg.setValue( "-resize" );
+			arg = task.createArg();
+			arg.setValue( targetSize );
+			arg = task.createArg();
+			arg.setValue( "-background" );
+			arg = task.createArg();
+			arg.setValue( "transparent" );
+			arg = task.createArg();
+			arg.setValue( "-compose" );
+			arg = task.createArg();
+			arg.setValue( "Copy" );
+			arg = task.createArg();
+			arg.setValue( "-gravity" );
+			arg = task.createArg();
+			arg.setValue( "center" );
+			arg = task.createArg();
+			arg.setValue( "-extent" );
+			arg = task.createArg();
+			arg.setValue( targetSize );
+			/* Debug - Write the density on the image
+			arg = task.createArg();
+			arg.setValue( "-gravity" );
+			arg = task.createArg();
+			arg.setValue( "south" );
+			arg = task.createArg();
+			arg.setValue( "-stroke" );
+			arg = task.createArg();
+			arg.setValue( "#000C" );
+			arg = task.createArg();
+			arg.setValue( "-strokewidth" );
+			arg = task.createArg();
+			arg.setValue( "2" );
+			arg = task.createArg();
+			arg.setValue( "-annotate" );
+			arg = task.createArg();
+			arg.setValue( "0" );
+			arg = task.createArg();
+			arg.setValue( density );
+			arg = task.createArg();
+			arg.setValue( "-stroke" );
+			arg = task.createArg();
+			arg.setValue( "none" );
+			arg = task.createArg();
+			arg.setValue( "-fill" );
+			arg = task.createArg();
+			arg.setValue( "white" );
+			arg = task.createArg();
+			arg.setValue( "-annotate" );
+			arg = task.createArg();
+			arg.setValue( "0" );
+			arg = task.createArg();
+			arg.setValue( "@{density}" );
+			*/
+			task.createTargetfile();
+			return task;
+		};
+		function makeTargetSize( density, widthdp, heightdp ) {
+			if ( density == "mdpi" || density == "nodpi" ) {
+				dpi = 160;
+			} else if ( density == "ldpi" ) {
+				dpi = 120;
+			} else if ( density == "hdpi" ) {
+				dpi = 240;
+			} else if ( density == "xhdpi" ) {
+				dpi = 320;
+			} else {
+				project.log( "Unrecognised density " + density, project.MSG_ERR );
+			}
+			return "" + (widthdp * (dpi/160)) + "x" + (heightdp * (dpi/160));
+		};
 
-	<!-- Clean up the output of the resize macro -->
+		widthdp = attributes.get( "widthdp" );
+		heightdp = attributes.get( "heightdp" );
+		density = attributes.get( "density" );
+		resources = project.getReference( attributes.get("resourceref") );
+		mapper = project.getReference( attributes.get("mapperref") );
+		srcCrop = attributes.get("cropref");
+		if (srcCrop != null)
+			srcCrop = project.getReference( srcCrop );
+
+		targetSize = makeTargetSize( density, widthdp, heightdp );
+		applys = [];
+		resourcesSets = [];
+		resIt = resources.iterator();
+		while (resIt.hasNext()) {
+			res = resIt.next();
+			resName = res.getName();
+			if ( mapper.mapFileName( resName ) == null )
+				continue;
+			if ( srcCrop == null ) {
+				crops = "";
+			} else {
+				crops = srcCrop.mapFileName( resName );
+				if ( crops != null ) {
+					crops = crops[ 0 ];
+				} else {
+					crops = "";
+				}
+			}
+			if ( applys[ crops ] == undefined ) {
+				applys[ crops ] = makeResizeApply( density, targetSize, crops );
+				applys[ crops ].add( mapper );
+				resourcesSets[ crops ] = project.createDataType( "resources" );
+			}
+			resourcesSets[ crops ].add( res );
+		}
+
+		for (crop in applys) {
+			task = applys[ crop ];
+			task.add( resourcesSets[ crop ] );
+			task.perform();
+		}
+		]]>
+	</scriptdef>
+
+	<!-- Clean up the output of the resize task -->
 	<macrodef name="resizeClean">
 		<attribute name="density" default="mdpi"/>
 		<attribute name="mapperref"/>
