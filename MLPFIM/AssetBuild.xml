@@ -15,7 +15,6 @@
 				<globmapper from="derpyhooves1.png" to="cat_derpy.png"/>
 				<globmapper from="drwhooves1.png" to="cat_drwhoof.png"/>
 				<globmapper from="fluttershy1.png" to="cat_fluttershy.png"/>
-				<!--globmapper from="" to="cat_gilda.png"/-->
 				<globmapper from="photofinish1.png" to="cat_photofinish.png"/>
 				<globmapper from="pinkiepie1.png" to="cat_pinkiepie.png"/>
 				<globmapper from="rainbowdash1.png" to="cat_rainbowdash.png"/>
@@ -89,6 +88,19 @@
 
 	<fileset id="res_capt-nemo" dir="../../SrcAssets/Capt-Nemo/"/>
 
+	<!-- Mapping Peachspices's assets to category icon names -->
+	<mapper id="caticons_peachspices">
+		<chainedmapper>
+			<flattenmapper/>
+			<firstmatchmapper>
+				<!-- This one's under Creative Commons Attribution-Noncommercial 3.0 License -->
+				<globmapper from="gilda_vector_by_peachspices-d3jminl-cropped1260wide378xoffset.png" to="cat_gilda.png"/>
+			</firstmatchmapper>
+		</chainedmapper>
+	</mapper>
+
+	<fileset id="res_peachspices" dir="../../SrcAssets/Peachspices/"/>
+
 	<!-- Mapping pageturner1988's assets to category icon names -->
 	<mapper id="caticons_pageturner1988">
 		<chainedmapper>
@@ -124,6 +136,7 @@
 				<resize mapperref="caticons_blackm3sh" resourceref="res_blackm3sh" density="@{density}"/>
 				<resize mapperref="caticons_moongazeponies" resourceref="res_moongazeponies" density="@{density}"/>
 				<resize mapperref="caticons_capt-nemo" resourceref="res_capt-nemo" density="@{density}"/>
+				<resize mapperref="caticons_peachspices" resourceref="res_peachspices" density="@{density}"/>
 				<resize mapperref="caticons_pageturner1988" resourceref="res_pageturner1988" density="@{density}"/>
 				<resize mapperref="caticons_sirleandrea" resourceref="res_sirleandrea" density="@{density}"/>
 			</sequential>
@@ -139,6 +152,7 @@
 				<resizeClean mapperref="caticons_blackm3sh" resourceref="res_blackm3sh" density="@{density}"/>
 				<resizeClean mapperref="caticons_moongazeponies" resourceref="res_moongazeponies" density="@{density}"/>
 				<resizeClean mapperref="caticons_capt-nemo" resourceref="res_capt-nemo" density="@{density}"/>
+				<resizeClean mapperref="caticons_peachspices" resourceref="res_peachspices" density="@{density}"/>
 				<resizeClean mapperref="caticons_pageturner1988" resourceref="res_pageturner1988" density="@{density}"/>
 				<resizeClean mapperref="caticons_sirleandrea" resourceref="res_sirleandrea" density="@{density}"/>
 			</sequential>
