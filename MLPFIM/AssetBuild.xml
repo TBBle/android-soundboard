@@ -21,13 +21,13 @@
 				<globmapper from="pinkiepie1.png" to="cat_pinkiepie.png"/>
 				<globmapper from="rainbowdash1.png" to="cat_rainbowdash.png"/>
 				<globmapper from="rarity1.png" to="cat_rarity.png"/>
-				<!--globmapper from="" to="cat_sapphireshores.png"/-->
+				<globmapper from="sapphire_shores_by_shelltoontv-d3bnado.png" to="cat_sapphireshores.png"/>
 				<globmapper from="scootaloo1.png" to="cat_scootaloo.png"/>
 				<globmapper from="spike1.png" to="cat_spike.png"/>
 				<globmapper from="sweetiebelle1.png" to="cat_sweetiebelle.png"/>
 				<globmapper from="trixie1nomagic.png" to="cat_trixie.png"/>
 				<globmapper from="twilightsparkle1.png" to="cat_twilightsparkle.png"/>
-				<!--globmapper from="" to="cat_zecora.png"/-->
+				<globmapper from="zecora_by_shelltoontv-d3bsgph.png" to="cat_zecora.png"/>
 			</firstmatchmapper>
 		</chainedmapper>
 	</mapper>
@@ -35,6 +35,7 @@
 	<union id="res_shelltoontv">
 	<fileset dir="../../SrcAssets/MLP User Icons Vol 1/" />
 	<fileset dir="../../SrcAssets/mlp_user_icons_vol__2_by_shelltoontv-d3h2go1/" />
+	<fileset dir="../../SrcAssets/ShelltoonTV/" />
 	</union>
 
 	<!-- Mapping AtomicGreymon's assets to category icon names -->
