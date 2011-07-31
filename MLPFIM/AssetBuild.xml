@@ -227,7 +227,15 @@
 				<arg value="-filter"/>
 				<arg value="Lanczos"/>
 				<arg value="-resize"/>
-				<arg value=" ${width}x${height}"/>
+				<arg value="${width}x${height}"/>
+				<arg value="-background"/>
+				<arg value="transparent"/>
+				<arg value="-compose"/>
+				<arg value="Copy"/>
+				<arg value="-gravity"/>
+				<arg value="center"/>
+				<arg value="-extent"/>
+				<arg value="${width}x${height}"/>
 				<!-- Debug - Write the density on the image
 				<arg value="-gravity"/>
 				<arg value="south"/>
