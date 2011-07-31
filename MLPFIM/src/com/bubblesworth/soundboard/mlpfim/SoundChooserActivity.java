@@ -1,17 +1,24 @@
 package com.bubblesworth.soundboard.mlpfim;
 
-import com.bubblesworth.soundboard.SoundColumns;
-
 import android.app.ListActivity;
 import android.content.ContentUris;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
+import com.bubblesworth.soundboard.SoundColumns;
+
+/**
+ * @author paulh
+ *
+ */
 public class SoundChooserActivity extends ListActivity {
 	//private static final String TAG = "SoundChooserActivity";
 
@@ -54,6 +61,33 @@ public class SoundChooserActivity extends ListActivity {
 				intent.setData(Uri.parse(asset));
 				startService(intent);
 			}
+		}
+	}
+
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
+	 */
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		super.onCreateOptionsMenu(menu);
+		if (!widgetConfig) {
+			MenuInflater inflater = getMenuInflater();
+			inflater.inflate(R.menu.chooser_menu, menu);
+		}
+		return !widgetConfig;
+	}
+
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onOptionsItemSelected(android.view.MenuItem)
+	 */
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.menuAbout:
+			startActivity(new Intent( this, com.bubblesworth.soundboard.mlpfim.AboutActivity.class ));
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
 		}
 	}
 

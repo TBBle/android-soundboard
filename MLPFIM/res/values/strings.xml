@@ -5,4 +5,24 @@
     <string name="mime_type_icon">vnd.android.cursor.item/vnd.com.bubblesworth.soundboard.mlpfim.icon</string>
     <string name="mime_type_track">vnd.android.cursor.item/vnd.com.bubblesworth.soundboard.track</string>
     <string name="mime_type_tracks">vnd.android.cursor.item/vnd.com.bubblesworth.soundboard.track</string>
+    <string name="about_menu_label">About</string>
+    <string-array name="about_text">
+        <item>Code &amp;copy;2011 Paul &quot;TBBle&quot; Hampson</item>
+        <item>http://github.com/tbble/android-soundboard</item><item>Audio &amp;copy;2010-2011 Hasbro Inc, assembled by kyrospawn</item><item>Art &amp;copy; the artists listed below</item>
+        <item>My Little Pony&amp;trade; Hasbro Inc</item>
+        <item></item>
+        <item>To add sounds as AppWidgets, install http://market.android.com/details?id=com.bubblesworth.soundboard.widget</item>
+        <item></item>
+        <item>Thankyou to the following artists for permission to use their work:</item>
+        <item>AtomicGreymon http://atomicgreymon.deviantart.com</item>
+        <item>BlackM3sh http://blackm3sh.deviantart.com</item>
+        <item>Capt-Nemo http://capt-nemo.deviantart.com</item>
+        <item>kyrospawn http://kyrospawn.deviantart.com</item>
+        <item>MoongazePonies http://moongazeponies.deviantart.com</item>
+        <item>ShelltoonTV http://shelltoontv.deviantart.com</item>
+        <item>SirLeandrea http://sirleandrea.deviantart.com</item>
+        <item>pageturner1988 http://pageturner1988.deviantart.com</item>
+        <item>Peachspices http://peachspices.deviantart.com</item>
+    </string-array>
+    <string name="about_label">About MLP FiM Soundboard</string>
 </resources>

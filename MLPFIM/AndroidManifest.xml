@@ -26,6 +26,7 @@
             </intent-filter>
         </service>
         <provider android:name=".SoundProvider" android:authorities="com.bubblesworth.soundboard.mlpfim.soundprovider"></provider>
+        <activity android:name=".AboutActivity" android:label="@string/about_label"></activity>
 
     </application>
 </manifest>
