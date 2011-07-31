@@ -3,169 +3,65 @@
 	<!-- Pull in ant-contrib -->
 	<taskdef resource="net/sf/antcontrib/antcontrib.properties"/>
 
-	<!-- Mapping from ShelltoonTV's Fluttershy Icon set to application icon -->
-	<mapper id="icon_shelltoontv">
-		<chainedmapper>
-			<flattenmapper/>
-			<globmapper from="Fluttershy11.png" to="icon.png"/>
-		</chainedmapper>
+	<!-- Mapping from assetse to application icon -->
+	<globmapper id="icon" handledirsep="true" from="fluttershy_user_icons_vol__1_by_shelltoontv-d3ekodw/Fluttershy11.png" to="icon.png"/>
+
+	<!-- Mapping from assets to category icon names -->
+	<mapper id="caticons">
+		<firstmatchmapper>
+			<globmapper handledirsep="true" from="MLP User Icons Vol 1/applebloom1.png" to="cat_applebloom.png"/>
+			<globmapper handledirsep="true" from="MLP User Icons Vol 1/applejack1.png" to="cat_applejack.png"/>
+			<globmapper handledirsep="true" from="mlp_user_icons_vol__2_by_shelltoontv-d3h2go1/bigmac1.png" to="cat_bigmacintosh.png"/>
+			<globmapper handledirsep="true" from="mlp_user_icons_vol__2_by_shelltoontv-d3h2go1/braeburn1.png" to="cat_braeburn.png"/>
+			<globmapper handledirsep="true" from="MLP User Icons Vol 1/derpyhooves1.png" to="cat_derpy.png"/>
+			<globmapper handledirsep="true" from="mlp_user_icons_vol__2_by_shelltoontv-d3h2go1/drwhooves1.png" to="cat_drwhoof.png"/>
+			<globmapper handledirsep="true" from="MLP User Icons Vol 1/fluttershy1.png" to="cat_fluttershy.png"/>
+			<globmapper handledirsep="true" from="mlp_user_icons_vol__2_by_shelltoontv-d3h2go1/photofinish1.png" to="cat_photofinish.png"/>
+			<globmapper handledirsep="true" from="MLP User Icons Vol 1/pinkiepie1.png" to="cat_pinkiepie.png"/>
+			<globmapper handledirsep="true" from="MLP User Icons Vol 1/rainbowdash1.png" to="cat_rainbowdash.png"/>
+			<globmapper handledirsep="true" from="MLP User Icons Vol 1/rarity1.png" to="cat_rarity.png"/>
+			<globmapper handledirsep="true" from="sapphire_shores_by_shelltoontv-d3bnado.png" to="cat_sapphireshores.png"/>
+			<globmapper handledirsep="true" from="MLP User Icons Vol 1/scootaloo1.png" to="cat_scootaloo.png"/>
+			<globmapper handledirsep="true" from="MLP User Icons Vol 1/spike1.png" to="cat_spike.png"/>
+			<globmapper handledirsep="true" from="MLP User Icons Vol 1/sweetiebelle1.png" to="cat_sweetiebelle.png"/>
+			<globmapper handledirsep="true" from="MLP User Icons Vol 1/trixie1nomagic.png" to="cat_trixie.png"/>
+			<globmapper handledirsep="true" from="MLP User Icons Vol 1/twilightsparkle1.png" to="cat_twilightsparkle.png"/>
+			<globmapper handledirsep="true" from="zecora_by_shelltoontv-d3bsgph.png" to="cat_zecora.png"/>
+			<globmapper handledirsep="true" from="cutie_mark_crusaders____yay_by_atomicgreymon-d3akttt.png" to="cat_cmc.png"/>
+			<globmapper handledirsep="true" from="owloysius_by_atomicgreymon-d3hnd8k.png" to="cat_owl.png"/>
+			<globmapper handledirsep="true" from="princess_celestia_by_blackm3sh-d3fykd8.png" to="cat_princesscelestia.png"/>
+			<globmapper handledirsep="true" from="happy_luna_by_blackm3sh-d3jowkk-cropped2136wide111yoffset.png" to="cat_luna.png"/>
+			<!-- This one's under Creative Commons Attribution-Noncommercial-Share Alike 3.0 License -->
+			<globmapper handledirsep="true" from="nightmare_moon___no_hair_by_moongazeponies-d3jw389.png" to="cat_nightmaremoon.png"/>
+			<!-- This one's under Creative Commons Attribution-Share Alike 3.0 License -->
+			<globmapper handledirsep="true" from="it__s_so_truuuuue_by_capt_nemo-d3hmrgp.png" to="cat_stevenmagnet.png"/>
+			<!-- This one's under Creative Commons Attribution-Noncommercial 3.0 License -->
+			<globmapper handledirsep="true" from="gilda_vector_by_peachspices-d3jminl-cropped1260wide378xoffset.png" to="cat_gilda.png"/>
+			<globmapper handledirsep="true" from="rose_sidelong_look_by_pageturner1988-d3hw4qj.png" to="cat_roseluck.png"/>
+			<!-- This one's under Creative Commons Attribution-Noncommercial-Share Alike 3.0 License -->
+			<globmapper handledirsep="true" from="carrot_cake_by_sirleandrea-d3hd94p.png" to="cat_carrottop.png"/>
+		</firstmatchmapper>
 	</mapper>
 
-	<!-- Mapping from shelltoontv's MLP User Icons to category icon names -->
-	<mapper id="caticons_shelltoontv">
-		<chainedmapper>
-			<flattenmapper/>
-			<firstmatchmapper>
-				<globmapper from="applebloom1.png" to="cat_applebloom.png"/>
-				<globmapper from="applejack1.png" to="cat_applejack.png"/>
-				<globmapper from="bigmac1.png" to="cat_bigmacintosh.png"/>
-				<globmapper from="braeburn1.png" to="cat_braeburn.png"/>
-				<globmapper from="derpyhooves1.png" to="cat_derpy.png"/>
-				<globmapper from="drwhooves1.png" to="cat_drwhoof.png"/>
-				<globmapper from="fluttershy1.png" to="cat_fluttershy.png"/>
-				<globmapper from="photofinish1.png" to="cat_photofinish.png"/>
-				<globmapper from="pinkiepie1.png" to="cat_pinkiepie.png"/>
-				<globmapper from="rainbowdash1.png" to="cat_rainbowdash.png"/>
-				<globmapper from="rarity1.png" to="cat_rarity.png"/>
-				<globmapper from="sapphire_shores_by_shelltoontv-d3bnado.png" to="cat_sapphireshores.png"/>
-				<globmapper from="scootaloo1.png" to="cat_scootaloo.png"/>
-				<globmapper from="spike1.png" to="cat_spike.png"/>
-				<globmapper from="sweetiebelle1.png" to="cat_sweetiebelle.png"/>
-				<globmapper from="trixie1nomagic.png" to="cat_trixie.png"/>
-				<globmapper from="twilightsparkle1.png" to="cat_twilightsparkle.png"/>
-				<globmapper from="zecora_by_shelltoontv-d3bsgph.png" to="cat_zecora.png"/>
-			</firstmatchmapper>
-		</chainedmapper>
-	</mapper>
-
-	<union id="res_shelltoontv">
-	<fileset dir="../../SrcAssets/MLP User Icons Vol 1/" />
-	<fileset dir="../../SrcAssets/mlp_user_icons_vol__2_by_shelltoontv-d3h2go1/" />
-	<fileset dir="../../SrcAssets/fluttershy_user_icons_vol__1_by_shelltoontv-d3ekodw/" />
-	<fileset dir="../../SrcAssets/ShelltoonTV/" />
-	</union>
-
-	<!-- Mapping AtomicGreymon's assets to category icon names -->
-	<mapper id="caticons_atomicgreymon">
-		<chainedmapper>
-			<flattenmapper/>
-			<firstmatchmapper>
-				<globmapper from="cutie_mark_crusaders____yay_by_atomicgreymon-d3akttt.png" to="cat_cmc.png"/>
-				<globmapper from="owloysius_by_atomicgreymon-d3hnd8k.png" to="cat_owl.png"/>
-			</firstmatchmapper>
-		</chainedmapper>
-	</mapper>
-
-	<fileset id="res_atomicgreymon" dir="../../SrcAssets/AtomicGreymon/"/>
-
-	<!-- Mapping BlackM3sh's assets to category icon names -->
-	<mapper id="caticons_blackm3sh">
-		<chainedmapper>
-			<flattenmapper/>
-			<firstmatchmapper>
-				<globmapper from="princess_celestia_by_blackm3sh-d3fykd8.png" to="cat_princesscelestia.png"/>
-				<globmapper from="happy_luna_by_blackm3sh-d3jowkk-cropped2136wide111yoffset.png" to="cat_luna.png"/>
-			</firstmatchmapper>
-		</chainedmapper>
-	</mapper>
-
-	<fileset id="res_blackm3sh" dir="../../SrcAssets/BlackM3sh/"/>
-
-	<!-- Mapping MoongazePonies's assets to category icon names -->
-	<mapper id="caticons_moongazeponies">
-		<chainedmapper>
-			<flattenmapper/>
-			<firstmatchmapper>
-				<!-- This one's under Creative Commons Attribution-Noncommercial-Share Alike 3.0 License -->
-				<globmapper from="nightmare_moon___no_hair_by_moongazeponies-d3jw389.png" to="cat_nightmaremoon.png"/>
-			</firstmatchmapper>
-		</chainedmapper>
-	</mapper>
-
-	<fileset id="res_moongazeponies" dir="../../SrcAssets/MoongazePonies/"/>
-
-	<!-- Mapping Capt-Nemo's assets to category icon names -->
-	<mapper id="caticons_capt-nemo">
-		<chainedmapper>
-			<flattenmapper/>
-			<firstmatchmapper>
-				<!-- This one's under Creative Commons Attribution-Share Alike 3.0 License -->
-				<globmapper from="it__s_so_truuuuue_by_capt_nemo-d3hmrgp.png" to="cat_stevenmagnet.png"/>
-			</firstmatchmapper>
-		</chainedmapper>
-	</mapper>
-
-	<fileset id="res_capt-nemo" dir="../../SrcAssets/Capt-Nemo/"/>
-
-	<!-- Mapping Peachspices's assets to category icon names -->
-	<mapper id="caticons_peachspices">
-		<chainedmapper>
-			<flattenmapper/>
-			<firstmatchmapper>
-				<!-- This one's under Creative Commons Attribution-Noncommercial 3.0 License -->
-				<globmapper from="gilda_vector_by_peachspices-d3jminl-cropped1260wide378xoffset.png" to="cat_gilda.png"/>
-			</firstmatchmapper>
-		</chainedmapper>
-	</mapper>
-
-	<fileset id="res_peachspices" dir="../../SrcAssets/Peachspices/"/>
-
-	<!-- Mapping pageturner1988's assets to category icon names -->
-	<mapper id="caticons_pageturner1988">
-		<chainedmapper>
-			<flattenmapper/>
-			<firstmatchmapper>
-				<globmapper from="rose_sidelong_look_by_pageturner1988-d3hw4qj.png" to="cat_roseluck.png"/>
-			</firstmatchmapper>
-		</chainedmapper>
-	</mapper>
-
-	<fileset id="res_pageturner1988" dir="../../SrcAssets/pageturner1988/"/>
-
-	<!-- Mapping SirLeandrea's assets to category icon names -->
-	<mapper id="caticons_sirleandrea">
-		<chainedmapper>
-			<flattenmapper/>
-			<firstmatchmapper>
-				<!-- This one's under Creative Commons Attribution-Noncommercial-Share Alike 3.0 License -->
-				<globmapper from="carrot_cake_by_sirleandrea-d3hd94p.png" to="cat_carrottop.png"/>
-			</firstmatchmapper>
-		</chainedmapper>
-	</mapper>
-
-	<fileset id="res_sirleandrea" dir="../../SrcAssets/SirLeandrea/"/>
+	<fileset id="assets" dir="../../SrcAssets/MLPFIM" />
 
 	<description>Build assets for MLPFIM</description>
 	<target name="all" description="Build all assets">
-		<!-- Process shelltoontv's icons into category icons -->
+		<!-- Process assets into icon and category icons -->
 		<ac:for list="ldpi,mdpi,hdpi,xhdpi" param="density">
 			<sequential>
-				<resize mapperref="icon_shelltoontv" resourceref="res_shelltoontv" widthdp="48" heightdp="48" density="@{density}"/>
-				<resize mapperref="caticons_shelltoontv" resourceref="res_shelltoontv" density="@{density}"/>
-				<resize mapperref="caticons_atomicgreymon" resourceref="res_atomicgreymon" density="@{density}"/>
-				<resize mapperref="caticons_blackm3sh" resourceref="res_blackm3sh" density="@{density}"/>
-				<resize mapperref="caticons_moongazeponies" resourceref="res_moongazeponies" density="@{density}"/>
-				<resize mapperref="caticons_capt-nemo" resourceref="res_capt-nemo" density="@{density}"/>
-				<resize mapperref="caticons_peachspices" resourceref="res_peachspices" density="@{density}"/>
-				<resize mapperref="caticons_pageturner1988" resourceref="res_pageturner1988" density="@{density}"/>
-				<resize mapperref="caticons_sirleandrea" resourceref="res_sirleandrea" density="@{density}"/>
+				<resize mapperref="icon" resourceref="assets" widthdp="48" heightdp="48" density="@{density}"/>
+				<resize mapperref="caticons" resourceref="assets" density="@{density}"/>
 			</sequential>
 		</ac:for>
 	</target>
 
 	<target name="clean" description="Clean all built assets">
-		<!-- Process shelltoontv's icons into category icons -->
+		<!-- Delete icons created by the "all" rule -->
 		<ac:for list="ldpi,mdpi,hdpi,xhdpi" param="density">
 			<sequential>
-				<resizeClean mapperref="icon_shelltoontv" resourceref="res_shelltoontv" density="@{density}"/>
-				<resizeClean mapperref="caticons_shelltoontv" resourceref="res_shelltoontv" density="@{density}"/>
-				<resizeClean mapperref="caticons_atomicgreymon" resourceref="res_atomicgreymon" density="@{density}"/>
-				<resizeClean mapperref="caticons_blackm3sh" resourceref="res_blackm3sh" density="@{density}"/>
-				<resizeClean mapperref="caticons_moongazeponies" resourceref="res_moongazeponies" density="@{density}"/>
-				<resizeClean mapperref="caticons_capt-nemo" resourceref="res_capt-nemo" density="@{density}"/>
-				<resizeClean mapperref="caticons_peachspices" resourceref="res_peachspices" density="@{density}"/>
-				<resizeClean mapperref="caticons_pageturner1988" resourceref="res_pageturner1988" density="@{density}"/>
-				<resizeClean mapperref="caticons_sirleandrea" resourceref="res_sirleandrea" density="@{density}"/>
+				<resize mapperref="icon" resourceref="assets" density="@{density}"/>
+				<resize mapperref="caticons" resourceref="assets" density="@{density}"/>
 			</sequential>
 		</ac:for>
 	</target>
