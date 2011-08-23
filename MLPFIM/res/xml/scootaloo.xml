@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<category id="scootaloo" description="Scootaloo">
-	<description id="ewwww">EWWWW</description>
-	<description id="illdowhateveryouwantrainbowdash">Whatever you want, Dash</description>
-	<description id="imlikingthisidea">I'm liking this idea</description>
-	<description id="never">Never</description>
-	<description id="proplemwithblankflanks">Problem with blankflanks?</description>
-	<description id="thatisnothowyoucallachicken">Not how you call a chicken</description>
-	<description id="thatssofunnyiforgottolaugh">That's so funny...</description>
+<category id="scootaloo" src="Scootaloo">
+	<sound id="ewwww" src="ewwww" value="10">EWWWW</sound>
+	<sound id="illdowhateveryouwantrainbowdash" src="i'll do whatever you want rainbow dash" value="20">Whatever you want, Dash</sound>
+	<sound id="imlikingthisidea" src="i'm liking this idea" value="30">I'm liking this idea</sound>
+	<sound id="never" src="never" value="40">Never</sound>
+	<sound id="proplemwithblankflanks" src="proplem with blank flanks" value="50">Problem with blankflanks?</sound>
+	<sound id="thatisnothowyoucallachicken" src="that is not how you call a chicken" value="60">Not how you call a chicken</sound>
+	<sound id="thatssofunnyiforgottolaugh" src="that's so funny i forgot to laugh" value="70">That's so funny...</sound>
 </category>

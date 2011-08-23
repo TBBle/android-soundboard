@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<category id="spike" description="Spike">
-	<description id="anouthouse">An outhouse?</description>
-	<description id="anotherdonutextrasprinkles">Another donut...</description>
-	<description id="canyoudothatcanyouexplodetwice">Can you explode twice?</description>
-	<description id="dudethatscreepy">Dude, that's creepy</description>
-	<description id="howdoyouknow">How do you know?</description>
-	<description id="icantevenworkwiththat">I can't even work with that</description>
-	<description id="igotnothing">I got nothing</description>
-	<description id="isitzombies">Is it zombies?</description>
-	<description id="nooooooooooooo">NOOOOOOOOO</description>
-	<description id="whatwhatswrong">What? What's wrong?</description>
+<category id="spike" src="Spike">
+	<sound id="anouthouse" src="an outhouse" value="10">An outhouse?</sound>
+	<sound id="anotherdonutextrasprinkles" src="another donut, extra sprinkles" value="20">Another donut...</sound>
+	<sound id="canyoudothatcanyouexplodetwice" src="can you do that, can you explode twice" value="30">Can you explode twice?</sound>
+	<sound id="dudethatscreepy" src="dude, that's creepy" value="40">Dude, that's creepy</sound>
+	<sound id="howdoyouknow" src="how do you know" value="50">How do you know?</sound>
+	<sound id="icantevenworkwiththat" src="i can't even work with that" value="60">I can't even work with that</sound>
+	<sound id="igotnothing" src="i got nothing" value="70">I got nothing</sound>
+	<sound id="isitzombies" src="is it zombies" value="80">Is it zombies?</sound>
+	<sound id="nooooooooooooo" src="nooooooooooooo" value="90">NOOOOOOOOO</sound>
+	<sound id="whatwhatswrong" src="what, whats wrong" value="100">What? What's wrong?</sound>
 </category>

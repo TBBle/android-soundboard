@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<category id="bigmacintosh" description="Big Macintosh">
-	<description id="eyup">Eyup</description>
-	<description id="morethanyoucanchew">Biting off more than...</description>
+<category id="bigmacintosh" src="Big Macintosh">
+	<sound id="eyup" src="eyup" value="10">Eyup</sound>
+	<sound id="morethanyoucanchew" src="more than you can chew" value="20">Biting off more than...</sound>
 </category>

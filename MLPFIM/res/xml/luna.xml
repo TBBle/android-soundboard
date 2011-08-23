@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<category id="luna" description="Luna">
-	<description id="imissedyousomuch">I missed you so much</description>
-	<description id="imsosorry">I'm so sorry</description>
+<category id="luna" src="Luna">
+	<sound id="imissedyousomuch" src="i missed you so much" value="10">I missed you so much</sound>
+	<sound id="imsosorry" src="i'm so sorry" value="20">I'm so sorry</sound>
 </category>

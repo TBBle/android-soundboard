@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<category id="photofinish" description="Photo Finish">
-	<description id="fluttershy">Fluttershy</description>
-	<description id="igo">I go</description>
-	<description id="ohwunderbar">Oh wunderbar</description>
-	<description id="timetomakethemagics">Time to make the magics</description>
+<category id="photofinish" src="Photo Finish">
+	<sound id="fluttershy" src="fluttershy" value="10">Fluttershy</sound>
+	<sound id="igo" src="i go" value="20">I go</sound>
+	<sound id="ohwunderbar" src="oh, wunderbar" value="30">Oh wunderbar</sound>
+	<sound id="timetomakethemagics" src="time to make the magics" value="40">Time to make the magics</sound>
 </category>

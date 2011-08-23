@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<category id="gilda" description="Gilda">
-	<description id="getlost">Get lost</description>
-	<description id="iknowwhatyoureupto">I know what you're up to</description>
-	<description id="whenyoudecidenotbelameanymore">You you decide not to be...</description>
-	<description id="youresuchaflipflop">You're such a flip-flop...</description>
+<category id="gilda" src="Gilda">
+	<sound id="getlost" src="get lost" value="10">Get lost</sound>
+	<sound id="iknowwhatyoureupto" src="i know what you're up to" value="20">I know what you're up to</sound>
+	<sound id="whenyoudecidenotbelameanymore" src="when you decide not be lame anymore" value="30">You you decide not to be...</sound>
+	<sound id="youresuchaflipflop" src="you're such a flip-flop" value="40">You're such a flip-flop...</sound>
 </category>

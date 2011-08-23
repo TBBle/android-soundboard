@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<category id="roseluck" description="Roseluck">
-	<description id="thehorror">The horror</description>
-	<description id="thewickedenchantresshascursedthemall">Wicked enchantress</description>
+<category id="roseluck" src="Roseluck">
+	<sound id="thehorror" src="the horror" value="10">The horror</sound>
+	<sound id="thewickedenchantresshascursedthemall" src="the wicked enchantress has cursed them all" value="20">Wicked enchantress</sound>
 </category>

@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<category id="carrottop" description="Carrot Top">
-	<description id="wecouldnfititallin">Couldn't fit it all in</description>
+<category id="carrottop" src="Carrot Top">
+	<sound id="wecouldnfititallin" src="we couldn' fit it all in" value="10">Couldn't fit it all in</sound>
 </category>

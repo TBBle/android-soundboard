@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<category id="stevenmagnet" description="Steven Magnet">
-	<description id="howwonderful">How wonderful</description>
-	<description id="itstrueimhideous">I'm hideous</description>
-	<description id="mymustache">My mustache</description>
-	<description id="ohitssotrue">It's so true</description>
-	<description id="whatdidyoudothatfor">What did you do that for?</description>
+<category id="stevenmagnet" src="Steven Magnet">
+	<sound id="howwonderful" src="how wonderful" value="10">How wonderful</sound>
+	<sound id="itstrueimhideous" src="it's true i'm hideous" value="20">I'm hideous</sound>
+	<sound id="mymustache" src="my mustache" value="30">My mustache</sound>
+	<sound id="ohitssotrue" src="oh it's so true" value="40">It's so true</sound>
+	<sound id="whatdidyoudothatfor" src="what did you do that for" value="50">What did you do that for?</sound>
 </category>

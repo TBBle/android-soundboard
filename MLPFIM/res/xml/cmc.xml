@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<category id="cmc" description="Cutiemark Crusaders">
-	<description id="cmcsyay">Cutiemark Crusaders, yay</description>
+<category id="cmc" src="CMC">
+	<sound id="cmcsyay" src="cmcs, yay" value="10">Cutiemark Crusaders, yay</sound>
 </category>

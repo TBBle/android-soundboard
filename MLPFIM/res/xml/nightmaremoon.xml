@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<category id="nightmaremoon" description="Nightmare Moon">
-	<description id="dontyouknowwhoiam">Don't you know who I am?</description>
-	<description id="ohmybelovedsubjects">My beloved subjects</description>
-	<description id="thenightwilllastforever">The night will last forever</description>
-	<description id="youlittlefoal">You little foal</description>
-	<description id="yourekidding">You're kidding</description>
+<category id="nightmaremoon" src="Nightmare Moon">
+	<sound id="dontyouknowwhoiam" src="dont you know who i am" value="10">Don't you know who I am?</sound>
+	<sound id="ohmybelovedsubjects" src="oh my beloved subjects" value="20">My beloved subjects</sound>
+	<sound id="thenightwilllastforever" src="the night will last forever" value="30">The night will last forever</sound>
+	<sound id="youlittlefoal" src="you little foal" value="40">You little foal</sound>
+	<sound id="yourekidding" src="you're kidding" value="50">You're kidding</sound>
 </category>

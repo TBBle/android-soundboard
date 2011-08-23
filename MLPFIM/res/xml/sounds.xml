@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sounds src="pony sounds v4">
+	<category id="applebloom"		value= "10"/>
+	<category id="applejack"		value= "20"/>
+	<category id="bigmacintosh"		value= "30"/>
+	<category id="braeburn"			value= "40"/>
+	<category id="carrottop"		value= "50"/>
+	<category id="cmc"				value= "60"/>
+	<category id="derpy"			value= "70"/>
+	<category id="drwhoof"			value= "80"/>
+	<category id="fluttershy"		value= "90"/>
+	<category id="gilda"			value="100"/>
+	<category id="luna"				value="110"/>
+	<category id="nightmaremoon"	value="120"/>
+	<category id="owl"				value="130"/>
+	<category id="photofinish"		value="140"/>
+	<category id="pinkiepie"		value="150"/>
+	<category id="princesscelestia"	value="160"/>
+	<category id="rainbowdash"		value="170"/>
+	<category id="rarity"			value="180"/>
+	<category id="roseluck"			value="190"/>
+	<category id="sapphireshores"	value="200"/>
+	<category id="scootaloo"		value="210"/>
+	<category id="spike"			value="220"/>
+	<category id="stevenmagnet"		value="230"/>
+	<category id="sweetiebelle"		value="240"/>
+	<category id="trixie"			value="250"/>
+	<category id="twilightsparkle"	value="260"/>
+	<category id="zecora"			value="270"/>
+</sounds>

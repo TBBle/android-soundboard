@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<category id="rainbowdash" description="Raibow Dash">
-	<description id="10secondsflat">10 seconds flat</description>
-	<description id="areyouaspy">Are you a spy?</description>
-	<description id="booo">Boooo</description>
-	<description id="iamtheironpony">I am the Iron Pony</description>
-	<description id="ihatelosing">I hate losing</description>
-	<description id="iknowitsgonnabesoawesome">I know it's gonna be so awesome</description>
-	<description id="ilovefunthings">I love fun things</description>
-	<description id="imonit">I'm on it</description>
-	<description id="itneedstobeabout20cooler">It needs to be about 20% cooler</description>
-	<description id="itsalltrue">It's all true</description>
-	<description id="laughing">(laughing)</description>
-	<description id="mylifeisruined">My life is ruined</description>
-	<description id="omgomgomg">OMG OMG OMG</description>
-	<description id="pinkieusorandom">Pinkie, you're random</description>
-	<description id="soundslikesourapplestome">Sounds like sour apples to me</description>
-	<description id="timetotakeouttheadorabletrash">Time to take out the...</description>
-	<description id="whatdoyouhaveinmind">What do you have in mind?</description>
-	<description id="whoareyoucallingachump">Who are you calling a chump?</description>
-	<description id="youwannadothisthehardway">Wanna do this the hard way?</description>
+<category id="rainbowdash" src="Rainbow Dash">
+	<sound id="10secondsflat" src="10 seconds flat" value="10">10 seconds flat</sound>
+	<sound id="areyouaspy" src="are you a spy" value="20">Are you a spy?</sound>
+	<sound id="booo" src="booo" value="30">Boooo</sound>
+	<sound id="iamtheironpony" src="i am the iron pony" value="40">I am the Iron Pony</sound>
+	<sound id="ihatelosing" src="i hate losing" value="50">I hate losing</sound>
+	<sound id="iknowitsgonnabesoawesome" src="i know it's gonna be so awesome" value="60">I know it's gonna be so awesome</sound>
+	<sound id="ilovefunthings" src="i love fun things" value="70">I love fun things</sound>
+	<sound id="imonit" src="i'm on it" value="80">I'm on it</sound>
+	<sound id="itneedstobeabout20cooler" src="it needs to be about 20% cooler" value="90">It needs to be about 20% cooler</sound>
+	<sound id="itsalltrue" src="it's all true" value="100">It's all true</sound>
+	<sound id="laughing" src="laughing" value="110">(laughing)</sound>
+	<sound id="mylifeisruined" src="my life is ruined" value="120">My life is ruined</sound>
+	<sound id="omgomgomg" src="omgomgomg" value="130">OMG OMG OMG</sound>
+	<sound id="pinkieusorandom" src="pinkie u so random" value="140">Pinkie, you're random</sound>
+	<sound id="soundslikesourapplestome" src="sounds like sour apples to me" value="150">Sounds like sour apples to me</sound>
+	<sound id="timetotakeouttheadorabletrash" src="time to take out the adorable trash" value="160">Time to take out the...</sound>
+	<sound id="whatdoyouhaveinmind" src="what do you have in mind" value="170">What do you have in mind?</sound>
+	<sound id="whoareyoucallingachump" src="who are you calling a chump" value="180">Who are you calling a chump?</sound>
+	<sound id="youwannadothisthehardway" src="you wanna do this the hard way" value="190">Wanna do this the hard way?</sound>
 </category>

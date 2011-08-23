@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<category id="sweetiebelle" description="Sweetie Belle">
-	<description id="dumbfabric">Dumb fabric</description>
-	<description id="iknowthisone">I know this one</description>
-	<description id="ohmysoundsserious">Oh my, sounds serious</description>
-	<description id="suchasweetstory">Such a sweet story</description>
-	<description id="thatsagreatsafeidea">That's a great safe idea</description>
-	<description id="wecouldformourownsecretsociety">Our own secret society</description>
-	<description id="youcannotrunfromme">You cannot run from me</description>
+<category id="sweetiebelle" src="Sweetie Belle">
+	<sound id="dumbfabric" src="dumb fabric" value="10">Dumb fabric</sound>
+	<sound id="iknowthisone" src="i know this one" value="20">I know this one</sound>
+	<sound id="ohmysoundsserious" src="oh my, sounds serious" value="30">Oh my, sounds serious</sound>
+	<sound id="suchasweetstory" src="such a sweet story" value="40">Such a sweet story</sound>
+	<sound id="thatsagreatsafeidea" src="thats a great safe idea" value="50">That's a great safe idea</sound>
+	<sound id="wecouldformourownsecretsociety" src="we could form our own secret society" value="60">Our own secret society</sound>
+	<sound id="youcannotrunfromme" src="you cannot run from me" value="70">You cannot run from me</sound>
 </category>

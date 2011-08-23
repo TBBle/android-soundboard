@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<category id="applebloom" description="Apple Bloom">
-	<description id="butiwantitnow">But I want it now</description>
-	<description id="iamabigpony">I am a big pony</description>
-	<description id="imnotababy">I'm not a baby</description>
-	<description id="likelystory">Likely story</description>
-	<description id="powertools">Power tools?</description>
-	<description id="scootaloo">SCOOTALOO</description>
-	<description id="whatathingtosay">What a thing to say</description>
+<category id="applebloom" src="Apple Bloom">
+	<sound id="butiwantitnow" src="but i want it now" value="10">But I want it now</sound>
+	<sound id="iamabigpony" src="i am a big pony" value="20">I am a big pony</sound>
+	<sound id="imnotababy" src="i'm not a baby" value="30">I'm not a baby</sound>
+	<sound id="likelystory" src="likely story" value="40">Likely story</sound>
+	<sound id="powertools" src="power tools" value="50">Power tools?</sound>
+	<sound id="scootaloo" src="scootaloo" value="60">SCOOTALOO</sound>
+	<sound id="whatathingtosay" src="what a thing to say" value="70">What a thing to say</sound>
 </category>

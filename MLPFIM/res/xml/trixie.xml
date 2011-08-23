@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<category id="trixie" description="Trixie">
-	<description id="anythingyoucandoicandobetter">Anything you can do...</description>
-	<description id="fanfare">(fanfare)</description>
-	<description id="itseemswehavesomeneighsayersintheaudience">Neigh-sayers</description>
-	<description id="itstrue">My enthusiastic little admirers</description>
-	<description id="showtrixiewhatyouvegot">Show Trixie what you've got!</description>
-	<description id="thegandpt">The Great And Powerful Trixie</description>
-	<description id="wasthereeveranydoubt">Was there ever any doubt?</description>
-	<description id="watchinawe">Watch in awe!</description>
+<category id="trixie" src="Trixie">
+	<sound id="anythingyoucandoicandobetter" src="anything you can do, i can do better" value="10">Anything you can do...</sound>
+	<sound id="fanfare" src="fanfare" value="20">(fanfare)</sound>
+	<sound id="itseemswehavesomeneighsayersintheaudience" src="it seems we have some neighsayers in the audience" value="30">Neigh-sayers</sound>
+	<sound id="itstrue" src="it's true" value="40">My enthusiastic little admirers</sound>
+	<sound id="showtrixiewhatyouvegot" src="show trixie what you've got" value="50">Show Trixie what you've got!</sound>
+	<sound id="thegandpt" src="the g and p t" value="60">The Great And Powerful Trixie</sound>
+	<sound id="wasthereeveranydoubt" src="was there ever any doubt" value="70">Was there ever any doubt?</sound>
+	<sound id="watchinawe" src="watch in awe" value="80">Watch in awe!</sound>
 </category>

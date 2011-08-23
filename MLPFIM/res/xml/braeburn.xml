@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<category id="braeburn" description="Braeburn">
-	<description id="shameonyou">Shame on you</description>
-	<description id="welcometoappleoosa">Welcome to Appleoosa</description>
+<category id="braeburn" src="Braeburn">
+	<sound id="shameonyou" src="shame on you" value="10">Shame on you</sound>
+	<sound id="welcometoappleoosa" src="welcome to appleoosa" value="20">Welcome to Appleoosa</sound>
 </category>
