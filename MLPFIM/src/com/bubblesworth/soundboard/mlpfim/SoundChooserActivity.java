@@ -17,10 +17,10 @@ import com.bubblesworth.soundboard.SoundColumns;
 
 /**
  * @author paulh
- *
+ * 
  */
 public class SoundChooserActivity extends ListActivity {
-	//private static final String TAG = "SoundChooserActivity";
+	// private static final String TAG = "SoundChooserActivity";
 
 	private boolean widgetConfig;
 
@@ -28,15 +28,16 @@ public class SoundChooserActivity extends ListActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		widgetConfig = getIntent().getAction().equals("com.bubblesworth.soundboard.APPWIDGET_CONFIGURE");
-		String[] columns = {SoundColumns._ID, SoundColumns.DESCRIPTION, SoundColumns.ICON};
-		Cursor cur = managedQuery(SoundProvider.TRACK_URI, columns, null, null, null);
+		widgetConfig = getIntent().getAction().equals(
+				"com.bubblesworth.soundboard.APPWIDGET_CONFIGURE");
+		String[] columns = { SoundColumns._ID, SoundColumns.DESCRIPTION,
+				SoundColumns.ICON };
+		Cursor cur = managedQuery(SoundProvider.TRACK_URI, columns, null, null,
+				null);
 		SimpleCursorAdapter adapter = new SimpleCursorAdapter(this,
-				R.layout.icon_list_item,
-				cur,
-				new String[] {SoundColumns.DESCRIPTION, SoundColumns.ICON},
-				new int[] {R.id.listText, R.id.listIcon}
-				);
+				R.layout.icon_list_item, cur, new String[] {
+						SoundColumns.DESCRIPTION, SoundColumns.ICON },
+				new int[] { R.id.listText, R.id.listIcon });
 		setListAdapter(adapter);
 		if (widgetConfig) {
 			setResult(RESULT_CANCELED);
@@ -52,11 +53,13 @@ public class SoundChooserActivity extends ListActivity {
 			setResult(RESULT_OK, resultValue);
 			finish();
 		} else {
-			String[] columns = {SoundColumns.ACTION, SoundColumns.ASSET};
+			String[] columns = { SoundColumns.ACTION, SoundColumns.ASSET };
 			Cursor cur = managedQuery(uri, columns, null, null, null);
 			if (cur.moveToFirst()) {
-				String action = cur.getString(cur.getColumnIndex(SoundColumns.ACTION));
-				String asset = cur.getString(cur.getColumnIndex(SoundColumns.ASSET));
+				String action = cur.getString(cur
+						.getColumnIndex(SoundColumns.ACTION));
+				String asset = cur.getString(cur
+						.getColumnIndex(SoundColumns.ASSET));
 				Intent intent = new Intent(action);
 				intent.setData(Uri.parse(asset));
 				startService(intent);
@@ -64,7 +67,9 @@ public class SoundChooserActivity extends ListActivity {
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
 	 */
 	@Override
@@ -77,14 +82,17 @@ public class SoundChooserActivity extends ListActivity {
 		return !widgetConfig;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see android.app.Activity#onOptionsItemSelected(android.view.MenuItem)
 	 */
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.menuAbout:
-			startActivity(new Intent( this, com.bubblesworth.soundboard.mlpfim.AboutActivity.class ));
+			startActivity(new Intent(this,
+					com.bubblesworth.soundboard.mlpfim.AboutActivity.class));
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);

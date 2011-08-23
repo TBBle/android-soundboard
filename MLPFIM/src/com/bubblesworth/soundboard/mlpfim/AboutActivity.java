@@ -10,11 +10,13 @@ import android.widget.TextView;
 
 /**
  * @author paulh
- *
+ * 
  */
 public class AboutActivity extends Activity {
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see android.app.Activity#onCreate(android.os.Bundle)
 	 */
 	@Override
@@ -24,7 +26,7 @@ public class AboutActivity extends Activity {
 		TextView tv = (TextView) findViewById(R.id.aboutText);
 		String[] text = getResources().getStringArray(R.array.about_text);
 		StringBuilder builder = new StringBuilder();
-		for (String str: text) {
+		for (String str : text) {
 			builder.append(str);
 			builder.append("<br/>");
 		}

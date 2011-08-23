@@ -30,7 +30,7 @@ import com.bubblesworth.soundboard.SoundColumns;
 
 /**
  * @author tbble
- *
+ * 
  */
 public class SoundProvider extends ContentProvider implements SoundColumns {
 	private static final String TAG = "SoundProvider";
@@ -53,31 +53,31 @@ public class SoundProvider extends ContentProvider implements SoundColumns {
 	private static final int ASSETS_ID = 4;
 	private static final int ICONS_ID = 6;
 
-	private static final UriMatcher URI_MATCHER = new UriMatcher(UriMatcher.NO_MATCH);
+	private static final UriMatcher URI_MATCHER = new UriMatcher(
+			UriMatcher.NO_MATCH);
 	static {
-		URI_MATCHER.addURI( AUTHORITY, "tracks", TRACKS );
-		URI_MATCHER.addURI( AUTHORITY, "tracks/#", TRACKS_ID );
-		URI_MATCHER.addURI( AUTHORITY, "assets/#", ASSETS_ID );
-		URI_MATCHER.addURI( AUTHORITY, "icons/#", ICONS_ID );
+		URI_MATCHER.addURI(AUTHORITY, "tracks", TRACKS);
+		URI_MATCHER.addURI(AUTHORITY, "tracks/#", TRACKS_ID);
+		URI_MATCHER.addURI(AUTHORITY, "assets/#", ASSETS_ID);
+		URI_MATCHER.addURI(AUTHORITY, "icons/#", ICONS_ID);
 	}
 
-	public static final Uri CONTENT_URI = 
-            Uri.parse("content://" + AUTHORITY);
+	public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY);
 
-	public static final Uri TRACK_URI =
-            Uri.parse(CONTENT_URI+"/tracks");
+	public static final Uri TRACK_URI = Uri.parse(CONTENT_URI + "/tracks");
 
-	public static final Uri ASSET_URI =
-            Uri.parse(CONTENT_URI+"/assets");
+	public static final Uri ASSET_URI = Uri.parse(CONTENT_URI + "/assets");
 
-	public static final Uri ICON_URI =
-            Uri.parse(CONTENT_URI+"/icons");
+	public static final Uri ICON_URI = Uri.parse(CONTENT_URI + "/icons");
 
 	// We reflect _ID and _COUNT from BaseColumns
 	// We reflect DESCRIPTION, ACTION, ASSET, ICON from SoundColumns
 
-	/* (non-Javadoc)
-	 * @see android.content.ContentProvider#delete(android.net.Uri, java.lang.String, java.lang.String[])
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see android.content.ContentProvider#delete(android.net.Uri,
+	 * java.lang.String, java.lang.String[])
 	 */
 	@Override
 	public int delete(Uri uri, String selection, String[] selectionArgs) {
@@ -85,7 +85,9 @@ public class SoundProvider extends ContentProvider implements SoundColumns {
 		return 0;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see android.content.ContentProvider#getType(android.net.Uri)
 	 */
 	@Override
@@ -93,20 +95,27 @@ public class SoundProvider extends ContentProvider implements SoundColumns {
 		int match = URI_MATCHER.match(uri);
 		switch (match) {
 		case TRACKS:
-			return getContext().getResources().getString(R.string.mime_type_tracks);
+			return getContext().getResources().getString(
+					R.string.mime_type_tracks);
 		case TRACKS_ID:
-			return getContext().getResources().getString(R.string.mime_type_track);
+			return getContext().getResources().getString(
+					R.string.mime_type_track);
 		case ASSETS_ID:
-			return getContext().getResources().getString(R.string.mime_type_asset);
+			return getContext().getResources().getString(
+					R.string.mime_type_asset);
 		case ICONS_ID:
-			return getContext().getResources().getString(R.string.mime_type_icon);
+			return getContext().getResources().getString(
+					R.string.mime_type_icon);
 		default:
 			return null;
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see android.content.ContentProvider#insert(android.net.Uri, android.content.ContentValues)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see android.content.ContentProvider#insert(android.net.Uri,
+	 * android.content.ContentValues)
 	 */
 	@Override
 	public Uri insert(Uri uri, ContentValues values) {
@@ -114,7 +123,9 @@ public class SoundProvider extends ContentProvider implements SoundColumns {
 		return null;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see android.content.ContentProvider#onCreate()
 	 */
 	@Override
@@ -242,7 +253,8 @@ public class SoundProvider extends ContentProvider implements SoundColumns {
 				String soundDesc = catParser.nextText();
 
 				if (!soundFiles.contains(soundFile + ".mp3")) {
-					throw new FileNotFoundException(baseDir + "/" + catDir + "/" + soundFile + ".mp3");
+					throw new FileNotFoundException(baseDir + "/" + catDir
+							+ "/" + soundFile + ".mp3");
 				}
 
 				SoundInfo info = new SoundInfo();
@@ -268,16 +280,20 @@ public class SoundProvider extends ContentProvider implements SoundColumns {
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see android.content.ContentProvider#query(android.net.Uri, java.lang.String[], java.lang.String, java.lang.String[], java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see android.content.ContentProvider#query(android.net.Uri,
+	 * java.lang.String[], java.lang.String, java.lang.String[],
+	 * java.lang.String)
 	 */
 	@Override
-	public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs,
-			String sortOrder) {
-		//Log.d(TAG, "query(" + uri.toString() + ", " + projection.toString());
+	public Cursor query(Uri uri, String[] projection, String selection,
+			String[] selectionArgs, String sortOrder) {
 		if (!loadData())
 			return null;
 
+		// Log.d(TAG, "query(" + uri.toString() + ", " + projection.toString());
 		int match = URI_MATCHER.match(uri);
 		switch (match) {
 		case TRACKS:
@@ -286,19 +302,20 @@ public class SoundProvider extends ContentProvider implements SoundColumns {
 			return queryTrack(ContentUris.parseId(uri), projection);
 		case ASSETS_ID:
 			return null;
-			//return queryAsset(ContentUris.parseId(uri));
+			// return queryAsset(ContentUris.parseId(uri));
 		case ICONS_ID:
 			return null;
-			//return queryIcon(ContentUris.parseId(uri));
+			// return queryIcon(ContentUris.parseId(uri));
 		default:
 			return null;
 		}
 	}
 
-	private Cursor queryTracks(String[] projection, String selection, String[] selectionArgs,
-			String sortOrder) {
+	private Cursor queryTracks(String[] projection, String selection,
+			String[] selectionArgs, String sortOrder) {
 		if (projection == null) {
-			projection = new String[] { _ID, _COUNT, DESCRIPTION, ACTION, ASSET, ICON };
+			projection = new String[] { _ID, _COUNT, DESCRIPTION, ACTION,
+					ASSET, ICON };
 		}
 		// TODO: Selection and sorting
 		MatrixCursor result = new MatrixCursor(projection, sounds.size());
@@ -328,8 +345,9 @@ public class SoundProvider extends ContentProvider implements SoundColumns {
 		return result;
 	}
 
-	private void populateRow(MatrixCursor.RowBuilder row, String[] columns, SoundInfo sound) {
-		for (String column: columns) {
+	private void populateRow(MatrixCursor.RowBuilder row, String[] columns,
+			SoundInfo sound) {
+		for (String column : columns) {
 			if (column.equals(_ID))
 				row.add(sound.id);
 			else if (column.equals(DESCRIPTION))
@@ -337,25 +355,35 @@ public class SoundProvider extends ContentProvider implements SoundColumns {
 			else if (column.equals(ACTION))
 				row.add("com.bubblesworth.soundboard.PLAY");
 			else if (column.equals(ASSET))
-				row.add(ContentUris.withAppendedId(ASSET_URI, (long)sound.id).toString());
+				row.add(ContentUris.withAppendedId(ASSET_URI, (long) sound.id)
+						.toString());
 			else if (column.equals(ICON))
-				row.add(ContentUris.withAppendedId(ICON_URI, (long)sound.id).toString());
-			else // TODO: _COUNT
+				row.add(ContentUris.withAppendedId(ICON_URI, (long) sound.id)
+						.toString());
+			else
+				// TODO: _COUNT
 				row.add(null);
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see android.content.ContentProvider#update(android.net.Uri, android.content.ContentValues, java.lang.String, java.lang.String[])
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see android.content.ContentProvider#update(android.net.Uri,
+	 * android.content.ContentValues, java.lang.String, java.lang.String[])
 	 */
 	@Override
-	public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
+	public int update(Uri uri, ContentValues values, String selection,
+			String[] selectionArgs) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	/* (non-Javadoc)
-	 * @see android.content.ContentProvider#openAssetFile(android.net.Uri, java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see android.content.ContentProvider#openAssetFile(android.net.Uri,
+	 * java.lang.String)
 	 */
 	@Override
 	public AssetFileDescriptor openAssetFile(Uri uri, String mode)
@@ -375,19 +403,21 @@ public class SoundProvider extends ContentProvider implements SoundColumns {
 
 		int match = URI_MATCHER.match(uri);
 		switch (match) {
-			case ASSETS_ID:
-				try {
-					return getContext().getAssets().openFd(sound.track);
-				} catch (IOException e) {
-					Log.e(TAG, "openAssetFileDescriptor", e);
-					throw new FileNotFoundException(e.getLocalizedMessage());
-				}
-			case ICONS_ID:
-				if (sound.iconResource == 0)
-					return getContext().getResources().openRawResourceFd(R.drawable.icon);
-				return getContext().getResources().openRawResourceFd(sound.iconResource);
-			default:
-				throw new FileNotFoundException();
+		case ASSETS_ID:
+			try {
+				return getContext().getAssets().openFd(sound.track);
+			} catch (IOException e) {
+				Log.e(TAG, "openAssetFileDescriptor", e);
+				throw new FileNotFoundException(e.getLocalizedMessage());
+			}
+		case ICONS_ID:
+			if (sound.iconResource == 0)
+				return getContext().getResources().openRawResourceFd(
+						R.drawable.icon);
+			return getContext().getResources().openRawResourceFd(
+					sound.iconResource);
+		default:
+			throw new FileNotFoundException();
 		}
 	}
 
