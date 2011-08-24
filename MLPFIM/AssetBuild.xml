@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<project name="MLPFILAssetBuild" default="all" basedir="." xmlns:ac="antlib:net.sf.antcontrib">
+<project name="MLPFIMAssetBuild" default="all" basedir="." xmlns:ac="antlib:net.sf.antcontrib">
 	<!-- Pull in ant-contrib -->
 	<taskdef resource="net/sf/antcontrib/antcontrib.properties"/>
 
@@ -60,7 +60,7 @@
 		<!-- Process assets into icon and category icons -->
 		<ac:for list="ldpi,mdpi,hdpi,xhdpi" param="density">
 			<sequential>
-				<resize mapperref="icon" resourceref="assets" widthdp="48" heightdp="48" density="@{density}"/>
+				<resize mapperref="icon" resourceref="assets" widthdp="36" heightdp="36" density="@{density}" canvaswidthdp="48" canvasheightdp="48"/>
 				<resize mapperref="caticons" cropref="caticons-srccrop" resourceref="assets" widthdp="72" heightdp="72" density="@{density}"/>
 			</sequential>
 		</ac:for>
@@ -88,11 +88,14 @@
 		<attribute name="density"/>
 		<attribute name="resourceref"/>
 		<attribute name="mapperref"/>
+		<!-- optional -->
 		<attribute name="cropref"/>
+		<attribute name="canvaswidthdp"/>
+		<attribute name="canvasheightdp"/>
 		<![CDATA[
 		// Theory of operation:
 		// We need to create an apply task and a mapper for each possible resize, and one for no-resize.
-		function makeResizeApply( density, targetSize, crops ) {
+		function makeResizeApply( density, targetSize, crops, canvasSize ) {
 			task = project.createTask( "apply" );
 			task.setVMLauncher( false );
 			task.setExecutable( "convert" );
@@ -132,7 +135,7 @@
 			arg = task.createArg();
 			arg.setValue( "-extent" );
 			arg = task.createArg();
-			arg.setValue( targetSize );
+			arg.setValue( canvasSize );
 			/* Debug - Write the density on the image
 			arg = task.createArg();
 			arg.setValue( "-gravity" );
@@ -193,8 +196,14 @@
 		srcCrop = attributes.get("cropref");
 		if (srcCrop != null)
 			srcCrop = project.getReference( srcCrop );
+		canvaswidthdp = attributes.get( "canvaswidthdp" );
+		canvasheightdp = attributes.get( "canvasheightdp" );
 
 		targetSize = makeTargetSize( density, widthdp, heightdp );
+		if (canvaswidthdp == null || canvasheightdp == null)
+			canvasSize = targetSize;
+		else
+			canvasSize = makeTargetSize( density, canvaswidthdp, canvasheightdp );
 		applys = [];
 		resourcesSets = [];
 		resIt = resources.iterator();
@@ -214,7 +223,7 @@
 				}
 			}
 			if ( applys[ crops ] == undefined ) {
-				applys[ crops ] = makeResizeApply( density, targetSize, crops );
+				applys[ crops ] = makeResizeApply( density, targetSize, crops, canvasSize );
 				applys[ crops ].add( mapper );
 				resourcesSets[ crops ] = project.createDataType( "resources" );
 			}
