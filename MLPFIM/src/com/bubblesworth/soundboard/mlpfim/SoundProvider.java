@@ -6,8 +6,8 @@ package com.bubblesworth.soundboard.mlpfim;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.xmlpull.v1.XmlPullParserException;
@@ -138,7 +138,7 @@ public class SoundProvider extends ContentProvider implements SoundColumns {
 		if (sounds != null)
 			return loaded;
 
-		sounds = new HashMap<Integer, SoundInfo>();
+		sounds = new LinkedHashMap<Integer, SoundInfo>();
 		loaded = loadSounds(R.xml.sounds);
 		return loaded;
 	}
