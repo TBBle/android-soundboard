@@ -152,7 +152,7 @@ public class SoundProvider extends ContentProvider implements SoundColumns {
 			soundParser = resources.getXml(soundsResource);
 		} catch (NotFoundException e) {
 			Log.e(TAG, "onCreate", e);
-			return loaded;
+			return false;
 		}
 
 		try {
@@ -196,19 +196,16 @@ public class SoundProvider extends ContentProvider implements SoundColumns {
 		} catch (XmlPullParserException e) {
 			Log.e(TAG, "Failed to parse sounds description " + soundsResource,
 					e);
-			loaded = false;
-			return loaded;
+			return false;
 		} catch (IOException e) {
 			Log.e(TAG, "Failed to parse sounds description " + soundsResource,
 					e);
-			loaded = false;
-			return loaded;
+			return false;
 		} finally {
 			soundParser.close();
 			soundParser = null;
 		}
-		loaded = true;
-		return loaded;
+		return true;
 	}
 
 	// Bubble any exceptions to our caller...
