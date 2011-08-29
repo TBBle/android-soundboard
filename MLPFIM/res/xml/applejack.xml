@@ -3,7 +3,7 @@
 	<sound id="allyourspartner" src="all yours partner" value="10">All yours partner</sound>
 	<sound id="bereadyforaride" src="be ready for a ride" value="20">Be ready for a ride</sound>
 	<sound id="canthearyouimasleep" src="can't hear you, i'm asleep" value="30">Can't hear you, I'm asleep</sound>
-	<sound id="dontyouuseyourfancymathematicstomuddletheissue" src="don't you use your fancy mathematics to muddle the issue" value="40">fancy mathemeatics</sound>
+	<sound id="dontyouuseyourfancymathematicstomuddletheissue" src="don't you use your fancy mathematics to muddle the issue" value="40">Fancy mathematics</sound>
 	<sound id="geronimo" src="geronimo" value="50">GERONIMO</sound>
 	<sound id="helpingtheponyfolks" src="helping the ponyfolks" value="60">Helping the ponyfolks</sound>
 	<sound id="hinthint" src="hint hint" value="70">Hint, hint</sound>

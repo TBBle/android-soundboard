@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <category id="princesscelestia" src="Princess Celestia">
 	<sound id="gotcha" src="gotcha" value="10">Gotcha</sound>
-	<sound id="iknewyoucoulddoit" src="i knew you could do it" value="20">I knew you could do it</sound>
 	<sound id="iprincesscelestiaherebydecree" src="i princess celestia hereby decree" value="30">I hereby decree</sound>
+	<sound id="iknewyoucoulddoit" src="i knew you could do it" value="20">I knew you could do it</sound>
 	<sound id="imsoproudofyou" src="i'm so proud of you" value="40">I'm so proud of you</sound>
 	<sound id="run" src="run" value="50">Run!</sound>
 	<sound id="willyouacceptmyfriendship" src="will you accept my friendship" value="60">Will you accept my friendship?</sound>

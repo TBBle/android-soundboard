@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <category id="pinkiepie" src="Pinkie Pie">
+	<sound id="gasp" src="gasp" value="50">(gasp)</sound>
+	<sound id="giggle" src="giggle" value="60">(giggle)</sound>
 	<sound id="ahaiknewit" src="aha, i knew it" value="10">Aha, I knew it</sound>
 	<sound id="areyoulocointhecoco" src="are you loco in the coco" value="20">Are you loco in the coco?</sound>
 	<sound id="boring" src="boring" value="30">Boring</sound>
 	<sound id="forever" src="forever" value="40">FOREVER</sound>
-	<sound id="gasp" src="gasp" value="50">(gasp)</sound>
-	<sound id="giggle" src="giggle" value="60">(giggle)</sound>
 	<sound id="help" src="help" value="70">HELP</sound>
 	<sound id="heythatswhatisaid" src="hey that's what i said" value="80">Hey, that's what I said</sound>
 	<sound id="hiimpinkiepie" src="hi, i'm pinkie pie.." value="90">Hi, I'm Pinkie Pie...</sound>

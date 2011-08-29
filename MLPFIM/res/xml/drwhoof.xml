@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <category id="drwhoof" src="Dr. Whoof">
-	<sound id="ehnothanks" src="eh, no thanks" value="10">No, thanks</sound>
 	<sound id="wouldyoupleaseleavemealone" src="would you please leave me alone" value="20">Leave me alone?</sound>
+	<sound id="ehnothanks" src="eh, no thanks" value="10">No, thanks</sound>
 </category>
