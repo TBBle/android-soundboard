@@ -5,6 +5,7 @@
 
 	<!-- Mapping from assetse to application icon -->
 	<globmapper id="icon" handledirsep="true" from="fluttershy_user_icons_vol__1_by_shelltoontv-d3ekodw/Fluttershy11.png" to="icon.png"/>
+	<fileset id="iconbg" file="../../SrcAssets/MLPFIM/iconbg.png" />
 
 	<!-- Mapping from assets to category icon names -->
 	<firstmatchmapper id="caticons">
@@ -60,7 +61,7 @@
 		<!-- Process assets into icon and category icons -->
 		<ac:for list="ldpi,mdpi,hdpi,xhdpi" param="density">
 			<sequential>
-				<resize mapperref="icon" resourceref="assets" widthdp="36" heightdp="36" density="@{density}" canvaswidthdp="48" canvasheightdp="48"/>
+				<resize mapperref="icon" resourceref="assets" widthdp="20" heightdp="20" density="@{density}" canvaswidthdp="48" canvasheightdp="48" canvasbgref="iconbg"/>
 				<resize mapperref="caticons" cropref="caticons-srccrop" resourceref="assets" widthdp="72" heightdp="72" density="@{density}"/>
 			</sequential>
 		</ac:for>
@@ -92,10 +93,11 @@
 		<attribute name="cropref"/>
 		<attribute name="canvaswidthdp"/>
 		<attribute name="canvasheightdp"/>
+		<attribute name="canvasbgref"/>
 		<![CDATA[
 		// Theory of operation:
 		// We need to create an apply task and a mapper for each possible resize, and one for no-resize.
-		function makeResizeApply( density, targetSize, crops, canvasSize ) {
+		function makeResizeApply( density, targetSize, crops, canvasSize, canvasBG ) {
 			task = project.createTask( "apply" );
 			task.setVMLauncher( false );
 			task.setExecutable( "convert" );
@@ -136,6 +138,28 @@
 			arg.setValue( "-extent" );
 			arg = task.createArg();
 			arg.setValue( canvasSize );
+			// Add an optional canvas background
+			if (canvasbg != "") {
+				arg = task.createArg();
+				arg.setValue( canvasbg );
+				arg = task.createArg();
+				arg.setValue( "-filter" );
+				arg = task.createArg();
+				arg.setValue( "Lanczos" );
+				arg = task.createArg();
+				arg.setValue( "-resize" );
+				arg = task.createArg();
+				arg.setValue( canvasSize );
+				arg = task.createArg();
+				arg.setValue( "+swap" );
+				arg = task.createArg();
+				arg.setValue( "-compose" );
+				arg = task.createArg();
+				arg.setValue( "src-over" );
+				arg = task.createArg();
+				arg.setValue( "-composite" );
+			}
+
 			/* Debug - Write the density on the image
 			arg = task.createArg();
 			arg.setValue( "-gravity" );
@@ -198,12 +222,25 @@
 			srcCrop = project.getReference( srcCrop );
 		canvaswidthdp = attributes.get( "canvaswidthdp" );
 		canvasheightdp = attributes.get( "canvasheightdp" );
+		canvasbgref = attributes.get( "canvasbgref" );
 
 		targetSize = makeTargetSize( density, widthdp, heightdp );
 		if (canvaswidthdp == null || canvasheightdp == null)
 			canvasSize = targetSize;
 		else
 			canvasSize = makeTargetSize( density, canvaswidthdp, canvasheightdp );
+		canvasbg = ""
+		depends = null;
+		dependsTarget = null
+		if (canvasbgref != null ) {
+			canvasbgset = project.getReference( canvasbgref );
+			canvasbgres = canvasbgset.iterator().next();
+			canvasbg = java.io.File( canvasbgset.getDir(), canvasbgres.getName() );
+			depends = project.createTask( "dependset" );
+			depends.addSrcfileset( canvasbgset );
+			dependsTarget = project.createDataType( "fileset" );
+			dependsTarget.setDir( java.io.File( project.getBaseDir(), "res/drawable-" + density ) );
+		}
 		applys = [];
 		resourcesSets = [];
 		resIt = resources.iterator();
@@ -223,11 +260,19 @@
 				}
 			}
 			if ( applys[ crops ] == undefined ) {
-				applys[ crops ] = makeResizeApply( density, targetSize, crops, canvasSize );
+				applys[ crops ] = makeResizeApply( density, targetSize, crops, canvasSize, canvasbg );
 				applys[ crops ].add( mapper );
 				resourcesSets[ crops ] = project.createDataType( "resources" );
 			}
+			if (dependsTarget != null) {
+				dependsTarget.appendIncludes( mapper.mapFileName( resName ) );
+			}
 			resourcesSets[ crops ].add( res );
+		}
+
+		if (depends != null) {
+			depends.addTargetfileset( dependsTarget );
+			depends.perform()
 		}
 
 		for (crop in applys) {
