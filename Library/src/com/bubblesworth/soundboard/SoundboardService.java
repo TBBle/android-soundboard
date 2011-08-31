@@ -7,7 +7,6 @@ import java.io.IOException;
 
 import android.app.Service;
 import android.content.Intent;
-import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.net.Uri;
@@ -52,10 +51,8 @@ public class SoundboardService extends Service {
 			Uri uri = intent.getData();
 
 			try {
-				AssetFileDescriptor afd = getContentResolver().openAssetFileDescriptor(uri, "r");
 				MediaPlayer mp = new MediaPlayer();
-				mp.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
-				afd.close();
+				mp.setDataSource(SoundboardService.this, uri);
 				mp.setOnCompletionListener( new StopOnCompletion(msg.arg1) );
 				mp.prepare();
 				mp.start();
