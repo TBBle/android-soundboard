@@ -20,7 +20,7 @@ import android.util.Log;
 
 /**
  * @author tbble
- *
+ * 
  */
 public class SoundboardService extends Service {
 	private static final String TAG = "SoundboardService";
@@ -35,9 +35,11 @@ public class SoundboardService extends Service {
 
 		private final class StopOnCompletion implements OnCompletionListener {
 			private int msgId;
+
 			StopOnCompletion(int msgId) {
 				this.msgId = msgId;
 			}
+
 			@Override
 			public void onCompletion(MediaPlayer mp) {
 				mp.release();
@@ -47,13 +49,13 @@ public class SoundboardService extends Service {
 
 		@Override
 		public void handleMessage(Message msg) {
-			Intent intent = (Intent)msg.obj;
+			Intent intent = (Intent) msg.obj;
 			Uri uri = intent.getData();
 
 			try {
 				MediaPlayer mp = new MediaPlayer();
 				mp.setDataSource(SoundboardService.this, uri);
-				mp.setOnCompletionListener( new StopOnCompletion(msg.arg1) );
+				mp.setOnCompletionListener(new StopOnCompletion(msg.arg1));
 				mp.prepare();
 				mp.start();
 			} catch (IOException e) {
@@ -62,7 +64,9 @@ public class SoundboardService extends Service {
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see android.app.Service#onBind(android.content.Intent)
 	 */
 	@Override
@@ -70,24 +74,29 @@ public class SoundboardService extends Service {
 		return null;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see android.app.Service#onCreate()
 	 */
 	@Override
 	public void onCreate() {
-		// Start up the thread running the service.  Note that we create a
+		// Start up the thread running the service. Note that we create a
 		// separate thread because the service normally runs in the process's
-		// main thread, which we don't want to block.  We also make it
+		// main thread, which we don't want to block. We also make it
 		// background priority so CPU-intensive work will not disrupt our UI.
-		HandlerThread thread = new HandlerThread(TAG+"HandlerThread", Process.THREAD_PRIORITY_BACKGROUND);
+		HandlerThread thread = new HandlerThread(TAG + "HandlerThread",
+				Process.THREAD_PRIORITY_BACKGROUND);
 		thread.start();
 
-		// Get the HandlerThread's Looper and use it for our Handler 
+		// Get the HandlerThread's Looper and use it for our Handler
 		looper = thread.getLooper();
 		handler = new ServiceHandler(looper);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see android.app.Service#onDestroy()
 	 */
 	@Override
@@ -95,17 +104,19 @@ public class SoundboardService extends Service {
 		looper.quit();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see android.app.Service#onStartCommand(android.content.Intent, int, int)
 	 */
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
 		Message msg = handler.obtainMessage();
-		// Had to pull this out of IntentService.java, the documentation omits this line.
+		// Had to pull this out of IntentService.java, the documentation omits
+		// this line.
 		msg.obj = intent;
 		msg.arg1 = startId;
 		handler.sendMessage(msg);
 		return START_NOT_STICKY;
 	}
 }
-
