@@ -23,7 +23,6 @@ public class SoundChooserActivity extends ListActivity {
 	// private static final String TAG = "SoundChooserActivity";
 
 	private boolean widgetConfig;
-	private boolean ringtonePicker;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -31,8 +30,6 @@ public class SoundChooserActivity extends ListActivity {
 		super.onCreate(savedInstanceState);
 		widgetConfig = getIntent().getAction().equals(
 				"com.bubblesworth.soundboard.APPWIDGET_CONFIGURE");
-		ringtonePicker = getIntent().getAction().equals(
-				android.media.RingtoneManager.ACTION_RINGTONE_PICKER);
 		String[] columns = { SoundColumns._ID, SoundColumns.DESCRIPTION,
 				SoundColumns.ICON };
 		Cursor cur = managedQuery(SoundProvider.TRACK_URI, columns, null, null,
@@ -42,7 +39,7 @@ public class SoundChooserActivity extends ListActivity {
 						SoundColumns.DESCRIPTION, SoundColumns.ICON },
 				new int[] { R.id.listText, R.id.listIcon });
 		setListAdapter(adapter);
-		if (widgetConfig || ringtonePicker) {
+		if (widgetConfig) {
 			setResult(RESULT_CANCELED);
 		}
 	}
@@ -53,20 +50,6 @@ public class SoundChooserActivity extends ListActivity {
 		if (widgetConfig) {
 			Intent resultValue = new Intent();
 			resultValue.setData(uri);
-			setResult(RESULT_OK, resultValue);
-			finish();
-		} else if (ringtonePicker) {
-			String[] columns = { SoundColumns.ACTION, SoundColumns.ASSET };
-			Cursor cur = managedQuery(uri, columns, null, null, null);
-			Intent resultValue = new Intent();
-			if (cur.moveToFirst()) {
-				String asset = cur.getString(cur
-						.getColumnIndex(SoundColumns.ASSET));
-				resultValue
-						.putExtra(
-								android.media.RingtoneManager.EXTRA_RINGTONE_PICKED_URI,
-								Uri.parse(asset));
-			}
 			setResult(RESULT_OK, resultValue);
 			finish();
 		} else {
@@ -96,7 +79,7 @@ public class SoundChooserActivity extends ListActivity {
 			MenuInflater inflater = getMenuInflater();
 			inflater.inflate(R.menu.chooser_menu, menu);
 		}
-		return !widgetConfig && !ringtonePicker;
+		return !widgetConfig;
 	}
 
 	/*

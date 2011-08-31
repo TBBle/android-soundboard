@@ -16,10 +16,6 @@
                 <action android:name="com.bubblesworth.soundboard.APPWIDGET_CONFIGURE"></action>
                 <category android:name="android.intent.category.DEFAULT"></category>
             </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.RINGTONE_PICKER"></action>
-                <category android:name="android.intent.category.DEFAULT"></category>
-            </intent-filter>
         </activity>
         <service android:name="com.bubblesworth.soundboard.SoundboardService">
             <intent-filter>
