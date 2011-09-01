@@ -13,6 +13,7 @@
         <item>My Little Pony Friendship is Magic &amp;copy;2010-2011 Hasbro, Inc</item>
         <item>My Little Pony&amp;trade; Hasbro, Inc</item>
         <item>Tap here to install the Soundboard Widget to add these sounds to your launcher desktop</item>
+        <item>Tap here to install Soundboard Ringtones to use these sounds as ringtones and notifications</item>
         <item>Thankyou to the following artists for permission to use their work:</item>
         <item>AtomicGreymon</item>
         <item>BlackM3sh</item>
@@ -22,6 +23,7 @@
         <item>SirLeandrea</item>
         <item>pageturner1988</item>
         <item>Peachspices</item>
+        
     </string-array>
     <string-array name="about_links">
         <item>http://github.com/tbble/android-soundboard</item>
@@ -30,6 +32,7 @@
         <item>http://www.hubworld.com/my-little-pony/shows/friendship-is-magic</item>
         <item>http://www.hasbro.com/mylittlepony</item>
         <item>market://details?id=com.bubblesworth.soundboard.widget</item>
+        <item>market://details?id=com.bubblesworth.soundboard.ringtones</item>
         <item></item>
         <item>http://atomicgreymon.deviantart.com</item>
         <item>http://blackm3sh.deviantart.com</item>
@@ -39,6 +42,7 @@
         <item>http://sirleandrea.deviantart.com</item>
         <item>http://pageturner1988.deviantart.com</item>
         <item>http://peachspices.deviantart.com</item>
+        
     </string-array>
     <string name="about_label">About MLP FiM Soundboard</string>
 </resources>
