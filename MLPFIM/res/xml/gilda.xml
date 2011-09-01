@@ -2,6 +2,6 @@
 <category id="gilda" src="Gilda">
 	<sound id="getlost" src="get lost" value="10">Get lost</sound>
 	<sound id="iknowwhatyoureupto" src="i know what you're up to" value="20">I know what you're up to</sound>
-	<sound id="whenyoudecidenotbelameanymore" src="when you decide not be lame anymore" value="30">You you decide not to be...</sound>
+	<sound id="whenyoudecidenotbelameanymore" src="when you decide not be lame anymore" value="30">When you decide not to be...</sound>
 	<sound id="youresuchaflipflop" src="you're such a flip-flop" value="40">You're such a flip-flop...</sound>
 </category>
