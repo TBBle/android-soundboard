@@ -7,15 +7,15 @@
     <string name="mime_type_tracks">vnd.android.cursor.dir/vnd.com.bubblesworth.soundboard.track</string>
     <string name="mime_type_category">vnd.android.cursor.item/vnd.com.bubblesworth.soundboard.category</string>
     <string name="mime_type_categories">vnd.android.cursor.dir/vnd.com.bubblesworth.soundboard.category</string>
-    <string name="about_menu_label">About</string>
+    <string name="menu_label_about">About</string>
+    <string name="menu_label_widget">AppWidgets</string>
+    <string name="menu_label_ringtones">Ringtones</string>
     <string-array name="about_text">
         <item>Code &amp;copy;2011 Paul \&quot;TBBle\&quot; Hampson</item>
         <item>Audio assembled by kyrospawn</item>
         <item>Art &amp;copy; the artists listed below</item>
         <item>My Little Pony Friendship is Magic &amp;copy;2010-2011 Hasbro, Inc</item>
         <item>My Little Pony&amp;trade; Hasbro, Inc</item>
-        <item>Tap here to install the Soundboard Widget to add these sounds to your launcher desktop</item>
-        <item>Tap here to install Soundboard Ringtones to use these sounds as ringtones and notifications</item>
         <item>Thankyou to the following artists for permission to use their work:</item>
         <item>AtomicGreymon</item>
         <item>BlackM3sh</item>
@@ -33,8 +33,6 @@
         <item></item>
         <item>http://www.hubworld.com/my-little-pony/shows/friendship-is-magic</item>
         <item>http://www.hasbro.com/mylittlepony</item>
-        <item>market://details?id=com.bubblesworth.soundboard.widget</item>
-        <item>market://details?id=com.bubblesworth.soundboard.ringtones</item>
         <item></item>
         <item>http://atomicgreymon.deviantart.com</item>
         <item>http://blackm3sh.deviantart.com</item>
@@ -47,4 +45,13 @@
         
     </string-array>
     <string name="about_label">About MLP FiM Soundboard</string>
+    <string name="dialog_ringtones_help">Soundboard Ringtones is already installed. You can access the soundboard sounds as ringtones via the Sound Settings activity, and remove sounds already set up via the Soundboard Ringtones Manager</string>
+    <string-array name="dialog_ringtones_help_buttons">
+        <item>Manager</item>
+        <item>Settings</item>
+    </string-array>
+    <string name="dialog_widget_help">Soundboard Widget is already installed. You can add widgets to your launcher by long-pressing on your home screen, selecting &quot;Widgets&quot; and then &quot;Soundboard Widget&quot;</string>
+    <string name="toast_no_market">Couldn\'t launch the Android Market</string>
+    <string name="toast_no_manager">Couldn\'t start the Soundboard Ringtones Manager</string>
+    <string name="toast_no_sound_settings">Couldn\'t start Sound Settings</string>
 </resources>

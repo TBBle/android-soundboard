@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu
   xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:icon="@android:drawable/ic_menu_help" android:title="@string/about_menu_label" android:id="@+id/menuAbout"></item>
+    <item android:icon="@android:drawable/ic_menu_help" android:id="@+id/menuAbout" android:title="@string/menu_label_about"></item>
+    <item android:id="@+id/menuWidget" android:icon="@android:drawable/ic_menu_add" android:title="@string/menu_label_widget"></item>
+    <item android:id="@+id/menuRingtones" android:icon="@android:drawable/ic_menu_add" android:title="@string/menu_label_ringtones"></item>
     
 </menu>

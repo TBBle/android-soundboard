@@ -1,18 +1,26 @@
 package com.bubblesworth.soundboard.mlpfim;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ExpandableListActivity;
+import android.content.ActivityNotFoundException;
 import android.content.ContentUris;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.SimpleCursorTreeAdapter;
+import android.widget.Toast;
 
 import com.bubblesworth.soundboard.SoundColumns;
 
@@ -21,7 +29,10 @@ import com.bubblesworth.soundboard.SoundColumns;
  * 
  */
 public class SoundChooserActivity extends ExpandableListActivity {
-	// private static final String TAG = "SoundChooserActivity";
+	private static final String TAG = "SoundChooserActivity";
+
+	private static final int DIALOG_WIDGET_HELP = 0;
+	private static final int DIALOG_RINGTONES_HELP = 1;
 
 	private boolean widgetConfig;
 
@@ -32,7 +43,6 @@ public class SoundChooserActivity extends ExpandableListActivity {
 				int childLayout, String[] childFrom, int[] childTo) {
 			super(context, cursor, groupLayout, groupFrom, groupTo,
 					childLayout, childFrom, childTo);
-			// TODO Auto-generated constructor stub
 		}
 
 		@Override
@@ -127,9 +137,116 @@ public class SoundChooserActivity extends ExpandableListActivity {
 			startActivity(new Intent(this,
 					com.bubblesworth.soundboard.mlpfim.AboutActivity.class));
 			return true;
+		case R.id.menuRingtones:
+			return onMenuRingtonesClick();
+		case R.id.menuWidget:
+			return onMenuWidgetClick();
 		default:
 			return super.onOptionsItemSelected(item);
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see android.app.Activity#onCreateDialog(int)
+	 */
+	@Override
+	protected Dialog onCreateDialog(int id) {
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		switch (id) {
+		case DIALOG_WIDGET_HELP:
+			builder.setMessage(R.string.dialog_widget_help);
+			return builder.create();
+		case DIALOG_RINGTONES_HELP:
+			CharSequence buttonLabels[] = getResources().getTextArray(
+					R.array.dialog_ringtones_help_buttons);
+			builder.setMessage(R.string.dialog_ringtones_help)
+					.setPositiveButton(buttonLabels[0],
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,
+										int which) {
+									Intent intent = new Intent();
+									intent.setClassName(
+											"com.bubblesworth.soundboard.ringtones",
+											"com.bubblesworth.soundboard.ringtones.SoundboardRingtoneManagerActivity");
+									try {
+										startActivity(intent);
+									} catch (ActivityNotFoundException e) {
+										Log.e(TAG,
+												"No activity found for intent "
+														+ intent.toString(), e);
+										Toast.makeText(
+												SoundChooserActivity.this,
+												getResources()
+														.getText(
+																R.string.toast_no_manager),
+												Toast.LENGTH_SHORT).show();
+									}
+									dialog.dismiss();
+								}
+							})
+					.setNegativeButton(buttonLabels[1],
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,
+										int which) {
+									Intent intent = new Intent();
+									intent.setAction(Settings.ACTION_SOUND_SETTINGS);
+									try {
+										startActivity(intent);
+									} catch (ActivityNotFoundException e) {
+										Log.e(TAG,
+												"No activity found for intent "
+														+ intent.toString(), e);
+										Toast.makeText(
+												SoundChooserActivity.this,
+												getResources()
+														.getText(
+																R.string.toast_no_sound_settings),
+												Toast.LENGTH_SHORT).show();
+									}
+									dialog.dismiss();
+								}
+							});
+			return builder.create();
+		}
+		return super.onCreateDialog(id);
+	}
+
+	private boolean onMenuRingtonesClick() {
+		boolean installed = requestInstallOfPackage("com.bubblesworth.soundboard.ringtones");
+		if (installed) {
+			showDialog(DIALOG_RINGTONES_HELP);
+		}
+		return true;
+	}
+
+	private boolean onMenuWidgetClick() {
+		boolean installed = requestInstallOfPackage("com.bubblesworth.soundboard.widget");
+		if (installed) {
+			showDialog(DIALOG_WIDGET_HELP);
+		}
+		return true;
+	}
+
+	private boolean requestInstallOfPackage(String packageName) {
+		PackageManager pm = getPackageManager();
+		try {
+			pm.getPackageInfo(packageName, 0);
+			return true;
+		} catch (PackageManager.NameNotFoundException e) {
+		}
+		String market = "market://details?id=" + packageName;
+		Intent i = new Intent(Intent.ACTION_VIEW);
+		i.setData(Uri.parse(market));
+		try {
+			startActivity(i);
+		} catch (ActivityNotFoundException e) {
+			Log.e(TAG, "No activity for " + market, e);
+			Toast.makeText(SoundChooserActivity.this,
+					getResources().getText(R.string.toast_no_market),
+					Toast.LENGTH_SHORT).show();
+		}
+		return false;
+	}
 }
