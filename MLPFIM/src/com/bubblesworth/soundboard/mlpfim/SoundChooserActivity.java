@@ -1,7 +1,8 @@
 package com.bubblesworth.soundboard.mlpfim;
 
-import android.app.ListActivity;
+import android.app.ExpandableListActivity;
 import android.content.ContentUris;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -10,8 +11,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
+import android.widget.ExpandableListView;
+import android.widget.SimpleCursorTreeAdapter;
 
 import com.bubblesworth.soundboard.SoundColumns;
 
@@ -19,10 +20,31 @@ import com.bubblesworth.soundboard.SoundColumns;
  * @author paulh
  * 
  */
-public class SoundChooserActivity extends ListActivity {
+public class SoundChooserActivity extends ExpandableListActivity {
 	// private static final String TAG = "SoundChooserActivity";
 
 	private boolean widgetConfig;
+
+	private class MySimpleCursorTreeAdapter extends SimpleCursorTreeAdapter {
+
+		public MySimpleCursorTreeAdapter(Context context, Cursor cursor,
+				int groupLayout, String[] groupFrom, int[] groupTo,
+				int childLayout, String[] childFrom, int[] childTo) {
+			super(context, cursor, groupLayout, groupFrom, groupTo,
+					childLayout, childFrom, childTo);
+			// TODO Auto-generated constructor stub
+		}
+
+		@Override
+		protected Cursor getChildrenCursor(Cursor arg0) {
+			String[] columns = { SoundColumns._ID, SoundColumns.DESCRIPTION,
+					SoundColumns.ICON };
+			return managedQuery(SoundProvider.TRACK_URI, columns,
+					SoundColumns.CATEGORY_ID + "=?",
+					new String[] { arg0.getString(arg0
+							.getColumnIndex(SoundColumns._ID)) }, null);
+		}
+	};
 
 	/** Called when the activity is first created. */
 	@Override
@@ -32,10 +54,13 @@ public class SoundChooserActivity extends ListActivity {
 				"com.bubblesworth.soundboard.APPWIDGET_CONFIGURE");
 		String[] columns = { SoundColumns._ID, SoundColumns.DESCRIPTION,
 				SoundColumns.ICON };
-		Cursor cur = managedQuery(SoundProvider.TRACK_URI, columns, null, null,
-				null);
-		SimpleCursorAdapter adapter = new SimpleCursorAdapter(this,
-				R.layout.icon_list_item, cur, new String[] {
+		Cursor cur = managedQuery(SoundProvider.CATEGORY_URI, columns, null,
+				null, null);
+		SimpleCursorTreeAdapter adapter = new MySimpleCursorTreeAdapter(this,
+				cur, R.layout.icon_expandable_list_item, new String[] {
+						SoundColumns.DESCRIPTION, SoundColumns.ICON },
+				new int[] { R.id.listText, R.id.listIcon },
+				R.layout.icon_list_item, new String[] {
 						SoundColumns.DESCRIPTION, SoundColumns.ICON },
 				new int[] { R.id.listText, R.id.listIcon });
 		setListAdapter(adapter);
@@ -44,8 +69,15 @@ public class SoundChooserActivity extends ListActivity {
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see android.app.ExpandableListActivity#onChildClick(android.widget.
+	 * ExpandableListView, android.view.View, int, int, long)
+	 */
 	@Override
-	public void onListItemClick(ListView l, View v, int position, long id) {
+	public boolean onChildClick(ExpandableListView parent, View v,
+			int groupPosition, int childPosition, long id) {
 		Uri uri = ContentUris.withAppendedId(SoundProvider.TRACK_URI, id);
 		if (widgetConfig) {
 			Intent resultValue = new Intent();
@@ -65,6 +97,7 @@ public class SoundChooserActivity extends ListActivity {
 				startService(intent);
 			}
 		}
+		return true;
 	}
 
 	/*

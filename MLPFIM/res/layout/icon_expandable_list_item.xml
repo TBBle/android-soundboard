@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:orientation="horizontal" android:layout_height="36dp" android:paddingLeft="?android:attr/expandableListPreferredItemPaddingLeft" android:gravity="center_vertical">
+    <ImageView android:layout_alignParentTop="true" android:layout_alignParentBottom="true" android:src="@drawable/cat_twilightsparkle" android:id="@+id/listIcon" android:layout_width="36dp" android:layout_height="36dp"></ImageView>
+    <TextView android:layout_toRightOf="@+id/listIcon" android:layout_alignParentTop="true" android:id="@+id/listText" android:layout_width="match_parent" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge" android:gravity="center_vertical" android:layout_alignParentBottom="true" android:layout_alignParentRight="true"></TextView>
+</RelativeLayout>
