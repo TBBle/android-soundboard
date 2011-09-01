@@ -2,4 +2,5 @@
 <resources>
     <string name="app_name">Soundboard Ringtones</string>
     <string name="delete_menu_label">Delete</string>
+    <string name="toast_no_supported_soundboards">No supported soundboards found</string>
 </resources>

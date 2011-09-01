@@ -7,6 +7,7 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 public class SoundboardRingtonePickerActivity extends Activity {
 	private static final String TAG = "SoundboardRingtonePickerActivity";
@@ -31,8 +32,12 @@ public class SoundboardRingtonePickerActivity extends Activity {
 			try {
 				startActivityForResult(intent, 0);
 			} catch (ActivityNotFoundException e) {
-				// TODO: Show the user something informational here.
 				Log.e(TAG, "No activities for " + intent, e);
+				Toast.makeText(
+						this,
+						getResources().getText(
+								R.string.toast_no_supported_soundboards),
+						Toast.LENGTH_SHORT).show();
 				finish();
 				return;
 			}
