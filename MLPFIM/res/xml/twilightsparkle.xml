@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <category id="twilightsparkle" src="Twilight Sparkle">
+	<description>
+		Twilight Sparkle
+	</description>
 	<sound id="ahhello" src="ah, hello" value="10">Ah, hello?</sound>
 	<sound id="alltheponiesinthistownarecrazy" src="all the ponies in this town are crazy" value="20">All the ponies in this town...</sound>
 	<sound id="areyoucrazy" src="are you crazy" value="30">Are you crazy?</sound>

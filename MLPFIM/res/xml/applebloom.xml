@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <category id="applebloom" src="Apple Bloom">
+	<description>
+		Apple Bloom
+	</description>
 	<sound id="butiwantitnow" src="but i want it now" value="10">But I want it now</sound>
 	<sound id="iamabigpony" src="i am a big pony" value="20">I am a big pony</sound>
 	<sound id="imnotababy" src="i'm not a baby" value="30">I'm not a baby</sound>

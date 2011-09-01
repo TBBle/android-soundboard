@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <category id="princesscelestia" src="Princess Celestia">
+	<description>
+		Princess Celestia
+	</description>
 	<sound id="gotcha" src="gotcha" value="10">Gotcha</sound>
 	<sound id="iprincesscelestiaherebydecree" src="i princess celestia hereby decree" value="30">I hereby decree</sound>
 	<sound id="iknewyoucoulddoit" src="i knew you could do it" value="20">I knew you could do it</sound>

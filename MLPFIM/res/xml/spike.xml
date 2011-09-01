@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <category id="spike" src="Spike">
+	<description>
+		Spike
+	</description>
 	<sound id="anouthouse" src="an outhouse" value="10">An outhouse?</sound>
 	<sound id="anotherdonutextrasprinkles" src="another donut, extra sprinkles" value="20">Another donut...</sound>
 	<sound id="canyoudothatcanyouexplodetwice" src="can you do that, can you explode twice" value="30">Can you explode twice?</sound>

@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <category id="pinkiepie" src="Pinkie Pie">
+	<description>
+		Pinkie Pie
+	</description>
 	<sound id="gasp" src="gasp" value="50">(gasp)</sound>
 	<sound id="giggle" src="giggle" value="60">(giggle)</sound>
 	<sound id="ahaiknewit" src="aha, i knew it" value="10">Aha, I knew it</sound>

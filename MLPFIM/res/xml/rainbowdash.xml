@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <category id="rainbowdash" src="Rainbow Dash">
+	<description>
+		Rainbow Dash
+	</description>
 	<sound id="laughing" src="laughing" value="110">(laughing)</sound>
 	<sound id="10secondsflat" src="10 seconds flat" value="10">10 seconds flat</sound>
 	<sound id="areyouaspy" src="are you a spy" value="20">Are you a spy?</sound>

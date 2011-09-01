@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <category id="rarity" src="Rarity">
+	<description>
+		Rarity
+	</description>
 	<sound id="doesntevenmakesense" src="doesn't even make sense" value="20">Doesn't even make sense</sound>
 	<sound id="dumbrock" src="dumb rock" value="30">Dumb rock</sound>
 	<sound id="gentlyplease" src="gently please" value="40">Gently, please</sound>

@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <category id="derpy" src="Derpy">
+	<description>
+		Derpy Hooves
+	</description>
 	<sound id="muffin" src="muffin" value="10">Muffin</sound>
 </category>

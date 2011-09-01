@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <category id="fluttershy" src="Fluttershy">
+	<description>
+		Fluttershy
+	</description>
 	<sound id="crazylaugh" src="crazy laugh" value="30">(crazy laughing)</sound>
 	<sound id="crying" src="(crying)" value="10">(crying)</sound>
 	<sound id="comeout" src="come out" value="20">Come out!</sound>

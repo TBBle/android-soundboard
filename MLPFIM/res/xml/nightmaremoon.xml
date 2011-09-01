@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <category id="nightmaremoon" src="Nightmare Moon">
+	<description>
+		Nightmare Moon
+	</description>
 	<sound id="dontyouknowwhoiam" src="dont you know who i am" value="10">Don't you know who I am?</sound>
 	<sound id="ohmybelovedsubjects" src="oh my beloved subjects" value="20">My beloved subjects</sound>
 	<sound id="thenightwilllastforever" src="the night will last forever" value="30">The night will last forever</sound>

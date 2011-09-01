@@ -10,12 +10,12 @@
 	<category id="drwhoof"			value= "80"/>
 	<category id="fluttershy"		value= "90"/>
 	<category id="gilda"			value="100"/>
-	<category id="luna"				value="110"/>
 	<category id="nightmaremoon"	value="120"/>
 	<category id="owl"				value="130"/>
 	<category id="photofinish"		value="140"/>
 	<category id="pinkiepie"		value="150"/>
 	<category id="princesscelestia"	value="160"/>
+	<category id="luna"				value="110"/>
 	<category id="rainbowdash"		value="170"/>
 	<category id="rarity"			value="180"/>
 	<category id="roseluck"			value="190"/>

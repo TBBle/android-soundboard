@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <category id="sapphireshores" src="Sapphire Shores">
+	<description>
+		Sapphire Shores
+	</description>
 	<sound id="sensationel" src="sensationel" value="10">Sensational</sound>
 </category>

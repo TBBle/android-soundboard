@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <category id="photofinish" src="Photo Finish">
+	<description>
+		Photo Finish
+	</description>
 	<sound id="fluttershy" src="fluttershy" value="10">Fluttershy</sound>
 	<sound id="igo" src="i go" value="20">I go</sound>
 	<sound id="ohwunderbar" src="oh, wunderbar" value="30">Oh wunderbar</sound>

@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <category id="owl" src="Owl">
+	<description>
+		Owlowiscious
+	</description>
 	<sound id="who" src="who" value="10">Who?</sound>
 </category>

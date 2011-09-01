@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <category id="applejack" src="Applejack">
+	<description>
+		Applejack
+	</description>
 	<sound id="allyourspartner" src="all yours partner" value="10">All yours partner</sound>
 	<sound id="bereadyforaride" src="be ready for a ride" value="20">Be ready for a ride</sound>
 	<sound id="canthearyouimasleep" src="can't hear you, i'm asleep" value="30">Can't hear you, I'm asleep</sound>

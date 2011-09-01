@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <category id="stevenmagnet" src="Steven Magnet">
+	<description>
+		Steven Magnet
+	</description>
 	<sound id="howwonderful" src="how wonderful" value="10">How wonderful</sound>
 	<sound id="itstrueimhideous" src="it's true i'm hideous" value="20">I'm hideous</sound>
 	<sound id="ohitssotrue" src="oh it's so true" value="40">It's so true</sound>

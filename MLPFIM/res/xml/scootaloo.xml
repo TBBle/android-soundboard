@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <category id="scootaloo" src="Scootaloo">
+	<description>
+		Scootaloo
+	</description>
 	<sound id="ewwww" src="ewwww" value="10">EWWWW</sound>
 	<sound id="imlikingthisidea" src="i'm liking this idea" value="30">I'm liking this idea</sound>
 	<sound id="never" src="never" value="40">Never</sound>

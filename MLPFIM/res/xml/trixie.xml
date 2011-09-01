@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <category id="trixie" src="Trixie">
+	<description>
+		The G and P Trixie
+	</description>
 	<sound id="fanfare" src="fanfare" value="20">(fanfare)</sound>
 	<sound id="anythingyoucandoicandobetter" src="anything you can do, i can do better" value="10">Anything you can do...</sound>
 	<sound id="itstrue" src="it's true" value="40">My enthusiastic little admirers</sound>

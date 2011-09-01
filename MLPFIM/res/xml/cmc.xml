@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <category id="cmc" src="CMC">
+	<description>
+		Cutie Mark Crusaders
+	</description>
 	<sound id="cmcsyay" src="cmcs, yay" value="10">Cutie Mark Crusaders, yay</sound>
 </category>

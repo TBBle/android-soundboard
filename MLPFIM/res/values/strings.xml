@@ -5,6 +5,8 @@
     <string name="mime_type_icon">vnd.android.cursor.item/vnd.com.bubblesworth.soundboard.mlpfim.icon</string>
     <string name="mime_type_track">vnd.android.cursor.item/vnd.com.bubblesworth.soundboard.track</string>
     <string name="mime_type_tracks">vnd.android.cursor.dir/vnd.com.bubblesworth.soundboard.track</string>
+    <string name="mime_type_category">vnd.android.cursor.item/vnd.com.bubblesworth.soundboard.category</string>
+    <string name="mime_type_categories">vnd.android.cursor.dir/vnd.com.bubblesworth.soundboard.category</string>
     <string name="about_menu_label">About</string>
     <string-array name="about_text">
         <item>Code &amp;copy;2011 Paul \&quot;TBBle\&quot; Hampson</item>

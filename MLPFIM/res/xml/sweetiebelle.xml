@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <category id="sweetiebelle" src="Sweetie Belle">
+	<description>
+		Sweetie Belle
+	</description>
 	<sound id="dumbfabric" src="dumb fabric" value="10">Dumb fabric</sound>
 	<sound id="iknowthisone" src="i know this one" value="20">I know this one</sound>
 	<sound id="ohmysoundsserious" src="oh my, sounds serious" value="30">Oh my, sounds serious</sound>
