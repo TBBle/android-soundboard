@@ -22,7 +22,7 @@ import com.bubblesworth.soundboard.SoundColumns;
 public class SoundboardRingtoneFileManager {
 	private static final String TAG = "SoundboardRingtoneFileManager";
 
-	private static final Uri CONTENT_URI = MediaStore.Audio.Media.INTERNAL_CONTENT_URI;
+	static final Uri CONTENT_URI = MediaStore.Audio.Media.INTERNAL_CONTENT_URI;
 	private static final String RTAlbum = "com.bubblesworth.soundboard.ringtones";
 
 	static Cursor query(Context context, String[] projection, String sortOrder) {
