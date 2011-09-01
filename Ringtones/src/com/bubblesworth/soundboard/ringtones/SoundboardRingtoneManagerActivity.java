@@ -36,6 +36,7 @@ public class SoundboardRingtoneManagerActivity extends ListActivity {
 	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		SoundboardRingtoneFileManager.validateMediaStore(this);
 		super.onCreate(savedInstanceState);
 		String[] columns = { MediaStore.Audio.Media._ID,
 				MediaStore.Audio.Media.TITLE };

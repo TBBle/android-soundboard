@@ -16,8 +16,6 @@ public class SoundboardRingtonePickerActivity extends Activity {
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		SoundboardRingtoneFileManager.validateMediaStore(this);
-		SoundboardRingtoneFileManager.fixPaulsPhone(this);
 		super.onCreate(savedInstanceState);
 		setResult(RESULT_CANCELED);
 		// If we were killed, we already started this activity, and can just

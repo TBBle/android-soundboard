@@ -162,30 +162,4 @@ public class SoundboardRingtoneFileManager {
 			}
 		} while (media.moveToNext());
 	}
-
-	static void fixPaulsPhone(Context context) {
-		ContentResolver contentResolver = context.getContentResolver();
-
-		Cursor media = contentResolver.query(
-				MediaStore.Audio.Media.INTERNAL_CONTENT_URI,
-				new String[] { MediaStore.Audio.Media._ID,
-						MediaStore.Audio.Media.DATA }, null, null, null);
-		if (!media.moveToFirst())
-			return;
-		do {
-			Uri mediaUri = ContentUris.withAppendedId(
-					MediaStore.Audio.Media.INTERNAL_CONTENT_URI,
-					media.getInt(media
-							.getColumnIndex(MediaStore.Audio.Media._ID)));
-			File mediaFile = new File(media.getString(media
-					.getColumnIndex(MediaStore.Audio.Media.DATA)));
-			if (!mediaFile.exists()) {
-				Log.d(TAG, "Deleting Media at " + mediaUri.toString()
-						+ " as file " + mediaFile.toString() + " is missing");
-				if (contentResolver.delete(mediaUri, null, null) != 1)
-					Log.e(TAG, "Failed to delete " + mediaUri.toString());
-			}
-		} while (media.moveToNext());
-	}
-
 }
