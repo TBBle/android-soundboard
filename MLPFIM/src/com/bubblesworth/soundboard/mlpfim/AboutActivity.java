@@ -21,6 +21,7 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * @author paulh
@@ -105,6 +106,9 @@ public class AboutActivity extends ListActivity {
 			startActivity(i);
 		} catch (ActivityNotFoundException e) {
 			Log.e(TAG, "No activity for " + link, e);
+			Toast.makeText(this,
+					getResources().getText(R.string.toast_link_failed),
+					Toast.LENGTH_SHORT).show();
 		}
 	}
 

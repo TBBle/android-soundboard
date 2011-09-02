@@ -54,4 +54,5 @@
     <string name="toast_no_market">Couldn\'t launch the Android Market</string>
     <string name="toast_no_manager">Couldn\'t start the Soundboard Ringtones Manager</string>
     <string name="toast_no_sound_settings">Couldn\'t start Sound Settings</string>
+    <string name="toast_link_failed">Failed to open link</string>
 </resources>
