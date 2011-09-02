@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="com.bubblesworth.soundboard.mlpfim"
-      android:installLocation="preferExternal" android:versionCode="4" android:versionName="004">
+      android:installLocation="preferExternal" android:versionCode="5" android:versionName="005">
     <uses-sdk android:minSdkVersion="7" android:targetSdkVersion="8"></uses-sdk>
     <supports-screens android:normalScreens="true" android:anyDensity="true" android:largeScreens="true" android:smallScreens="true" android:resizeable="true"></supports-screens>
 
