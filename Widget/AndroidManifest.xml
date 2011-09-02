@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="com.bubblesworth.soundboard.widget"
-      android:installLocation="internalOnly" android:versionCode="5" android:versionName="005">
+      android:installLocation="internalOnly" android:versionCode="6" android:versionName="006">
     <uses-sdk android:targetSdkVersion="8" android:minSdkVersion="7"/>
     <supports-screens android:normalScreens="true" android:anyDensity="true" android:largeScreens="true" android:smallScreens="true" android:resizeable="true"></supports-screens>
 
