@@ -196,7 +196,7 @@ public class SoundProvider extends ContentProvider implements SoundColumns {
 				String categoryId = soundParser.getAttributeValue(null, "id");
 				int categoryValue = soundParser.getAttributeIntValue(null,
 						"value", -1);
-				assert categoryValue >= 0;
+				assert categoryValue > 0;
 				soundParser.nextTag();
 
 				try {
@@ -409,13 +409,11 @@ public class SoundProvider extends ContentProvider implements SoundColumns {
 						.toString());
 			else if (column.equals(ICON))
 				if (sound.iconResource == 0) {
-					CategoryInfo category = categories.get(new Integer(
-							sound.catId));
 					row.add(ContentUris.withAppendedId(ICON_URI,
-							(long) category.iconResource).toString());
+							(long) sound.catId).toString());
 				} else {
 					row.add(ContentUris.withAppendedId(ICON_URI,
-							(long) sound.iconResource).toString());
+							(long) sound.id).toString());
 				}
 			else
 				// TODO: _COUNT
@@ -463,8 +461,9 @@ public class SoundProvider extends ContentProvider implements SoundColumns {
 			else if (column.equals(DESCRIPTION))
 				row.add(category.description);
 			else if (column.equals(ICON))
-				row.add(ContentUris.withAppendedId(ICON_URI,
-						(long) category.iconResource).toString());
+				row.add(ContentUris
+						.withAppendedId(ICON_URI, (long) category.id)
+						.toString());
 			else
 				// TODO: _COUNT
 				row.add(null);
@@ -502,9 +501,9 @@ public class SoundProvider extends ContentProvider implements SoundColumns {
 		assert id <= Integer.MAX_VALUE && id >= Integer.MIN_VALUE : id;
 
 		int match = URI_MATCHER.match(uri);
+		Integer key = new Integer((int) id);
 		switch (match) {
 		case ASSETS_ID:
-			Integer key = new Integer((int) id);
 			if (!sounds.containsKey(key))
 				throw new FileNotFoundException();
 
@@ -516,7 +515,18 @@ public class SoundProvider extends ContentProvider implements SoundColumns {
 				throw new FileNotFoundException(e.getLocalizedMessage());
 			}
 		case ICONS_ID:
-			return getContext().getResources().openRawResourceFd((int) id);
+			int iconResId = 0;
+			// See loadCategory
+			if (id < 1000) {
+				if (!categories.containsKey(key))
+					throw new FileNotFoundException();
+				iconResId = categories.get(key).iconResource;
+			} else {
+				if (!sounds.containsKey(key))
+					throw new FileNotFoundException();
+				iconResId = sounds.get(key).iconResource;
+			}
+			return getContext().getResources().openRawResourceFd(iconResId);
 		default:
 			throw new FileNotFoundException();
 		}
