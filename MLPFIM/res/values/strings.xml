@@ -21,11 +21,10 @@
         <item>BlackM3sh</item>
         <item>Capt-Nemo</item>
         <item>MoongazePonies</item>
-        <item>ShelltoonTV</item>
-        <item>SirLeandrea</item>
         <item>pageturner1988</item>
         <item>Peachspices</item>
-        
+        <item>ShelltoonTV</item>
+        <item>SirLeandrea</item>
     </string-array>
     <string-array name="about_links">
         <item>http://github.com/tbble/android-soundboard</item>
@@ -38,11 +37,10 @@
         <item>http://blackm3sh.deviantart.com</item>
         <item>http://capt-nemo.deviantart.com</item>
         <item>http://moongazeponies.deviantart.com</item>
-        <item>http://shelltoontv.deviantart.com</item>
-        <item>http://sirleandrea.deviantart.com</item>
         <item>http://pageturner1988.deviantart.com</item>
         <item>http://peachspices.deviantart.com</item>
-        
+        <item>http://shelltoontv.deviantart.com</item>
+        <item>http://sirleandrea.deviantart.com</item>
     </string-array>
     <string name="about_label">About MLP FiM Soundboard</string>
     <string name="dialog_ringtones_help">Long-press on a sound to use it as a ringtone. You can also use the Sound Settings activity, or manage Soundboard Ringtones in the Manager</string>
