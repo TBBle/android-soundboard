@@ -45,7 +45,7 @@
         
     </string-array>
     <string name="about_label">About MLP FiM Soundboard</string>
-    <string name="dialog_ringtones_help">Soundboard Ringtones is already installed. You can access the soundboard sounds as ringtones via the Sound Settings activity, and remove sounds already set up via the Soundboard Ringtones Manager</string>
+    <string name="dialog_ringtones_help">Long-press on a sound to use it as a ringtone. You can also use the Sound Settings activity, or manage Soundboard Ringtones in the Manager</string>
     <string-array name="dialog_ringtones_help_buttons">
         <item>Manager</item>
         <item>Settings</item>
@@ -55,4 +55,7 @@
     <string name="toast_no_manager">Couldn\'t start the Soundboard Ringtones Manager</string>
     <string name="toast_no_sound_settings">Couldn\'t start Sound Settings</string>
     <string name="toast_link_failed">Failed to open link</string>
+    <string name="menu_label_notification">Set as notification</string>
+    <string name="menu_label_alarm">Set as alarm</string>
+    <string name="menu_label_ringtone">Set as ringtone</string>
 </resources>

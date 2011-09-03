@@ -10,15 +10,19 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ExpandableListView;
+import android.widget.ExpandableListView.ExpandableListContextMenuInfo;
 import android.widget.SimpleCursorTreeAdapter;
 import android.widget.Toast;
 
@@ -76,6 +80,8 @@ public class SoundChooserActivity extends ExpandableListActivity {
 		setListAdapter(adapter);
 		if (widgetConfig) {
 			setResult(RESULT_CANCELED);
+		} else {
+			registerForContextMenu(getExpandableListView());
 		}
 	}
 
@@ -144,6 +150,56 @@ public class SoundChooserActivity extends ExpandableListActivity {
 		default:
 			return super.onOptionsItemSelected(item);
 		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see android.app.ExpandableListActivity#onCreateContextMenu(android.view.
+	 * ContextMenu, android.view.View, android.view.ContextMenu.ContextMenuInfo)
+	 */
+	@Override
+	public void onCreateContextMenu(ContextMenu menu, View v,
+			ContextMenuInfo menuInfo) {
+		super.onCreateContextMenu(menu, v, menuInfo);
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.chooser_context_menu, menu);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see android.app.Activity#onContextItemSelected(android.view.MenuItem)
+	 */
+	@Override
+	public boolean onContextItemSelected(MenuItem item) {
+		ExpandableListContextMenuInfo info = (ExpandableListContextMenuInfo) item
+				.getMenuInfo();
+		Uri uri = ContentUris.withAppendedId(SoundProvider.TRACK_URI, info.id);
+		int type = 0;
+		switch (item.getItemId()) {
+		case R.id.menuRingtone:
+			type = RingtoneManager.TYPE_RINGTONE;
+			break;
+		case R.id.menuNotification:
+			type = RingtoneManager.TYPE_NOTIFICATION;
+			break;
+		case R.id.menuAlarm:
+			type = RingtoneManager.TYPE_ALARM;
+			break;
+		default:
+			return super.onContextItemSelected(item);
+		}
+		Intent setter = new Intent(
+				"com.bubblesworth.soundboard.ringtones.RINGTONE_SETTER");
+		setter.setData(uri);
+		setter.putExtra(RingtoneManager.EXTRA_RINGTONE_TYPE, type);
+		try {
+			startActivity(setter);
+		} catch (ActivityNotFoundException e) {
+			installPackage("com.bubblesworth.soundboard.ringtones");
+		}
+		return true;
 	}
 
 	/*
@@ -235,7 +291,12 @@ public class SoundChooserActivity extends ExpandableListActivity {
 			pm.getPackageInfo(packageName, 0);
 			return true;
 		} catch (PackageManager.NameNotFoundException e) {
+			installPackage(packageName);
+			return false;
 		}
+	}
+
+	private void installPackage(String packageName) {
 		String market = "market://details?id=" + packageName;
 		Intent i = new Intent(Intent.ACTION_VIEW);
 		i.setData(Uri.parse(market));
@@ -247,6 +308,5 @@ public class SoundChooserActivity extends ExpandableListActivity {
 					getResources().getText(R.string.toast_no_market),
 					Toast.LENGTH_SHORT).show();
 		}
-		return false;
 	}
 }
