@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Soundboard Ringtones</string>
-    <string name="delete_menu_label">Delete</string>
+    <string name="menu_label_delete">Delete</string>
     <string name="toast_no_supported_soundboards">No supported soundboards found</string>
+    <string name="type_ringtone">Ringtone</string>
+    <string name="type_notification">Notification</string>
+    <string name="type_alarm">Alarm</string>
+    <string name="menu_label_notification">Set as notification</string>
+    <string name="menu_label_alarm">Set as alarm</string>
+    <string name="menu_label_ringtone">Set as ringtone</string>
+    <string name="menu_label_add">Add</string>
 </resources>

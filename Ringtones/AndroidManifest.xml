@@ -4,6 +4,7 @@
       android:versionName="006" android:versionCode="6">
     <uses-sdk android:minSdkVersion="7" />
     <supports-screens android:anyDensity="true" android:resizeable="true" android:smallScreens="true" android:largeScreens="true" android:normalScreens="true"></supports-screens>
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"></uses-permission>
 
     <application android:icon="@drawable/icon" android:label="@string/app_name">
         <activity android:name=".SoundboardRingtonePickerActivity"
@@ -17,6 +18,13 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"></action>
                 <category android:name="android.intent.category.LAUNCHER"></category>
+            </intent-filter>
+        </activity>
+        <activity android:theme="@android:style/Theme.Dialog" android:name=".SoundboardRingtoneSetterActivity" android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="com.bubblesworth.soundboard.ringtones.RINGTONE_SETTER"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+                <data android:mimeType="vnd.android.cursor.item/vnd.com.bubblesworth.soundboard.track" android:scheme="content"></data>
             </intent-filter>
         </activity>
 

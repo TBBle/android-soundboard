@@ -13,6 +13,7 @@ import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.media.RingtoneManager;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -121,6 +122,10 @@ public class SoundboardRingtoneFileManager {
 		}
 		// Log.d(TAG, "returning: " + mediaUri.toString());
 		return mediaUri;
+	}
+
+	static void setMediaUriAsRingtone(Context context, Uri mediaUri, int type) {
+		RingtoneManager.setActualDefaultRingtoneUri(context, type, mediaUri);
 	}
 
 	static void deleteMediaUri(Context context, Uri mediaUri) {

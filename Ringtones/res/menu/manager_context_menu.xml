@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu
   xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:title="@string/delete_menu_label" android:id="@+id/menuDelete"></item>
     
+    <item android:id="@+id/menuRingtone" android:title="@string/menu_label_ringtone"></item>
+    <item android:id="@+id/menuNotification" android:title="@string/menu_label_notification"></item>
+    <item android:id="@+id/menuAlarm" android:title="@string/menu_label_alarm"></item>
+    <item android:id="@+id/menuDelete" android:title="@string/menu_label_delete"></item>
 </menu>
