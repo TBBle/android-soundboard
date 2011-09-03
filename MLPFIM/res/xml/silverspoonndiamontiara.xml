@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<category id="silverspoonndiamontiara" src="Silver Spoon &amp; Diamon Tiara">
+	<description>
+		Silver and Diamond
+	</description>
+	<sound id="blankflanks" src="blank flanks" value="10">Blank-flanks</sound>
+</category>

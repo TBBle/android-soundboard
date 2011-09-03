@@ -22,4 +22,8 @@
 	<sound id="wahahaha" src="wahahaha" value="170">WAHAHA</sound>
 	<sound id="whatevershallwedo" src="what ever shall we do" value="180">What ever shall we do?</sound>
 	<sound id="youmust" src="you must" value="190">You must!</sound>
+	<sound id="mamascoming" src="Mama's coming" value="200">Mama's coming</sound>
+	<sound id="afraidtogetdirty" src="afraid to get dirty" value="210">Afraid to get dirty?</sound>
+	<sound id="someofusdohavestandards" src="some of us do have standards" value="220">Some of us have standards</sound>
+	<sound id="yourejustsayingthat" src="you're just saying that" value="230">You're just saying that</sound>
 </category>

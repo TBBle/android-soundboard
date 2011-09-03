@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<category id="soarin" src="Soarin">
+	<description>
+		Soarin'
+	</description>
+	<sound id="asahorse" src="as a horse" value="10">As a horse</sound>
+	<sound id="mypie" src="my pie" value="20">My pie</sound>
+	<sound id="nomnomnom" src="nom nom nom" value="30">(nom nom nom)</sound>
+	<sound id="yousavedit" src="you saved it" value="40">You saved it</sound>
+</category>

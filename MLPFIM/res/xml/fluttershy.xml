@@ -22,4 +22,9 @@
 	<sound id="youregoingtoloveme" src="you're going to love me" value="170">You're going to love me!</sound>
 	<sound id="youresuchaloudmouth" src="you're such a loudmouth" value="180">You're such a loudmouth</sound>
 	<sound id="yourethecutestthingever" src="you're the cutest thing ever" value="190">You're the cutest thing ever</sound>
+	<sound id="grin" src="(grin)" value="200">(grin)</sound>
+	<sound id="howdareyou" src="how dare you" value="210">How dare you?</sound>
+	<sound id="imtheworldchampyouknow" src="i'm the world champ you know" value="220">I'm the world champ</sound>
+	<sound id="imayearolderthanyou" src="im a year older than you" value="230">I'm a year older than you</sound>
+	<sound id="ohmy" src="oh, my" value="240">Oh, my</sound>
 </category>

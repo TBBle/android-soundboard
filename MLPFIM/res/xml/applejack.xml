@@ -22,4 +22,6 @@
 	<sound id="whoareyoucallingababy" src="who are you calling a baby" value="170">Who are you calling a baby?</sound>
 	<sound id="yeehaw" src="yeehaw" value="180">YEEHAW</sound>
 	<sound id="yourewelcome" src="you're welcome" value="190">You're welcome</sound>
+	<sound id="nocandosugarcube" src="no can do sugar cube" value="200">No can do, sugar cube</sound>
+	<sound id="wedontnormallywearclothes" src="we don't normally wear clothes" value="210">We don't wear clothes</sound>
 </category>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<category id="princeblueblood" src="Prince Blueblood">
+	<description>
+		Prince Blueblood
+	</description>
+	<sound id="ahem" src="AHEM" value="10">Ahem</sound>
+	<sound id="imgoingtothebuffet" src="im going to the buffet" value="20">Hors d'oeuvres</sound>
+	<sound id="itgoeswithmyeyes" src="it goes with my eyes" value="30">It goes with my eyes</sound>
+	<sound id="onewouldhatetoslip" src="one would hate to slip" value="40">One would hate to slip</sound>
+	<sound id="stayback" src="stay back" value="50">Eww! Stay back!</sound>
+	<sound id="wellhello" src="well hello" value="60">Well hello...</sound>
+</category>

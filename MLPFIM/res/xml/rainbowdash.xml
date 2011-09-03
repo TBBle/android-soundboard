@@ -22,4 +22,5 @@
 	<sound id="youwannadothisthehardway" src="you wanna do this the hard way" value="190">Wanna do this the hard way?</sound>
 	<sound id="whatdoyouhaveinmind" src="what do you have in mind" value="170">What do you have in mind?</sound>
 	<sound id="whoareyoucallingachump" src="who are you calling a chump" value="180">Who are you calling a chump?</sound>
+	<sound id="fangirlsqueal" src="fangirl squeal" value="200">(fangirl squeal)</sound>
 </category>

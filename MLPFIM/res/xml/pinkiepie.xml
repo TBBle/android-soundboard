@@ -22,4 +22,11 @@
 	<sound id="thatssonotrue" src="that's so not rue" value="170">That's so not true</sound>
 	<sound id="twitchatwitch" src="twitcha twitch" value="180">Twitcha twitch</sound>
 	<sound id="youreallyneedtogetoutmore" src="you really need to get out more" value="190">You really need to get out more</sound>
+	<sound id="andyouknowwhatthatmeans" src="and you know what that means" value="200">You know what that means</sound>
+	<sound id="ineverfeltjoylikethatbefore" src="i never felt joy like that before" value="210">Never felt joy like that</sound>
+	<sound id="myfriendsdontlikemyparties" src="my friends don't like my parties.." value="220">My friends don't like my parties</sound>
+	<sound id="ohno" src="oh no" value="230">Oh no</sound>
+	<sound id="pinkiepieswear" src="pinkie pie swear" value="240">(Pinkie Pie Swear)</sound>
+	<sound id="thiscallsforextrememeasures" src="this calls for extreme measures" value="250">Extreme measures</sound>
+	<sound id="youknowwhatthiscallsfor" src="you know what this calls for" value="260">You know what this calls for?</sound>
 </category>
