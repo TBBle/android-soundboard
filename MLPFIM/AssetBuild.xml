@@ -41,6 +41,7 @@
 		<!-- This one's under Creative Commons Attribution-Noncommercial-Share Alike 3.0 License -->
 		<globmapper handledirsep="true" from="carrot_cake_by_sirleandrea-d3hd94p.png" to="cat_carrottop.png"/>
 		<globmapper handledirsep="true" from="prince_blueblood_by_peachspices-d3rh86i.png" to="cat_princeblueblood.png"/>
+		<globmapper handledirsep="true" from="bump__bump_by_purplefairy456-d3jwgcc.png" to="cat_silverspoonndiamontiara.png"/>
 		<globmapper handledirsep="true" from="mlp_user_icons_vol__2_by_shelltoontv-d3h2go1/soarin1.png" to="cat_soarin.png"/>
 		<globmapper handledirsep="true" from="mlp_user_icons_vol__2_by_shelltoontv-d3h2go1/spitfire1.png" to="cat_spitfire.png"/>
 	</firstmatchmapper>
@@ -56,6 +57,7 @@
 		<globmapper handledirsep="true" from="rose_sidelong_look_by_pageturner1988-d3hw4qj.png" to="1200x1200+1236+0"/>
 		<globmapper handledirsep="true" from="carrot_cake_by_sirleandrea-d3hd94p.png" to="1890x1890+1610+0"/>
 		<globmapper handledirsep="true" from="prince_blueblood_by_peachspices-d3rh86i.png" to="5328x5328+5200+336"/>
+		<globmapper handledirsep="true" from="bump__bump_by_purplefairy456-d3jwgcc.png" to="702x702+294+0"/>
 	</firstmatchmapper>
 
 	<fileset id="assets" dir="../../SrcAssets/MLPFIM" />
