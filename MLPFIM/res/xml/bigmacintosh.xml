@@ -3,8 +3,8 @@
 	<description>
 		Big Macintosh
 	</description>
+	<sound id="oneponyplus" src="one pony plus" value="30">Doesn't add up</sound>
 	<sound id="eyup" src="eyup" value="10">Eyup</sound>
 	<sound id="morethanyoucanchew" src="more than you can chew" value="20">More than you can chew</sound>
-	<sound id="oneponyplus" src="one pony plus" value="30">Doesn't add up</sound>
 	<sound id="tobigtohandle" src="to big to handle" value="40">Too big for you</sound>
 </category>

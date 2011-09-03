@@ -14,6 +14,7 @@
 	<category id="owl"				value="130"/>
 	<category id="photofinish"		value="140"/>
 	<category id="pinkiepie"		value="150"/>
+	<category id="princeblueblood"	value="280"/>
 	<category id="princesscelestia"	value="160"/>
 	<category id="luna"				value="110"/>
 	<category id="rainbowdash"		value="170"/>
@@ -21,14 +22,13 @@
 	<category id="roseluck"			value="190"/>
 	<category id="sapphireshores"	value="200"/>
 	<category id="scootaloo"		value="210"/>
+	<category id="silverspoonndiamontiara"	value="290"/>
+	<category id="soarin"			value="300"/>
 	<category id="spike"			value="220"/>
+	<category id="spitfire"			value="310"/>
 	<category id="stevenmagnet"		value="230"/>
 	<category id="sweetiebelle"		value="240"/>
 	<category id="trixie"			value="250"/>
 	<category id="twilightsparkle"	value="260"/>
 	<category id="zecora"			value="270"/>
-	<category id="princeblueblood"	value="280"/>
-	<category id="silverspoonndiamontiara"	value="290"/>
-	<category id="soarin"	value="300"/>
-	<category id="spitfire"	value="310"/>
 </sounds>

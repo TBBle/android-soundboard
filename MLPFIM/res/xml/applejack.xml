@@ -14,14 +14,14 @@
 	<sound id="hohothereloverboy" src="hoho there lover boy" value="90">Hoho there, lover boy</sound>
 	<sound id="itoldyouso" src="i told you so" value="100">I told you so</sound>
 	<sound id="imapplejack" src="i'm applejack" value="110">I'm Applejack</sound>
+	<sound id="nocandosugarcube" src="no can do sugar cube" value="200">No can do, sugar cube</sound>
 	<sound id="oooohoooo" src="oooohoooo" value="120">OooOooOoo</sound>
 	<sound id="oopssry" src="oops, sry" value="130">Oops, sorry</sound>
 	<sound id="thatswhatallthefussisabout" src="thats what all the fuss is about" value="140">That's what all the fuss is...</sound>
+	<sound id="wedontnormallywearclothes" src="we don't normally wear clothes" value="210">We don't wear clothes</sound>
 	<sound id="whatintarnation" src="what in tarnation" value="150">What in tarnation?</sound>
 	<sound id="whatinthehayisthatsupposedtomean" src="what in the hay is that supposed to mean" value="160">What in the hay...?</sound>
 	<sound id="whoareyoucallingababy" src="who are you calling a baby" value="170">Who are you calling a baby?</sound>
 	<sound id="yeehaw" src="yeehaw" value="180">YEEHAW</sound>
 	<sound id="yourewelcome" src="you're welcome" value="190">You're welcome</sound>
-	<sound id="nocandosugarcube" src="no can do sugar cube" value="200">No can do, sugar cube</sound>
-	<sound id="wedontnormallywearclothes" src="we don't normally wear clothes" value="210">We don't wear clothes</sound>
 </category>
