@@ -9,6 +9,7 @@ import android.app.Service;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
+import android.media.MediaPlayer.OnPreparedListener;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -28,7 +29,8 @@ public class SoundboardService extends Service {
 	private Looper looper;
 	private ServiceHandler handler;
 
-	private final class ServiceHandler extends Handler {
+	private final class ServiceHandler extends Handler implements
+			OnPreparedListener {
 		public ServiceHandler(Looper looper) {
 			super(looper);
 		}
@@ -56,11 +58,16 @@ public class SoundboardService extends Service {
 				MediaPlayer mp = new MediaPlayer();
 				mp.setDataSource(SoundboardService.this, uri);
 				mp.setOnCompletionListener(new StopOnCompletion(msg.arg1));
-				mp.prepare();
-				mp.start();
+				mp.setOnPreparedListener(this);
+				mp.prepareAsync();
 			} catch (IOException e) {
 				Log.e(TAG, "onHandleIntent", e);
 			}
+		}
+
+		@Override
+		public void onPrepared(MediaPlayer mp) {
+			mp.start();
 		}
 	}
 
