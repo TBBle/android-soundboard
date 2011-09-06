@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="com.bubblesworth.soundboard"
-      android:versionName="007" android:versionCode="7">
+      android:versionCode="8" android:versionName="008">
     <uses-sdk android:minSdkVersion="7" />
 </manifest>
