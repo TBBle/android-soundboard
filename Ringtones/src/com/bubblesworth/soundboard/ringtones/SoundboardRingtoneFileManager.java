@@ -38,7 +38,7 @@ public class SoundboardRingtoneFileManager {
 
 		String[] columns = { SoundColumns.DESCRIPTION, SoundColumns.ASSET };
 		Cursor cur = contentResolver.query(trackUri, columns, null, null, null);
-		if (!cur.moveToFirst()) {
+		if (cur == null || !cur.moveToFirst()) {
 			Log.e(TAG,
 					"Failed to retrieve details for trackURI: "
 							+ trackUri.toString());
@@ -135,7 +135,7 @@ public class SoundboardRingtoneFileManager {
 				new String[] { MediaStore.Audio.Media.DATA },
 				MediaStore.Audio.Media.ALBUM + "=?", new String[] { RTAlbum },
 				null);
-		if (!media.moveToFirst())
+		if (media == null || !media.moveToFirst())
 			return;
 		File mediaFile = new File(media.getString(media
 				.getColumnIndex(MediaStore.Audio.Media.DATA)));
@@ -152,7 +152,7 @@ public class SoundboardRingtoneFileManager {
 				MediaStore.Audio.Media._ID, MediaStore.Audio.Media.DATA },
 				MediaStore.Audio.Media.ALBUM + "=?", new String[] { RTAlbum },
 				null);
-		if (!media.moveToFirst())
+		if (media == null || !media.moveToFirst())
 			return;
 		do {
 			Uri mediaUri = ContentUris.withAppendedId(CONTENT_URI, media

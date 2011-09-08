@@ -105,7 +105,7 @@ public class SoundChooserActivity extends ExpandableListActivity {
 		} else {
 			String[] columns = { SoundColumns.ACTION, SoundColumns.ASSET };
 			Cursor cur = managedQuery(uri, columns, null, null, null);
-			if (cur.moveToFirst()) {
+			if (cur != null && cur.moveToFirst()) {
 				String action = cur.getString(cur
 						.getColumnIndex(SoundColumns.ACTION));
 				String asset = cur.getString(cur
