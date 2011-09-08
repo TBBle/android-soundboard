@@ -3,6 +3,7 @@
  */
 package com.bubblesworth.soundboard.mlpfim;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,7 +12,10 @@ import java.util.Map;
 import android.app.ListActivity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.res.AssetFileDescriptor;
 import android.graphics.Typeface;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Html;
@@ -27,13 +31,15 @@ import android.widget.Toast;
  * @author paulh
  * 
  */
-public class AboutActivity extends ListActivity {
+public class AboutActivity extends ListActivity implements
+		MediaPlayer.OnPreparedListener {
 	private static final String TAG = "AboutActivity";
 
 	private static final String TEXT = "text";
 	private static final String LINK = "link";
 
 	List<Map<String, Object>> data;
+	MediaPlayer bgPlayer;
 
 	private class AboutViewBinder implements SimpleAdapter.ViewBinder {
 
@@ -91,6 +97,54 @@ public class AboutActivity extends ListActivity {
 				new int[] { R.id.aboutText, R.id.aboutText });
 		adapter.setViewBinder(new AboutViewBinder());
 		setListAdapter(adapter);
+		onWindowFocusChanged(hasWindowFocus());
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see android.app.Activity#onWindowFocusChanged(boolean)
+	 */
+	@Override
+	public void onWindowFocusChanged(boolean hasFocus) {
+		// TODO Auto-generated method stub
+		super.onWindowFocusChanged(hasFocus);
+		if (hasFocus)
+			startMusic();
+		else
+			stopMusic();
+	}
+
+	private void startMusic() {
+		if (bgPlayer != null)
+			return;
+		bgPlayer = new MediaPlayer();
+		bgPlayer.setOnPreparedListener(this);
+		bgPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+		bgPlayer.setLooping(true);
+		AssetFileDescriptor bgMusic = getResources().openRawResourceFd(
+				R.raw.pinkies_lie_superamazing);
+		try {
+			bgPlayer.setDataSource(bgMusic.getFileDescriptor(),
+					bgMusic.getStartOffset(), bgMusic.getLength());
+			bgPlayer.prepareAsync();
+		} catch (IOException e) {
+			Log.e(TAG, "Failed to setup background music", e);
+			Toast.makeText(
+					this,
+					getResources().getText(
+							R.string.toast_background_music_failed),
+					Toast.LENGTH_SHORT).show();
+			bgPlayer.release();
+			bgPlayer = null;
+		}
+	}
+
+	private void stopMusic() {
+		if (bgPlayer == null)
+			return;
+		bgPlayer.stop();
+		bgPlayer = null;
 	}
 
 	@Override
@@ -110,6 +164,18 @@ public class AboutActivity extends ListActivity {
 					getResources().getText(R.string.toast_link_failed),
 					Toast.LENGTH_SHORT).show();
 		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * android.media.MediaPlayer.OnPreparedListener#onPrepared(android.media
+	 * .MediaPlayer)
+	 */
+	@Override
+	public void onPrepared(MediaPlayer mp) {
+		mp.start();
 	}
 
 }
