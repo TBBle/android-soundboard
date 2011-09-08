@@ -4,6 +4,7 @@
 package com.bubblesworth.soundboard;
 
 import java.io.IOException;
+import java.util.HashSet;
 
 import android.app.Service;
 import android.content.Intent;
@@ -28,25 +29,15 @@ public class SoundboardService extends Service {
 
 	private Looper looper;
 	private ServiceHandler handler;
+	int lastStartId;
 
 	private final class ServiceHandler extends Handler implements
-			OnPreparedListener {
+			OnPreparedListener, OnCompletionListener {
+		private HashSet<MediaPlayer> players;
+
 		public ServiceHandler(Looper looper) {
 			super(looper);
-		}
-
-		private final class StopOnCompletion implements OnCompletionListener {
-			private int msgId;
-
-			StopOnCompletion(int msgId) {
-				this.msgId = msgId;
-			}
-
-			@Override
-			public void onCompletion(MediaPlayer mp) {
-				mp.release();
-				stopSelf(msgId);
-			}
+			players = new HashSet<MediaPlayer>();
 		}
 
 		@Override
@@ -56,8 +47,9 @@ public class SoundboardService extends Service {
 
 			try {
 				MediaPlayer mp = new MediaPlayer();
+				players.add(mp);
 				mp.setDataSource(SoundboardService.this, uri);
-				mp.setOnCompletionListener(new StopOnCompletion(msg.arg1));
+				mp.setOnCompletionListener(this);
 				mp.setOnPreparedListener(this);
 				mp.prepareAsync();
 			} catch (IOException e) {
@@ -68,6 +60,14 @@ public class SoundboardService extends Service {
 		@Override
 		public void onPrepared(MediaPlayer mp) {
 			mp.start();
+		}
+
+		@Override
+		public void onCompletion(MediaPlayer mp) {
+			mp.release();
+			players.remove(mp);
+			if (players.isEmpty())
+				stopSelfResult(lastStartId);
 		}
 	}
 
@@ -122,7 +122,7 @@ public class SoundboardService extends Service {
 		// Had to pull this out of IntentService.java, the documentation omits
 		// this line.
 		msg.obj = intent;
-		msg.arg1 = startId;
+		lastStartId = startId;
 		handler.sendMessage(msg);
 		return START_NOT_STICKY;
 	}
