@@ -10,6 +10,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.media.AudioManager;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -82,6 +83,7 @@ public class SoundChooserActivity extends ExpandableListActivity {
 			setResult(RESULT_CANCELED);
 		} else {
 			registerForContextMenu(getExpandableListView());
+			setVolumeControlStream(AudioManager.STREAM_MUSIC);
 		}
 	}
 
