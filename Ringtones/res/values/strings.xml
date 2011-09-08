@@ -3,6 +3,7 @@
     <string name="app_name">Soundboard Ringtones</string>
     <string name="menu_label_delete">Delete</string>
     <string name="toast_no_supported_soundboards">No supported soundboards found</string>
+    <string name="toast_failed_to_store_ringtone">Failed to create requested ringtone</string>
     <string name="type_ringtone">Ringtone</string>
     <string name="type_notification">Notification</string>
     <string name="type_alarm">Alarm</string>

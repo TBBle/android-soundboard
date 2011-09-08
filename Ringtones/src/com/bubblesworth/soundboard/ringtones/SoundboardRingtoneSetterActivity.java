@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 /**
  * @author paulh
@@ -66,6 +67,15 @@ public class SoundboardRingtoneSetterActivity extends ListActivity {
 			// A soundboard is giving us its track to add
 			mediaUri = SoundboardRingtoneFileManager
 					.getMediaUri(this, trackUri);
+			if (mediaUri == null) {
+				Toast.makeText(
+						this,
+						getResources().getText(
+								R.string.toast_failed_to_store_ringtone),
+						Toast.LENGTH_SHORT).show();
+				finish();
+				return;
+			}
 			if (type != 0) {
 				// The soundboard specified the type, just do the conversion
 				// and we're done.

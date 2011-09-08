@@ -72,6 +72,11 @@ public class SoundboardRingtonePickerActivity extends Activity {
 				data.getData());
 
 		if (mediaUri == null) {
+			Toast.makeText(
+					this,
+					getResources().getText(
+							R.string.toast_failed_to_store_ringtone),
+					Toast.LENGTH_SHORT).show();
 			finish();
 			return;
 		}
