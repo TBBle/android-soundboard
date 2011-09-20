@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sounds src="pony sounds v5.3">
+<sounds src="pony sounds v5.5">
 	<category id="applebloom"		value= "10"/>
 	<category id="applejack"		value= "20"/>
 	<category id="bigmacintosh"		value= "30"/>

@@ -3,11 +3,15 @@
 	<description>
 		Apple Bloom
 	</description>
+	<sound id="arentyougonnastayforbrunch" src="arent you gonna stay for brunch" value="80">Aren't you gonna stay for brunch?</sound>
 	<sound id="butiwantitnow" src="but i want it now" value="10">But I want it now</sound>
 	<sound id="iamabigpony" src="i am a big pony" value="20">I am a big pony</sound>
 	<sound id="imnotababy" src="i'm not a baby" value="30">I'm not a baby</sound>
 	<sound id="likelystory" src="likely story" value="40">Likely story</sound>
+	<sound id="notthecupcakes" src="not the cupcakes" value="90">Not the cupcakes</sound>
+	<sound id="ofitsmisery" src="out of its misery" value="100">Out of its misery</sound>
 	<sound id="powertools" src="power tools" value="50">Power tools?</sound>
 	<sound id="scootaloo" src="scootaloo" value="60">SCOOTALOO</sound>
+	<sound id="trustme" src="trust me" value="110">Trust me</sound>
 	<sound id="whatathingtosay" src="what a thing to say" value="70">What a thing to say</sound>
 </category>

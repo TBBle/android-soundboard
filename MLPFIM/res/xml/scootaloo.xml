@@ -3,11 +3,15 @@
 	<description>
 		Scootaloo
 	</description>
+	<sound id="endlesspossibilities" src="endless possibilities" value="80">Endless possibilities</sound>
 	<sound id="ewwww" src="ewwww" value="10">EWWWW</sound>
 	<sound id="imlikingthisidea" src="i'm liking this idea" value="30">I'm liking this idea</sound>
+	<sound id="nambypambystories" src="namby pamby stories" value="90">Namby-pamby stories</sound>
 	<sound id="never" src="never" value="40">Never</sound>
 	<sound id="thatisnothowyoucallachicken" src="that is not how you call a chicken" value="60">Not how you call a chicken</sound>
 	<sound id="proplemwithblankflanks" src="proplem with blank flanks" value="50">Problem with blankflanks?</sound>
 	<sound id="thatssofunnyiforgottolaugh" src="that's so funny i forgot to laugh" value="70">That's so funny...</sound>
+	<sound id="tlc" src="tlc" value="100">TLC</sound>
+	<sound id="whahuh" src="wha...huh" value="110">Wha... Huh?</sound>
 	<sound id="illdowhateveryouwantrainbowdash" src="i'll do whatever you want rainbow dash" value="20">Whatever you want, Dash</sound>
 </category>

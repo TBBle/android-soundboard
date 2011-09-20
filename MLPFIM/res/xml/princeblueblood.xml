@@ -4,6 +4,7 @@
 		Prince Blueblood
 	</description>
 	<sound id="ahem" src="AHEM" value="10">Ahem</sound>
+	<sound id="myroyallipshavetouchedcommoncarnivalfare" src="my royal lips have touched common carnival fare" value="70">Common carnival fare</sound>
 	<sound id="imgoingtothebuffet" src="im going to the buffet" value="20">Hors d'oeuvres</sound>
 	<sound id="itgoeswithmyeyes" src="it goes with my eyes" value="30">It goes with my eyes</sound>
 	<sound id="onewouldhatetoslip" src="one would hate to slip" value="40">One would hate to slip</sound>

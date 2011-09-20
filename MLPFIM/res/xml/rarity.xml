@@ -4,6 +4,7 @@
 		Rarity
 	</description>
 	<sound id="afraidtogetdirty" src="afraid to get dirty" value="210">Afraid to get dirty?</sound>
+	<sound id="crimeagainstfabulosity" src="crime against fabulosity" value="240">Crime against fabulousity</sound>
 	<sound id="doesntevenmakesense" src="doesn't even make sense" value="20">Doesn't even make sense</sound>
 	<sound id="dumbrock" src="dumb rock" value="30">Dumb rock</sound>
 	<sound id="gentlyplease" src="gently please" value="40">Gently, please</sound>
@@ -16,6 +17,7 @@
 	<sound id="mamascoming" src="Mama's coming" value="200">Mama's coming</sound>
 	<sound id="please" src="please" value="100">Please</sound>
 	<sound id="pruneyhooves" src="pruney hooves" value="110">Pruney hooves</sound>
+	<sound id="howcanyoubesoinsensitive" src="how can you be so insensitive" value="250">So insensitive!</sound>
 	<sound id="someofusdohavestandards" src="some of us do have standards" value="220">Some of us have standards</sound>
 	<sound id="takethatyouruffian" src="take that you ruffian" value="120">Take that you ruffian!</sound>
 	<sound id="tellme" src="tell me" value="130">Tell me!</sound>
@@ -24,6 +26,7 @@
 	<sound id="thisiswhining" src="this is whining" value="160">This is whining</sound>
 	<sound id="wahahaha" src="wahahaha" value="170">WAHAHA</sound>
 	<sound id="whatevershallwedo" src="what ever shall we do" value="180">What ever shall we do?</sound>
+	<sound id="youlooksmashing" src="you look smashing" value="260">You look smashing</sound>
 	<sound id="youmust" src="you must" value="190">You must!</sound>
 	<sound id="yourejustsayingthat" src="you're just saying that" value="230">You're just saying that</sound>
 </category>

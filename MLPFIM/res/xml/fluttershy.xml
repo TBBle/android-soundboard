@@ -17,6 +17,7 @@
 	<sound id="imsosrytohavescaredyou" src="i'm so sry to have scared you" value="80">I'm so sorry to have...</sound>
 	<sound id="imtheworldchampyouknow" src="i'm the world champ you know" value="220">I'm the world champ</sound>
 	<sound id="kicksomething" src="kick something" value="100">Kick something</sound>
+	<sound id="andthenoutofnowhere" src="and then, out of nowhere" value="250">Then, out of nowhere</sound>
 	<sound id="ohmy" src="oh, my" value="240">Oh, my</sound>
 	<sound id="oopsie" src="oopsie" value="110">Oopsie</sound>
 	<sound id="prettyplease" src="pretty please" value="120">Pretty please</sound>

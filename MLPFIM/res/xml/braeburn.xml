@@ -3,6 +3,7 @@
 	<description>
 		Braeburn
 	</description>
+	<sound id="taintfair" src="taint fair" value="30">'t ain't fair</sound>
 	<sound id="shameonyou" src="shame on you" value="10">Shame on you</sound>
 	<sound id="welcometoappleoosa" src="welcome to appleoosa" value="20">Welcome to Appleoosa</sound>
 </category>

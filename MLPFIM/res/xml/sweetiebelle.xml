@@ -3,7 +3,9 @@
 	<description>
 		Sweetie Belle
 	</description>
+	<sound id="singing" src="singing" value="90">~CMCs theme - a cappella~</sound>
 	<sound id="dumbfabric" src="dumb fabric" value="10">Dumb fabric</sound>
+	<sound id="hammer" src="hammer" value="80">Hammer</sound>
 	<sound id="iknowthisone" src="i know this one" value="20">I know this one</sound>
 	<sound id="ohmysoundsserious" src="oh my, sounds serious" value="30">Oh my, sounds serious</sound>
 	<sound id="wecouldformourownsecretsociety" src="we could form our own secret society" value="60">Our own secret society</sound>

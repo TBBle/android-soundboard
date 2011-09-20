@@ -4,4 +4,5 @@
 		Silver and Diamond
 	</description>
 	<sound id="blankflanks" src="blank flanks" value="10">Blank-flanks</sound>
+	<sound id="bumpbumpsugar-lumprump" src="bump bump, sugar-lump rump" value="20">Bump, bump, sugar-lump, rump</sound>
 </category>

@@ -17,6 +17,7 @@
 	<sound id="howequestriawasmade" src="how equestria was made" value="100">How Equestria was made</sound>
 	<sound id="iknowhowitgoesallright" src="i know how it goes, all right" value="110">I know how it goes, alright</sound>
 	<sound id="imjustgladnoneofthemponiesshowedup" src="i'm just glad none of them ponies showed up" value="120">I'm just glad...</sound>
+	<sound id="letsgo" src="lets go" value="270">Let's go</sound>
 	<sound id="myfriendsdontlikemyparties" src="my friends don't like my parties.." value="220">My friends don't like my parties</sound>
 	<sound id="ineverfeltjoylikethatbefore" src="i never felt joy like that before" value="210">Never felt joy like that</sound>
 	<sound id="oatmealareyoucraz" src="oatmeal, are you craz..." value="130">Oatmeal, are you craz...</sound>

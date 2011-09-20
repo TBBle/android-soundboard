@@ -7,5 +7,6 @@
 	<sound id="haveyougonemad" src="have you gone mad" value="20">Have you gone mad?</sound>
 	<sound id="howdareyou" src="how dare you" value="30">How dare you?</sound>
 	<sound id="parasprite" src="parasprite" value="50">Is that a Parasprite?</sound>
-	<sound id="yourdoom" src="your doom" value="40">You're doomed</sound>
+	<sound id="yourdoomed" src="you're doomed" value="40">You're doomed</sound>
+	<sound id="youractionswillmakemyangerexplode" src="your actions will make my anger explode" value="60">Your actions will make my anger explode</sound>
 </category>

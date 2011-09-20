@@ -6,7 +6,9 @@
 	<sound id="gotcha" src="gotcha" value="10">Gotcha</sound>
 	<sound id="iprincesscelestiaherebydecree" src="i princess celestia hereby decree" value="30">I hereby decree</sound>
 	<sound id="iknewyoucoulddoit" src="i knew you could do it" value="20">I knew you could do it</sound>
+	<sound id="want you by my side" src="want you by my side" value="80">I want you by my side</sound>
 	<sound id="imsoproudofyou" src="i'm so proud of you" value="40">I'm so proud of you</sound>
 	<sound id="run" src="run" value="50">Run!</sound>
+	<sound id="thesecreaturesareadorable" src="these creatures are adorable" value="70">These creatures are adorable</sound>
 	<sound id="willyouacceptmyfriendship" src="will you accept my friendship" value="60">Will you accept my friendship?</sound>
 </category>
