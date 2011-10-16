@@ -3,16 +3,19 @@ package com.bubblesworth.soundboard.mlpfim;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ExpandableListActivity;
+import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.media.AudioManager;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
@@ -61,24 +64,42 @@ public class SoundChooserActivity extends ExpandableListActivity {
 		}
 	};
 
+	private ProgressDialog spinner;
+
+	private class GetCategoryCursor extends AsyncTask<Void, Void, Cursor> {
+		protected Cursor doInBackground(Void... voids) {
+			String[] columns = { SoundColumns._ID, SoundColumns.DESCRIPTION,
+					SoundColumns.ICON };
+			return managedQuery(SoundProvider.CATEGORY_URI, columns, null,
+					null, null);
+		}
+
+		protected void onPostExecute(Cursor result) {
+			SimpleCursorTreeAdapter adapter = new MySimpleCursorTreeAdapter(
+					SoundChooserActivity.this, result,
+					R.layout.icon_expandable_list_item, new String[] {
+							SoundColumns.DESCRIPTION, SoundColumns.ICON },
+					new int[] { R.id.listText, R.id.listIcon },
+					R.layout.icon_list_item, new String[] {
+							SoundColumns.DESCRIPTION, SoundColumns.ICON },
+					new int[] { R.id.listText, R.id.listIcon });
+			setListAdapter(adapter);
+			spinner.dismiss();
+		}
+	}
+
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		Resources resources = getResources();
 		widgetConfig = getIntent().getAction().equals(
 				"com.bubblesworth.soundboard.APPWIDGET_CONFIGURE");
-		String[] columns = { SoundColumns._ID, SoundColumns.DESCRIPTION,
-				SoundColumns.ICON };
-		Cursor cur = managedQuery(SoundProvider.CATEGORY_URI, columns, null,
-				null, null);
-		SimpleCursorTreeAdapter adapter = new MySimpleCursorTreeAdapter(this,
-				cur, R.layout.icon_expandable_list_item, new String[] {
-						SoundColumns.DESCRIPTION, SoundColumns.ICON },
-				new int[] { R.id.listText, R.id.listIcon },
-				R.layout.icon_list_item, new String[] {
-						SoundColumns.DESCRIPTION, SoundColumns.ICON },
-				new int[] { R.id.listText, R.id.listIcon });
-		setListAdapter(adapter);
+		spinner = ProgressDialog.show(this,
+				resources.getString(R.string.dialog_loading_title),
+				resources.getString(R.string.dialog_loading_message), true,
+				false);
+		new GetCategoryCursor().execute();
 		if (widgetConfig) {
 			setResult(RESULT_CANCELED);
 		} else {

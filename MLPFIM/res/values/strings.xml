@@ -21,4 +21,6 @@
     <string name="menu_label_alarm">Set as alarm</string>
     <string name="menu_label_ringtone">Set as ringtone</string>
     <string name="toast_background_music_failed">Failed to start background music</string>
+    <string name="dialog_loading_title">Loading</string>
+    <string name="dialog_loading_message">Scanning content packs</string>
 </resources>
