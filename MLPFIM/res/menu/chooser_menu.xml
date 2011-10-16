@@ -4,5 +4,6 @@
     <item android:icon="@android:drawable/ic_menu_help" android:id="@+id/menuAbout" android:title="@string/menu_label_about"></item>
     <item android:id="@+id/menuWidget" android:icon="@android:drawable/ic_menu_add" android:title="@string/menu_label_widget"></item>
     <item android:id="@+id/menuRingtones" android:icon="@android:drawable/ic_menu_add" android:title="@string/menu_label_ringtones"></item>
+    <item android:id="@+id/menuContentPacks" android:title="@string/menu_label_content_packs" android:icon="@android:drawable/ic_menu_add"></item>
     
 </menu>

@@ -6,14 +6,16 @@
     <string name="menu_label_about">About</string>
     <string name="menu_label_widget">AppWidgets</string>
     <string name="menu_label_ringtones">Ringtones</string>
-    <string name="about_label">About MLP FiM Soundboard</string>
+    <string name="menu_label_content_packs">Content Packs</string><string name="about_label">About MLP FiM Soundboard</string>
     <string name="dialog_ringtones_help">Long-press on a sound to use it as a ringtone. You can also use the Sound Settings activity, or manage Soundboard Ringtones in the Manager</string>
     <string-array name="dialog_ringtones_help_buttons">
         <item>Manager</item>
         <item>Settings</item>
     </string-array>
     <string name="dialog_widget_help">Soundboard Widget is already installed. You can add widgets to your launcher by long-pressing on your home screen, selecting &quot;Widgets&quot; and then &quot;Soundboard Widget&quot;</string>
-    <string name="toast_no_market">Couldn\'t launch the Android Market</string>
+    <string name="dialog_no_content">You don\'t appear to have any content packs installed.</string><string-array name="dialog_no_content_buttons">
+        <item>Go to Market</item>
+    </string-array><string name="toast_no_market">Couldn\'t launch the Android Market</string>
     <string name="toast_no_manager">Couldn\'t start the Soundboard Ringtones Manager</string>
     <string name="toast_no_sound_settings">Couldn\'t start Sound Settings</string>
     <string name="toast_link_failed">Failed to open link</string>
@@ -23,4 +25,7 @@
     <string name="toast_background_music_failed">Failed to start background music</string>
     <string name="dialog_loading_title">Loading</string>
     <string name="dialog_loading_message">Scanning content packs</string>
+    
+    
+    
 </resources>
