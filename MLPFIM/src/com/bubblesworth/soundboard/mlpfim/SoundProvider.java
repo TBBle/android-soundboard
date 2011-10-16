@@ -430,6 +430,7 @@ public class SoundProvider extends ContentProvider implements CategoryColumns,
 		return;
 	}
 
+	@SuppressWarnings("unused")
 	private void dumpDatabases() {
 		SQLiteDatabase db = dbHelper.getReadableDatabase();
 		SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
