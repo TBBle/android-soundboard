@@ -1,0 +1,223 @@
+	<!-- Lanczos resize the resourceref to the given dp dimensions for the given density -->
+	<!-- Applies the given mapper and outputs them into the appropriate res/drawable- folder -->
+	<!-- Reads crops to apply to the source image (in ImageMagick -geometry format) from
+	     the cropref attribute. -->
+	<scriptdef name="resize" language="javascript">
+		<attribute name="widthdp"/>
+		<attribute name="heightdp"/>
+		<attribute name="density"/>
+		<attribute name="resourceref"/>
+		<attribute name="mapperref"/>
+		<!-- optional -->
+		<attribute name="cropref"/>
+		<attribute name="canvaswidthdp"/>
+		<attribute name="canvasheightdp"/>
+		<attribute name="canvasbgref"/>
+		<![CDATA[
+		// Theory of operation:
+		// We need to create an apply task and a mapper for each possible resize, and one for no-resize.
+		function makeResizeApply( density, targetSize, crops, canvasSize, canvasBG ) {
+			task = project.createTask( "apply" );
+			task.setVMLauncher( false );
+			task.setExecutable( "convert" );
+			if ( density == "none" )
+				task.setDest( project.getBaseDir() );
+			else
+				task.setDest( java.io.File( project.getBaseDir(), "res/drawable-" + density ) );
+			task.setParallel( false );
+			task.setAppend( true );
+			task.setSkipEmptyFilesets( true );
+			task.createSrcfile();
+			if ( crops != "" ) {
+				arg = task.createArg();
+				arg.setValue( "-crop" );
+				arg = task.createArg();
+				arg.setValue( crops );
+				arg = task.createArg();
+				arg.setValue( "+repage" );
+			}
+			arg = task.createArg();
+			arg.setValue( "-filter" );
+			arg = task.createArg();
+			arg.setValue( "Lanczos" );
+			arg = task.createArg();
+			arg.setValue( "-resize" );
+			arg = task.createArg();
+			arg.setValue( targetSize );
+			arg = task.createArg();
+			arg.setValue( "-background" );
+			arg = task.createArg();
+			arg.setValue( "transparent" );
+			arg = task.createArg();
+			arg.setValue( "-compose" );
+			arg = task.createArg();
+			arg.setValue( "Copy" );
+			arg = task.createArg();
+			arg.setValue( "-gravity" );
+			arg = task.createArg();
+			arg.setValue( "center" );
+			arg = task.createArg();
+			arg.setValue( "-extent" );
+			arg = task.createArg();
+			arg.setValue( canvasSize );
+			// Add an optional canvas background
+			if (canvasbg != "") {
+				arg = task.createArg();
+				arg.setValue( canvasbg );
+				arg = task.createArg();
+				arg.setValue( "-filter" );
+				arg = task.createArg();
+				arg.setValue( "Lanczos" );
+				arg = task.createArg();
+				arg.setValue( "-resize" );
+				arg = task.createArg();
+				arg.setValue( canvasSize );
+				arg = task.createArg();
+				arg.setValue( "+swap" );
+				arg = task.createArg();
+				arg.setValue( "-compose" );
+				arg = task.createArg();
+				arg.setValue( "src-over" );
+				arg = task.createArg();
+				arg.setValue( "-composite" );
+			}
+
+			/* Debug - Write the density on the image
+			arg = task.createArg();
+			arg.setValue( "-gravity" );
+			arg = task.createArg();
+			arg.setValue( "south" );
+			arg = task.createArg();
+			arg.setValue( "-stroke" );
+			arg = task.createArg();
+			arg.setValue( "#000C" );
+			arg = task.createArg();
+			arg.setValue( "-strokewidth" );
+			arg = task.createArg();
+			arg.setValue( "2" );
+			arg = task.createArg();
+			arg.setValue( "-annotate" );
+			arg = task.createArg();
+			arg.setValue( "0" );
+			arg = task.createArg();
+			arg.setValue( density );
+			arg = task.createArg();
+			arg.setValue( "-stroke" );
+			arg = task.createArg();
+			arg.setValue( "none" );
+			arg = task.createArg();
+			arg.setValue( "-fill" );
+			arg = task.createArg();
+			arg.setValue( "white" );
+			arg = task.createArg();
+			arg.setValue( "-annotate" );
+			arg = task.createArg();
+			arg.setValue( "0" );
+			arg = task.createArg();
+			arg.setValue( "@{density}" );
+			*/
+			task.createTargetfile();
+			return task;
+		};
+		function makeTargetSize( density, widthdp, heightdp ) {
+			if ( density == "mdpi" || density == "nodpi" || density == "none" ) {
+				dpi = 160;
+			} else if ( density == "ldpi" ) {
+				dpi = 120;
+			} else if ( density == "hdpi" ) {
+				dpi = 240;
+			} else if ( density == "xhdpi" ) {
+				dpi = 320;
+			} else {
+				project.log( "Unrecognised density " + density, project.MSG_ERR );
+			}
+			return "" + (widthdp * (dpi/160)) + "x" + (heightdp * (dpi/160));
+		};
+
+		widthdp = attributes.get( "widthdp" );
+		heightdp = attributes.get( "heightdp" );
+		density = attributes.get( "density" );
+		resources = project.getReference( attributes.get("resourceref") );
+		mapper = project.getReference( attributes.get("mapperref") );
+		srcCrop = attributes.get("cropref");
+		if (srcCrop != null)
+			srcCrop = project.getReference( srcCrop );
+		canvaswidthdp = attributes.get( "canvaswidthdp" );
+		canvasheightdp = attributes.get( "canvasheightdp" );
+		canvasbgref = attributes.get( "canvasbgref" );
+
+		targetSize = makeTargetSize( density, widthdp, heightdp );
+		if (canvaswidthdp == null || canvasheightdp == null)
+			canvasSize = targetSize;
+		else
+			canvasSize = makeTargetSize( density, canvaswidthdp, canvasheightdp );
+		canvasbg = ""
+		depends = null;
+		dependsTarget = null
+		if (canvasbgref != null ) {
+			canvasbgset = project.getReference( canvasbgref );
+			canvasbgres = canvasbgset.iterator().next();
+			canvasbg = java.io.File( canvasbgset.getDir(), canvasbgres.getName() );
+			depends = project.createTask( "dependset" );
+			depends.addSrcfileset( canvasbgset );
+			dependsTarget = project.createDataType( "fileset" );
+			if ( density == "none" )
+				dependsTarget.setDir( project.getBaseDir() );
+			else
+				dependsTarget.setDir( java.io.File( project.getBaseDir(), "res/drawable-" + density ) );
+		}
+		applys = [];
+		resourcesSets = [];
+		resIt = resources.iterator();
+		while (resIt.hasNext()) {
+			res = resIt.next();
+			resName = res.getName();
+			if ( mapper.mapFileName( resName ) == null )
+				continue;
+			if ( srcCrop == null ) {
+				crops = "";
+			} else {
+				crops = srcCrop.mapFileName( resName );
+				if ( crops != null ) {
+					crops = crops[ 0 ];
+				} else {
+					crops = "";
+				}
+			}
+			if ( applys[ crops ] == undefined ) {
+				applys[ crops ] = makeResizeApply( density, targetSize, crops, canvasSize, canvasbg );
+				applys[ crops ].add( mapper );
+				resourcesSets[ crops ] = project.createDataType( "resources" );
+			}
+			if (dependsTarget != null) {
+				dependsTarget.appendIncludes( mapper.mapFileName( resName ) );
+			}
+			resourcesSets[ crops ].add( res );
+		}
+
+		if (depends != null) {
+			depends.addTargetfileset( dependsTarget );
+			depends.perform()
+		}
+
+		for (crop in applys) {
+			task = applys[ crop ];
+			task.add( resourcesSets[ crop ] );
+			task.perform();
+		}
+		]]>
+	</scriptdef>
+
+	<!-- Clean up the output of the resize task -->
+	<macrodef name="resizeClean">
+		<attribute name="density" default="mdpi"/>
+		<attribute name="mapperref"/>
+		<attribute name="resourceref"/>
+		<sequential>
+			<apply vmlauncher="false" executable="rm" dest="res/drawable-@{density}" parallel="true" append="true" skipemptyfilesets="true" addsourcefile="false" force="true">
+				<resources refid="@{resourceref}"/>
+				<mapper refid="@{mapperref}"/>
+				<targetfile/>
+			</apply>
+		</sequential>
+	</macrodef>

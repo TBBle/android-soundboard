@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<category id="twist" src="Twist">
+	<description>
+		Twist
+	</description>
+	<sound id="isntmycutiemarkswell" src="isnt my cutiemark swell" value="10">Isn't my cutie mark swell?</sound>
+</category>

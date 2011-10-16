@@ -4,28 +4,26 @@
 package com.bubblesworth.soundboard.mlpfim;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import android.app.ListActivity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
+import android.database.Cursor;
 import android.graphics.Typeface;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Html;
-import android.text.Spanned;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
+import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.bubblesworth.soundboard.CreditColumns;
 
 /**
  * @author paulh
@@ -35,34 +33,21 @@ public class AboutActivity extends ListActivity implements
 		MediaPlayer.OnPreparedListener {
 	private static final String TAG = "AboutActivity";
 
-	private static final String TEXT = "text";
-	private static final String LINK = "link";
-
-	List<Map<String, Object>> data;
 	MediaPlayer bgPlayer;
 
-	private class AboutViewBinder implements SimpleAdapter.ViewBinder {
-
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * android.widget.SimpleAdapter.ViewBinder#setViewValue(android.view
-		 * .View, java.lang.Object, java.lang.String)
-		 */
+	private class AboutViewBinder implements SimpleCursorAdapter.ViewBinder {
 		@Override
-		public boolean setViewValue(View view, Object data,
-				String textRepresentation) {
+		public boolean setViewValue(View view, Cursor cursor, int columnIndex) {
 			if (!(view instanceof TextView)) {
 				return false;
 			}
 			TextView tv = (TextView) view;
-			if (data instanceof Spanned) {
-				tv.setText((Spanned) data);
+			if (columnIndex == cursor.getColumnIndexOrThrow(CreditColumns.CREDIT_NAME)) {
+				tv.setText(Html.fromHtml(cursor.getString(columnIndex)));
 				return true;
-			}
-			if (data instanceof String) {
-				if (((String) data).length() != 0) {
+			} else if (columnIndex == cursor.getColumnIndexOrThrow(CreditColumns.CREDIT_LINK)) {
+				String uri = cursor.getString(columnIndex);
+				if (uri.length() != 0) {
 					tv.setTypeface(Typeface.DEFAULT, Typeface.NORMAL);
 				} else {
 					tv.setTypeface(Typeface.DEFAULT, Typeface.ITALIC);
@@ -81,22 +66,16 @@ public class AboutActivity extends ListActivity implements
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		String[] text = getResources().getStringArray(R.array.about_text);
-		String[] links = getResources().getStringArray(R.array.about_links);
-		assert text.length == links.length;
-		data = new ArrayList<Map<String, Object>>();
-		for (int i = 0; i < text.length; ++i) {
-			Map<String, Object> map = new HashMap<String, Object>();
-			map.put(TEXT, Html.fromHtml(text[i]));
-			map.put(LINK, links[i]);
-			data.add(map);
-		}
-
-		SimpleAdapter adapter = new SimpleAdapter(this, data,
-				R.layout.about_list_item, new String[] { TEXT, LINK },
-				new int[] { R.id.aboutText, R.id.aboutText });
+		
+		String[] columns = { CreditColumns._ID, CreditColumns.CREDIT_NAME, CreditColumns.CREDIT_LINK };
+		Cursor cur = managedQuery(SoundProvider.CREDIT_URI, columns, null, null, null);
+		SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, R.layout.about_list_item, cur,
+				new String[] { CreditColumns.CREDIT_NAME, CreditColumns.CREDIT_LINK },
+				new int[] { R.id.aboutText, R.id.aboutText } );
+		
 		adapter.setViewBinder(new AboutViewBinder());
 		setListAdapter(adapter);
+
 		onWindowFocusChanged(hasWindowFocus());
 	}
 
@@ -107,7 +86,6 @@ public class AboutActivity extends ListActivity implements
 	 */
 	@Override
 	public void onWindowFocusChanged(boolean hasFocus) {
-		// TODO Auto-generated method stub
 		super.onWindowFocusChanged(hasFocus);
 		if (hasFocus)
 			startMusic();
@@ -149,8 +127,8 @@ public class AboutActivity extends ListActivity implements
 
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
-		Map<String, Object> map = data.get(position);
-		String link = (String) map.get(LINK);
+		Cursor cursor = (Cursor)l.getItemAtPosition(position);
+		String link = cursor.getString(cursor.getColumnIndexOrThrow(CreditColumns.CREDIT_LINK));
 		if (link.length() == 0) {
 			return;
 		}

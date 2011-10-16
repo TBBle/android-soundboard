@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+      android:installLocation="preferExternal" package="com.bubblesworth.soundboard.mlpfim.packs.manepegasi" android:versionName="011" android:versionCode="11">
+    <uses-sdk android:minSdkVersion="7" />
+
+    <application android:icon="@drawable/icon" android:label="@string/app_name">
+        
+        
+        
+        <provider android:name=".SoundPackProvider" android:authorities="com.bubblesworth.soundboard.mlpfim.packs.manepegasi"><meta-data android:name="com.bubblesworth.soundboard.mlpfim.packs.categories" android:value="content://com.bubblesworth.soundboard.mlpfim.packs.manepegasi/categories"></meta-data><meta-data android:name="com.bubblesworth.soundboard.mlpfim.packs.sounds" android:value="content://com.bubblesworth.soundboard.mlpfim.packs.manepegasi/sounds"></meta-data><meta-data android:name="com.bubblesworth.soundboard.mlpfim.packs.credits" android:value="content://com.bubblesworth.soundboard.mlpfim.packs.manepegasi/credits"></meta-data>
+        </provider>
+
+
+    </application>
+</manifest>

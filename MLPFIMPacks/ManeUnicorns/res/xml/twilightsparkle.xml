@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<category id="twilightsparkle" src="Twilight Sparkle">
+	<description>
+		Twilight Sparkle
+	</description>
+	<sound id="ahhello" src="ah, hello" value="10">Ah, hello?</sound>
+	<sound id="alltheponiesinthistownarecrazy" src="all the ponies in this town are crazy" value="20">All the ponies in this town...</sound>
+	<sound id="areyoucrazy" src="are you crazy" value="30">Are you crazy?</sound>
+	<sound id="dearprincesscelestia" src="dear princess celestia" value="40">Dear Princess Celestia</sound>
+	<sound id="doeverythingbythebook" src="do everything by the book" value="200">Everything by the book</sound>
+	<sound id="doesntthathurt" src="doesn't that hurt" value="50">Doesn't that hurt?</sound>
+	<sound id="goodafternoonmyname" src="good afternoon, my name..." value="60">Good afternoon, my...</sound>
+	<sound id="idontgetit" src="i don't get it" value="70">I don't get it</sound>
+	<sound id="ithinkihearmylaundrycallingsrygottago" src="i think i hear my laundry calling, sry gotta go" value="80">I think I hear my laundry...</sound>
+	<sound id="imsryiwastedyourtime" src="i'm sry i wasted your time" value="90">I'm sorry I wasted your time</sound>
+	<sound id="itstheperfectplan" src="it's the perfect plan" value="100">It's the perfect plan</sound>
+	<sound id="lookoutherecomestom" src="look out here comes tom" value="260">Here comes Tom!</sound>
+	<sound id="more" src="more" value="210">More?</sound>
+	<sound id="mylittleponies" src="my little ponies" value="110">My little ponies</sound>
+	<sound id="noexcuses" src="no excuses" value="120">No excuses</sound>
+	<sound id="norly" src="no rly" value="220">No, really?</sound>
+	<sound id="ohnothisisbad" src="oh no, this is bad" value="130">Oh no, this is bad</sound>
+	<sound id="oldponytale" src="old pony tale" value="140">Old pony tale</sound>
+	<sound id="pardonmeprincess" src="pardon me princess" value="150">Pardon me Princess</sound>
+	<sound id="plsdonthateme" src="pls dont hate me" value="230">Please don't hate me</sound>
+	<sound id="proveit" src="prove it" value="160">Prove it!</sound>
+	<sound id="this is my book and im gonna read it" src="this is my book and im gonna read it" value="270">This is MY book!</sound>
+	<sound id="thisisnojoke" src="this is no joke" value="240">This is no joke</sound>
+	<sound id="toughlovebaby" src="tough love, baby" value="170">Tough love, baby</sound>
+	<sound id="wowcatchy" src="wow catchy" value="250">Wow, catchy</sound>
+	<sound id="yesyesyes" src="yesyesyes" value="180">Yesyesyesyesyes</sound>
+	<sound id="yourfaithfulstudent" src="your faithful student..." value="190">Your faithful student...</sound>
+</category>

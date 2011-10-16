@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE project [
+	<!ENTITY resizeTasks SYSTEM "../../AntResizeTasks.xml">
+]>
+<project name="MLPFIMAssetBuild" default="all" basedir="." xmlns:ac="antlib:net.sf.antcontrib">
+	<!-- Pull in ant-contrib -->
+	<taskdef resource="net/sf/antcontrib/antcontrib.properties"/>
+	
+	&resizeTasks;
+
+	<!-- Mapping from assets to application icon -->
+	<globmapper id="icon" handledirsep="true" from="MLP User Icons Vol 1/twilightsparkle1.png" to="icon.png"/>
+	<fileset id="iconbg" file="../../../SrcAssets/MLPFIM/iconbg.png" />
+
+	<!-- Mapping from assets to category icon names -->
+	<firstmatchmapper id="caticons">
+		<globmapper handledirsep="true" from="MLP User Icons Vol 1/rarity1.png" to="cat_rarity.png"/>
+		<globmapper handledirsep="true" from="MLP User Icons Vol 1/twilightsparkle1.png" to="cat_twilightsparkle.png"/>
+	</firstmatchmapper>
+
+	<fileset id="assets" dir="../../../SrcAssets/MLPFIM" />
+
+	<description>Build assets for MLPFIM</description>
+	<target name="all" description="Build all assets">
+		<!-- Process assets into icon and category icons -->
+		<ac:for list="ldpi,mdpi,hdpi,xhdpi" param="density">
+			<sequential>
+				<resize mapperref="icon" resourceref="assets" widthdp="20" heightdp="20" density="@{density}" canvaswidthdp="48" canvasheightdp="48" canvasbgref="iconbg"/>
+				<resize mapperref="caticons" cropref="caticons-srccrop" resourceref="assets" widthdp="72" heightdp="72" density="@{density}"/>
+			</sequential>
+		</ac:for>
+		<resize mapperref="icon" resourceref="assets" widthdp="214" heightdp="214" density="none" canvaswidthdp="512" canvasheightdp="512" canvasbgref="iconbg"/>
+	</target>
+
+	<target name="clean" description="Clean all built assets">
+		<!-- Delete icons created by the "all" rule -->
+		<ac:for list="ldpi,mdpi,hdpi,xhdpi" param="density">
+			<sequential>
+				<resizeClean mapperref="icon" resourceref="assets" density="@{density}"/>
+				<resizeClean mapperref="caticons" resourceref="assets" density="@{density}"/>
+			</sequential>
+		</ac:for>
+		<!-- TODO: Clean up the 512x512 icon -->
+	</target>
+</project>

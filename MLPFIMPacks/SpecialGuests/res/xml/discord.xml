@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<category id="discord" src="Discord">
+	<description>
+		Discord
+	</description>
+	<sound id="everyponyhastoplayorthegameisover" src="everypony has to play or the game is over" value="10">Everypony has to play</sound>
+	<sound id="firewhenready" src="fire when ready" value="20">Fire when ready</sound>
+	<sound id="goodluckeverypony" src="good luck everypony" value="40">Good luck</sound>
+	<sound id="immissingsomeexcellentchaoshere" src="im missing some excellent chaos here" value="30">Excellent chaos</sound>
+	<sound id="impreparedtobedefeatednowladies" src="im prepared to be defeated now ladies" value="50">I'm prepared</sound>
+	<sound id="iveforgottenhowgrimyoucanbe" src="ive forgotten how grim you can be" value="60">How grim you can be</sound>
+	<sound id="maybethemagicotfriendshipcanhelp you" src="maybe the magic ot friendship can help you" value="70">Maybe the magic of friendship?</sound>
+	<sound id="ughgag" src="ugh gag" value="80">Ugh, gag!</sound>
+	<sound id="whatfunisthereinmakingsense" src="what fun is there in making sense" value="90">What fun is there in making sense?</sound>
+</category>

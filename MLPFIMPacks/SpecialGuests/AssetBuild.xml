@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE project [
+	<!ENTITY resizeTasks SYSTEM "../../AntResizeTasks.xml">
+]>
+<project name="MLPFIMAssetBuild" default="all" basedir="." xmlns:ac="antlib:net.sf.antcontrib">
+	<!-- Pull in ant-contrib -->
+	<taskdef resource="net/sf/antcontrib/antcontrib.properties"/>
+	
+	&resizeTasks;
+
+	<!-- Mapping from assets to application icon -->
+	<globmapper id="icon" handledirsep="true" from="zecora_by_shelltoontv-d3bsgph.png" to="icon.png"/>
+	<fileset id="iconbg" file="../../../SrcAssets/MLPFIM/iconbg.png" />
+
+	<!-- Mapping from assets to category icon names -->
+	<firstmatchmapper id="caticons">
+		<globmapper handledirsep="true" from="mlp_user_icons_vol__2_by_shelltoontv-d3h2go1/bigmac1.png" to="cat_bigmacintosh.png"/>
+		<globmapper handledirsep="true" from="mlp_user_icons_vol__2_by_shelltoontv-d3h2go1/braeburn1.png" to="cat_braeburn.png"/>
+		<globmapper handledirsep="true" from="MLP User Icons Vol 1/derpyhooves1.png" to="cat_derpy.png"/>
+		<globmapper handledirsep="true" from="mlp_user_icons_vol__2_by_shelltoontv-d3h2go1/drwhooves1.png" to="cat_drwhoof.png"/>
+		<globmapper handledirsep="true" from="zecora_by_shelltoontv-d3bsgph.png" to="cat_zecora.png"/>
+		<globmapper handledirsep="true" from="owloysius_by_atomicgreymon-d3hnd8k.png" to="cat_owl.png"/>
+		<!-- This one's under Creative Commons Attribution-Share Alike 3.0 License -->
+		<globmapper handledirsep="true" from="it__s_so_truuuuue_by_capt_nemo-d3hmrgp.png" to="cat_stevenmagnet.png"/>
+		<!-- This one's under Creative Commons Attribution-Noncommercial 3.0 License -->
+		<globmapper handledirsep="true" from="gilda_vector_by_peachspices-d3jminl.png" to="cat_gilda.png"/>
+		<globmapper handledirsep="true" from="rose_sidelong_look_by_pageturner1988-d3hw4qj.png" to="cat_roseluck.png"/>
+		<!-- This one's under Creative Commons Attribution-Noncommercial-Share Alike 3.0 License -->
+		<globmapper handledirsep="true" from="carrot_cake_by_sirleandrea-d3hd94p.png" to="cat_carrottop.png"/>
+		<!-- This one's under Creative Commons Attribution-Noncommercial-Share Alike 3.0 License -->
+		<globmapper handledirsep="true" from="discord_why_wub_woo_spoiler_by_pokerface3699-d49oy62.png" to="cat_discord.png"/>
+	</firstmatchmapper>
+
+	<firstmatchmapper id="caticons-srccrop">
+		<globmapper handledirsep="true" from="zecora_by_shelltoontv-d3bsgph.png" to="1500x1500+1282+0"/>
+		<globmapper handledirsep="true" from="owloysius_by_atomicgreymon-d3hnd8k.png" to="2500x2500+0+0"/>
+		<globmapper handledirsep="true" from="gilda_vector_by_peachspices-d3jminl.png" to="450x450+560+342"/>
+		<globmapper handledirsep="true" from="rose_sidelong_look_by_pageturner1988-d3hw4qj.png" to="1200x1200+1236+0"/>
+		<globmapper handledirsep="true" from="carrot_cake_by_sirleandrea-d3hd94p.png" to="1890x1890+1610+0"/>
+	</firstmatchmapper>
+
+	<fileset id="assets" dir="../../../SrcAssets/MLPFIM" />
+
+	<description>Build assets for MLPFIM</description>
+	<target name="all" description="Build all assets">
+		<!-- Process assets into icon and category icons -->
+		<ac:for list="ldpi,mdpi,hdpi,xhdpi" param="density">
+			<sequential>
+				<resize mapperref="icon" cropref="caticons-srccrop" resourceref="assets" widthdp="20" heightdp="20" density="@{density}" canvaswidthdp="48" canvasheightdp="48" canvasbgref="iconbg"/>
+				<resize mapperref="caticons" cropref="caticons-srccrop" resourceref="assets" widthdp="72" heightdp="72" density="@{density}"/>
+			</sequential>
+		</ac:for>
+		<resize mapperref="icon" cropref="caticons-srccrop" resourceref="assets" widthdp="214" heightdp="214" density="none" canvaswidthdp="512" canvasheightdp="512" canvasbgref="iconbg"/>
+	</target>
+
+	<target name="clean" description="Clean all built assets">
+		<!-- Delete icons created by the "all" rule -->
+		<ac:for list="ldpi,mdpi,hdpi,xhdpi" param="density">
+			<sequential>
+				<resizeClean mapperref="icon" resourceref="assets" density="@{density}"/>
+				<resizeClean mapperref="caticons" resourceref="assets" density="@{density}"/>
+			</sequential>
+		</ac:for>
+		<!-- TODO: Clean up the 512x512 icon -->
+	</target>
+</project>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sounds src="pony sounds v6.0">
+	<category id="fluttershy"		value= "90"/>
+	<category id="rainbowdash"		value="170"/>
+</sounds>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sounds src="pony sounds v6.0">
+	<category id="applebloom"		value= "10"/>
+	<category id="cmc"				value= "60"/>
+	<category id="scootaloo"		value="210"/>
+	<category id="silverspoonndiamontiara"	value="290"/>
+	<category id="spike"			value="220"/>
+	<category id="sweetiebelle"		value="240"/>
+	<category id="twist"			value="330"/>
+</sounds>

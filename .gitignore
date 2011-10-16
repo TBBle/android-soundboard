@@ -15,5 +15,8 @@ gen/
 # Local configuration file (sdk path, etc)
 local.properties
 
+# vim temporary files
+*.swp
+
 # Assets which we don't want to commit
-/MLPFIM/assets/pony sounds v5.5
+/MLPFIMPacks/*/assets/pony sounds v6.0

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<category id="fluttershy" src="Fluttershy">
+	<description>
+		Fluttershy
+	</description>
+	<sound id="crazylaugh" src="crazy laugh" value="30">(crazy laughing)</sound>
+	<sound id="crying" src="(crying)" value="10">(crying)</sound>
+	<sound id="grin" src="(grin)" value="200">(grin)</sound>
+	<sound id="awwboohoohoo" src="aww boo hoo hoo" value="260">Aww, boo hoo hoo!</sound>
+	<sound id="comeout" src="come out" value="20">Come out!</sound>
+	<sound id="howdareyou" src="how dare you" value="210">How dare you?</sound>
+	<sound id="iamsofrustrated" src="i am so frustrated" value="40">I am so frustrated...</sound>
+	<sound id="idontwannatalkaboutit" src="i don't wanna talk about it" value="50">I don't wanna talk about it</sound>
+	<sound id="idliketobeatree" src="id like to be a tree" value="90">I'd like to be a tree</sound>
+	<sound id="illcatchyouyeatmypretties" src="i'll catch you yeat my pretties" value="60">I'll catch you yet...</sound>
+	<sound id="imayearolderthanyou" src="im a year older than you" value="230">I'm a year older than you</sound>
+	<sound id="imfluttershy" src="i'm fluttershy" value="70">I'm Fluttershy</sound>
+	<sound id="imsosrytohavescaredyou" src="i'm so sry to have scared you" value="80">I'm so sorry to have...</sound>
+	<sound id="imtheworldchampyouknow" src="i'm the world champ you know" value="220">I'm the world champ</sound>
+	<sound id="kicksomething" src="kick something" value="100">Kick something</sound>
+	<sound id="andthenoutofnowhere" src="and then, out of nowhere" value="250">Then, out of nowhere</sound>
+	<sound id="ohmy" src="oh, my" value="240">Oh, my</sound>
+	<sound id="oopsie" src="oopsie" value="110">Oopsie</sound>
+	<sound id="prettyplease" src="pretty please" value="120">Pretty please</sound>
+	<sound id="wait" src="wait" value="130">WAIT!</sound>
+	<sound id="waytogo" src="way to go" value="140">Way to go</sound>
+	<sound id="yay" src="yay" value="150">Yay</sound>
+	<sound id="yourockwoohoo" src="you rock, woohoo" value="160">You rock, woohoo</sound>
+	<sound id="youregoingtoloveme" src="you're going to love me" value="170">You're going to love me!</sound>
+	<sound id="youresuchaloudmouth" src="you're such a loudmouth" value="180">You're such a loudmouth</sound>
+	<sound id="yourethecutestthingever" src="you're the cutest thing ever" value="190">You're the cutest thing ever</sound>
+</category>

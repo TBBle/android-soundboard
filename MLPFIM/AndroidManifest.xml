@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="com.bubblesworth.soundboard.mlpfim"
-      android:installLocation="preferExternal" android:versionCode="10" android:versionName="010">
-    <uses-sdk android:minSdkVersion="7" android:targetSdkVersion="8"></uses-sdk>
+      android:versionName="011" android:versionCode="11">
+    <uses-sdk android:minSdkVersion="7"></uses-sdk>
     <supports-screens android:normalScreens="true" android:anyDensity="true" android:largeScreens="true" android:smallScreens="true" android:resizeable="true"></supports-screens>
 
 
@@ -17,7 +17,7 @@
                 <category android:name="android.intent.category.DEFAULT"></category>
             </intent-filter>
         </activity>
-        <service android:name="com.bubblesworth.soundboard.SoundboardService">
+        <service android:name=".SoundboardService">
             <intent-filter>
                 <action android:name="com.bubblesworth.soundboard.PLAY"></action>
                 <data android:mimeType="vnd.android.cursor.item/vnd.com.bubblesworth.soundboard.mlpfim.asset"></data>
@@ -26,6 +26,7 @@
         </service>
         <provider android:name=".SoundProvider" android:authorities="com.bubblesworth.soundboard.mlpfim.soundprovider"></provider>
         <activity android:name=".AboutActivity" android:label="@string/about_label"></activity>
+        <provider android:name=".CreditsProvider" android:authorities="com.bubblesworth.soundboard.mlpfim.creditsprovider"><meta-data android:name='com.bubblesworth.soundboard.mlpfim.packs.categories' android:value="content://com.bubblesworth.soundboard.mlpfim.creditsprovider/categories"></meta-data><meta-data android:name="com.bubblesworth.soundboard.mlpfim.packs.sounds" android:value="content://com.bubblesworth.soundboard.mlpfim.creditsprovider/sounds"></meta-data><meta-data android:name="com.bubblesworth.soundboard.mlpfim.packs.credits" android:value="content://com.bubblesworth.soundboard.mlpfim.creditsprovider/credits"></meta-data></provider>
 
     </application>
 </manifest>

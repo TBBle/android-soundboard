@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sounds src="pony sounds v6.0">
+	<category id="bigmacintosh"		value= "30"/>
+	<category id="braeburn"			value= "40"/>
+	<category id="carrottop"		value= "50"/>
+	<category id="derpy"			value= "70"/>
+	<category id="drwhoof"			value= "80"/>
+	<category id="gilda"			value="100"/>
+	<category id="owl"				value="130"/>
+	<category id="roseluck"			value="190"/>
+	<category id="stevenmagnet"		value="230"/>
+	<category id="zecora"			value="270"/>
+	<category id="discord"			value="320"/>
+</sounds>

@@ -3,49 +3,9 @@
     <string name="app_name">MLP FiM Soundboard</string>
     <string name="mime_type_asset">vnd.android.cursor.item/vnd.com.bubblesworth.soundboard.mlpfim.asset</string>
     <string name="mime_type_icon">vnd.android.cursor.item/vnd.com.bubblesworth.soundboard.mlpfim.icon</string>
-    <string name="mime_type_track">vnd.android.cursor.item/vnd.com.bubblesworth.soundboard.track</string>
-    <string name="mime_type_tracks">vnd.android.cursor.dir/vnd.com.bubblesworth.soundboard.track</string>
-    <string name="mime_type_category">vnd.android.cursor.item/vnd.com.bubblesworth.soundboard.category</string>
-    <string name="mime_type_categories">vnd.android.cursor.dir/vnd.com.bubblesworth.soundboard.category</string>
     <string name="menu_label_about">About</string>
     <string name="menu_label_widget">AppWidgets</string>
     <string name="menu_label_ringtones">Ringtones</string>
-    <string-array name="about_text">
-        <item>Code &amp;copy;2011 Paul \&quot;TBBle\&quot; Hampson</item>
-        <item>Audio assembled by kyrospawn</item>
-        <item>Art &amp;copy; the artists listed below</item>
-        <item>My Little Pony Friendship is Magic &amp;copy;2010-2011 Hasbro, Inc</item>
-        <item>My Little Pony&amp;trade; Hasbro, Inc</item>
-        <item>You\'re listening to Pinkie\'s Lie &amp;copy; WoodenToaster</item>
-        <item>Thankyou to the following artists for permission to use their work:</item>
-        <item>AtomicGreymon</item>
-        <item>BlackM3sh</item>
-        <item>Capt-Nemo</item>
-        <item>MoongazePonies</item>
-        <item>pageturner1988</item>
-        <item>Peachspices</item>
-        <item>purplefairy456</item>
-        <item>ShelltoonTV</item>
-        <item>SirLeandrea</item>
-    </string-array>
-    <string-array name="about_links">
-        <item>http://github.com/tbble/android-soundboard</item>
-        <item>http://kyrospawn.deviantart.com/art/MLP-FIM-Soundboard-alt-V5-3-244757196</item>
-        <item></item>
-        <item>http://www.hubworld.com/my-little-pony/shows/friendship-is-magic</item>
-        <item>http://www.hasbro.com/mylittlepony</item>
-        <item>http://www.youtube.com/watch?v=PLjpTtxH4Jo</item>
-        <item></item>
-        <item>http://atomicgreymon.deviantart.com</item>
-        <item>http://blackm3sh.deviantart.com</item>
-        <item>http://capt-nemo.deviantart.com</item>
-        <item>http://moongazeponies.deviantart.com</item>
-        <item>http://pageturner1988.deviantart.com</item>
-        <item>http://peachspices.deviantart.com</item>
-        <item>http://purplefairy456.deviantart.com/</item>
-        <item>http://shelltoontv.deviantart.com</item>
-        <item>http://sirleandrea.deviantart.com</item>
-    </string-array>
     <string name="about_label">About MLP FiM Soundboard</string>
     <string name="dialog_ringtones_help">Long-press on a sound to use it as a ringtone. You can also use the Sound Settings activity, or manage Soundboard Ringtones in the Manager</string>
     <string-array name="dialog_ringtones_help_buttons">
