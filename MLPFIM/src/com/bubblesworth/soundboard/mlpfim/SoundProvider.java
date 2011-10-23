@@ -221,8 +221,12 @@ public class SoundProvider extends ContentProvider implements CategoryColumns,
 					break;
 				}
 			}
-			if (refresh)
+			if (refresh) {
 				SoundProvider.this.loaded = false;
+				context.getContentResolver().notifyChange(CATEGORY_URI, null);
+				context.getContentResolver().notifyChange(TRACK_URI, null);
+				context.getContentResolver().notifyChange(CREDIT_URI, null);
+			}
 		}
 	}
 
@@ -451,7 +455,7 @@ public class SoundProvider extends ContentProvider implements CategoryColumns,
 			packChangeReceiver.registerPackage(newProvider.name);
 		}
 
-		//dumpDatabases();
+		// dumpDatabases();
 
 		loaded = true;
 		return;
