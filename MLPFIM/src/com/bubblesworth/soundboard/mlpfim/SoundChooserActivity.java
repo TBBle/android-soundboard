@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.database.Cursor;
+import android.database.DataSetObserver;
 import android.media.AudioManager;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -65,9 +66,24 @@ public class SoundChooserActivity extends ExpandableListActivity {
 		}
 	};
 
-	private ProgressDialog spinner;
+	private GetCategoryCursor taskHolder;
 
 	private class GetCategoryCursor extends AsyncTask<Void, Void, Cursor> {
+		private ProgressDialog spinner;
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			if (taskHolder != null)
+				taskHolder.cancel(false);
+			taskHolder = this;
+			Resources resources = getResources();
+			spinner = ProgressDialog.show(SoundChooserActivity.this,
+					resources.getString(R.string.dialog_loading_title),
+					resources.getString(R.string.dialog_loading_message), true,
+					false);
+		}
+
 		protected Cursor doInBackground(Void... voids) {
 			String[] columns = { SoundColumns._ID, SoundColumns.DESCRIPTION,
 					SoundColumns.ICON };
@@ -79,17 +95,31 @@ public class SoundChooserActivity extends ExpandableListActivity {
 			spinner.dismiss();
 			if (result.getCount() == 0) {
 				showDialog(DIALOG_NO_CONTENT);
-			} else {
-				SimpleCursorTreeAdapter adapter = new MySimpleCursorTreeAdapter(
-						SoundChooserActivity.this, result,
-						R.layout.icon_expandable_list_item, new String[] {
-								SoundColumns.DESCRIPTION, SoundColumns.ICON },
-						new int[] { R.id.listText, R.id.listIcon },
-						R.layout.icon_list_item, new String[] {
-								SoundColumns.DESCRIPTION, SoundColumns.ICON },
-						new int[] { R.id.listText, R.id.listIcon });
-				setListAdapter(adapter);
 			}
+			SimpleCursorTreeAdapter adapter = new MySimpleCursorTreeAdapter(
+					SoundChooserActivity.this, result,
+					R.layout.icon_expandable_list_item, new String[] {
+							SoundColumns.DESCRIPTION, SoundColumns.ICON },
+					new int[] { R.id.listText, R.id.listIcon },
+					R.layout.icon_list_item, new String[] {
+							SoundColumns.DESCRIPTION, SoundColumns.ICON },
+					new int[] { R.id.listText, R.id.listIcon });
+			setListAdapter(adapter);
+
+			adapter.registerDataSetObserver(new DataSetObserver() {
+				@Override
+				public void onChanged() {
+					new GetCategoryCursor().execute();
+				}
+			});
+			taskHolder = null;
+		}
+
+		@Override
+		protected void onCancelled() {
+			spinner.dismiss();
+			taskHolder = null;
+			super.onCancelled();
 		}
 	}
 
@@ -97,13 +127,8 @@ public class SoundChooserActivity extends ExpandableListActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		Resources resources = getResources();
 		widgetConfig = getIntent().getAction().equals(
 				"com.bubblesworth.soundboard.APPWIDGET_CONFIGURE");
-		spinner = ProgressDialog.show(this,
-				resources.getString(R.string.dialog_loading_title),
-				resources.getString(R.string.dialog_loading_message), true,
-				false);
 		new GetCategoryCursor().execute();
 		if (widgetConfig) {
 			setResult(RESULT_CANCELED);

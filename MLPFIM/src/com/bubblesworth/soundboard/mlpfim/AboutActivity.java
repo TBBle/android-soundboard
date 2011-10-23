@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.Resources;
 import android.database.Cursor;
+import android.database.DataSetObserver;
 import android.graphics.Typeface;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -63,9 +64,24 @@ public class AboutActivity extends ListActivity implements
 		}
 	}
 
-	private ProgressDialog spinner;
+	private GetCreditsCursor taskHolder;
 
 	private class GetCreditsCursor extends AsyncTask<Void, Void, Cursor> {
+		private ProgressDialog spinner;
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			if (taskHolder != null)
+				taskHolder.cancel(false);
+			taskHolder = this;
+			Resources resources = getResources();
+			spinner = ProgressDialog.show(AboutActivity.this,
+					resources.getString(R.string.dialog_loading_title),
+					resources.getString(R.string.dialog_loading_message), true,
+					false);
+		}
+
 		protected Cursor doInBackground(Void... voids) {
 			String[] columns = { CreditColumns._ID, CreditColumns.CREDIT_NAME,
 					CreditColumns.CREDIT_LINK };
@@ -83,6 +99,21 @@ public class AboutActivity extends ListActivity implements
 
 			adapter.setViewBinder(new AboutViewBinder());
 			setListAdapter(adapter);
+
+			adapter.registerDataSetObserver(new DataSetObserver() {
+				@Override
+				public void onChanged() {
+					new GetCreditsCursor().execute();
+				}
+			});
+			taskHolder = null;
+		}
+
+		@Override
+		protected void onCancelled() {
+			spinner.dismiss();
+			taskHolder = null;
+			super.onCancelled();
 		}
 	}
 
@@ -94,11 +125,6 @@ public class AboutActivity extends ListActivity implements
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		Resources resources = getResources();
-		spinner = ProgressDialog.show(this,
-				resources.getString(R.string.dialog_loading_title),
-				resources.getString(R.string.dialog_loading_message), true,
-				false);
 		new GetCreditsCursor().execute();
 		onWindowFocusChanged(hasWindowFocus());
 	}
