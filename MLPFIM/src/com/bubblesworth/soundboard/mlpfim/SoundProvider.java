@@ -77,7 +77,7 @@ public class SoundProvider extends ContentProvider implements CategoryColumns,
 	static class DatabaseHelper extends SQLiteOpenHelper {
 		// private static final String TAG = "DatabaseHelper";
 		private static final String NAME = "sounds.db";
-		private static final int VERSION = 1;
+		private static final int VERSION = 2;
 
 		DatabaseHelper(Context context) {
 			super(context, NAME, null, VERSION);
@@ -120,7 +120,32 @@ public class SoundProvider extends ContentProvider implements CategoryColumns,
 		 */
 		@Override
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-			// TODO: No database structure upgrades as yet.
+			// Version 2: Clean up CREDIT_TABLE table entries with a dangling
+			// SOURCE_ID
+			if (oldVersion < 2) {
+				SQLiteQueryBuilder creditsQuery = new SQLiteQueryBuilder();
+				creditsQuery.setTables(CREDIT_TABLE);
+				creditsQuery.setDistinct(true);
+				Cursor creditsSources = creditsQuery.query(db,
+						new String[] { SOURCE_ID }, null, null, null, null,
+						null);
+				if (creditsSources.moveToFirst()) {
+					SQLiteQueryBuilder sourcesQuery = new SQLiteQueryBuilder();
+					sourcesQuery.setTables(SOURCE_TABLE);
+					sourcesQuery.appendWhere(_ID + "=?");
+					do {
+						int sourceId = creditsSources.getInt(creditsSources
+								.getColumnIndexOrThrow(SOURCE_ID));
+						Cursor source = sourcesQuery.query(db,
+								new String[] { _ID }, null, new String[] { ""
+										+ sourceId }, null, null, null);
+						if (source.getCount() != 0)
+							continue;
+						db.delete(CREDIT_TABLE, SOURCE_ID + " = ?",
+								new String[] { "" + sourceId });
+					} while (creditsSources.moveToNext());
+				}
+			}
 		}
 	}
 
@@ -681,6 +706,8 @@ public class SoundProvider extends ContentProvider implements CategoryColumns,
 			// Log.d(TAG, "Deleted " + soundRows + " sounds and " + catRows +
 			// " categories" );
 		}
+		db.delete(CREDIT_TABLE, SOURCE_ID + " = ?",
+				new String[] { "" + packId });
 		db.delete(SOURCE_TABLE, _ID + " = ?", new String[] { "" + packId });
 	}
 
