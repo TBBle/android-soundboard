@@ -159,11 +159,12 @@ public class SoundProvider extends ContentProvider implements CategoryColumns,
 			String action = intent.getAction();
 			boolean refresh = false;
 			// Did we know about this?
-			if (action != Intent.ACTION_PACKAGE_ADDED) {
+			if (!action.equals(Intent.ACTION_PACKAGE_ADDED)) {
 				refresh = knownPackages.contains(packName);
 			}
 			if (!refresh
-					&& (action == Intent.ACTION_PACKAGE_ADDED || action == Intent.ACTION_PACKAGE_REPLACED)) {
+					&& (action.equals(Intent.ACTION_PACKAGE_ADDED) || action
+							.equals(Intent.ACTION_PACKAGE_REPLACED))) {
 				// If it's a new package, or might have grown a content
 				// provider, we need to know.
 				PackageManager packageManager = context.getPackageManager();
