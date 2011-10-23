@@ -6,14 +6,17 @@ package com.bubblesworth.soundboard.mlpfim;
 import java.io.IOException;
 
 import android.app.ListActivity;
+import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Typeface;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
@@ -42,10 +45,12 @@ public class AboutActivity extends ListActivity implements
 				return false;
 			}
 			TextView tv = (TextView) view;
-			if (columnIndex == cursor.getColumnIndexOrThrow(CreditColumns.CREDIT_NAME)) {
+			if (columnIndex == cursor
+					.getColumnIndexOrThrow(CreditColumns.CREDIT_NAME)) {
 				tv.setText(Html.fromHtml(cursor.getString(columnIndex)));
 				return true;
-			} else if (columnIndex == cursor.getColumnIndexOrThrow(CreditColumns.CREDIT_LINK)) {
+			} else if (columnIndex == cursor
+					.getColumnIndexOrThrow(CreditColumns.CREDIT_LINK)) {
 				String uri = cursor.getString(columnIndex);
 				if (uri.length() != 0) {
 					tv.setTypeface(Typeface.DEFAULT, Typeface.NORMAL);
@@ -58,6 +63,29 @@ public class AboutActivity extends ListActivity implements
 		}
 	}
 
+	private ProgressDialog spinner;
+
+	private class GetCreditsCursor extends AsyncTask<Void, Void, Cursor> {
+		protected Cursor doInBackground(Void... voids) {
+			String[] columns = { CreditColumns._ID, CreditColumns.CREDIT_NAME,
+					CreditColumns.CREDIT_LINK };
+			return managedQuery(SoundProvider.CREDIT_URI, columns, null, null,
+					null);
+		}
+
+		protected void onPostExecute(Cursor result) {
+			spinner.dismiss();
+			SimpleCursorAdapter adapter = new SimpleCursorAdapter(
+					AboutActivity.this, R.layout.about_list_item, result,
+					new String[] { CreditColumns.CREDIT_NAME,
+							CreditColumns.CREDIT_LINK }, new int[] {
+							R.id.aboutText, R.id.aboutText });
+
+			adapter.setViewBinder(new AboutViewBinder());
+			setListAdapter(adapter);
+		}
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -66,16 +94,12 @@ public class AboutActivity extends ListActivity implements
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-		String[] columns = { CreditColumns._ID, CreditColumns.CREDIT_NAME, CreditColumns.CREDIT_LINK };
-		Cursor cur = managedQuery(SoundProvider.CREDIT_URI, columns, null, null, null);
-		SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, R.layout.about_list_item, cur,
-				new String[] { CreditColumns.CREDIT_NAME, CreditColumns.CREDIT_LINK },
-				new int[] { R.id.aboutText, R.id.aboutText } );
-		
-		adapter.setViewBinder(new AboutViewBinder());
-		setListAdapter(adapter);
-
+		Resources resources = getResources();
+		spinner = ProgressDialog.show(this,
+				resources.getString(R.string.dialog_loading_title),
+				resources.getString(R.string.dialog_loading_message), true,
+				false);
+		new GetCreditsCursor().execute();
 		onWindowFocusChanged(hasWindowFocus());
 	}
 
@@ -127,8 +151,9 @@ public class AboutActivity extends ListActivity implements
 
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
-		Cursor cursor = (Cursor)l.getItemAtPosition(position);
-		String link = cursor.getString(cursor.getColumnIndexOrThrow(CreditColumns.CREDIT_LINK));
+		Cursor cursor = (Cursor) l.getItemAtPosition(position);
+		String link = cursor.getString(cursor
+				.getColumnIndexOrThrow(CreditColumns.CREDIT_LINK));
 		if (link.length() == 0) {
 			return;
 		}
