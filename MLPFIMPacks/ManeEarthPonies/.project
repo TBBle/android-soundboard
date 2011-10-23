@@ -39,16 +39,4 @@
 		<nature>com.android.ide.eclipse.adt.AndroidNature</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>Soundboard Pack Common Code_src</name>
-			<type>2</type>
-			<locationURI>_android_Soundboard_Pack_Common_Code_b527a544/src</locationURI>
-		</link>
-		<link>
-			<name>Soundboard Pack Interface_src</name>
-			<type>2</type>
-			<locationURI>_android_Soundboard_Pack_Interface_a332cfdb/src</locationURI>
-		</link>
-	</linkedResources>
 </projectDescription>
