@@ -387,7 +387,6 @@ public class SoundProvider extends ContentProvider implements CategoryColumns,
 				// Already processed... Duplicate activity result?
 				if (sourceInstalled == 1)
 					continue;
-				packChangeReceiver.registerPackage(name);
 				long sourceId = sourceCursor.getLong(sourceCursor
 						.getColumnIndexOrThrow(_ID));
 				int sourceVersion = sourceCursor.getInt(sourceCursor
@@ -396,6 +395,7 @@ public class SoundProvider extends ContentProvider implements CategoryColumns,
 				if (sourceVersion == version) {
 					db.update(SOURCE_TABLE, setPackage, _ID + " =?",
 							new String[] { "" + sourceId });
+					packChangeReceiver.registerPackage(name);
 					continue;
 				}
 				// Known source, but new version. Easiest thing is to blow it
@@ -423,6 +423,7 @@ public class SoundProvider extends ContentProvider implements CategoryColumns,
 			importPack(db, newProvider.name, newProvider.version,
 					newProvider.categories, newProvider.sounds,
 					newProvider.credits);
+			packChangeReceiver.registerPackage(newProvider.name);
 		}
 
 		//dumpDatabases();
