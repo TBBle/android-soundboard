@@ -16,7 +16,6 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.IBinder;
 import android.os.Looper;
-import android.os.Message;
 import android.os.Process;
 import android.util.Log;
 
@@ -24,50 +23,66 @@ import android.util.Log;
  * @author tbble
  * 
  */
-public class SoundboardService extends Service {
+public class SoundboardService extends Service implements OnPreparedListener,
+		OnCompletionListener {
 	private static final String TAG = "SoundboardService";
 
 	private Looper looper;
-	private ServiceHandler handler;
+	private Handler handler;
 	int lastStartId;
+	private HashSet<MediaPlayer> players;
 
-	private final class ServiceHandler extends Handler implements
-			OnPreparedListener, OnCompletionListener {
-		private HashSet<MediaPlayer> players;
+	private class PlayerStarter implements Runnable {
+		Uri mediaUri;
 
-		public ServiceHandler(Looper looper) {
-			super(looper);
-			players = new HashSet<MediaPlayer>();
+		PlayerStarter(Uri uri) {
+			mediaUri = uri;
 		}
 
 		@Override
-		public void handleMessage(Message msg) {
-			Intent intent = (Intent) msg.obj;
-			Uri uri = intent.getData();
-
+		public void run() {
 			try {
 				MediaPlayer mp = new MediaPlayer();
 				players.add(mp);
-				mp.setDataSource(SoundboardService.this, uri);
-				mp.setOnCompletionListener(this);
-				mp.setOnPreparedListener(this);
+				mp.setDataSource(SoundboardService.this, mediaUri);
+				mp.setOnCompletionListener(SoundboardService.this);
+				mp.setOnPreparedListener(SoundboardService.this);
 				mp.prepareAsync();
 			} catch (IOException e) {
-				Log.e(TAG, "onHandleIntent", e);
+				Log.e(TAG, "PlayerStarter.run", e);
 			}
 		}
+	}
 
-		@Override
-		public void onPrepared(MediaPlayer mp) {
-			mp.start();
+	@Override
+	public void onPrepared(MediaPlayer mp) {
+		mp.start();
+	}
+
+	@Override
+	public void onCompletion(MediaPlayer mp) {
+		mp.stop();
+		// Wait 500ms for sounds to clear the hardware
+		// Bluetooth devices have been observed reporting
+		// completion up to 200ms early, and users are
+		// reporting similar symptoms on their devices
+		handler.postDelayed(new PlayerRemover(mp), 500);
+	}
+
+	private class PlayerRemover implements Runnable {
+		MediaPlayer player;
+
+		PlayerRemover(MediaPlayer mp) {
+			player = mp;
 		}
 
 		@Override
-		public void onCompletion(MediaPlayer mp) {
-			mp.release();
-			players.remove(mp);
-			if (players.isEmpty())
+		public void run() {
+			player.release();
+			players.remove(player);
+			if (players.isEmpty()) {
 				stopSelfResult(lastStartId);
+			}
 		}
 	}
 
@@ -92,13 +107,14 @@ public class SoundboardService extends Service {
 		// separate thread because the service normally runs in the process's
 		// main thread, which we don't want to block. We also make it
 		// background priority so CPU-intensive work will not disrupt our UI.
+		players = new HashSet<MediaPlayer>();
 		HandlerThread thread = new HandlerThread(TAG + "HandlerThread",
 				Process.THREAD_PRIORITY_BACKGROUND);
 		thread.start();
 
 		// Get the HandlerThread's Looper and use it for our Handler
 		looper = thread.getLooper();
-		handler = new ServiceHandler(looper);
+		handler = new Handler(looper);
 	}
 
 	/*
@@ -118,12 +134,8 @@ public class SoundboardService extends Service {
 	 */
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
-		Message msg = handler.obtainMessage();
-		// Had to pull this out of IntentService.java, the documentation omits
-		// this line.
-		msg.obj = intent;
 		lastStartId = startId;
-		handler.sendMessage(msg);
+		handler.post(new PlayerStarter(intent.getData()));
 		return START_NOT_STICKY;
 	}
 }
