@@ -16,4 +16,12 @@
 	<sound id="nooooooooooooo" src="nooooooooooooo" value="90">NOOOOOOOOO</sound>
 	<sound id="sayitdontsprayit" src="say it, dont spray it" value="130">Say it, don't spray it</sound>
 	<sound id="whatwhatswrong" src="what, whats wrong" value="100">What? What's wrong?</sound>
+	<sound src="awesome mustache" value="140">Awesome moustache</sound>
+	<sound src="cupcakes" value="150">Cupcakes!</sound>
+	<sound src="kooky grampa" value="160">Kooky grandpa</sound>
+	<sound src="most ridiculous thing" value="170">Most ridiculous thing I've ever heard</sound>
+	<sound src="rainbow wig" value="180">Rainbow wig</sound>
+	<sound src="snap out of it" value="190">Snap out of it!</sound>
+	<sound src="this won't end well" value="200">This won't end well</sound>
+	<sound src="yeah, im a sweet talker" value="210">I'm a sweet-talker</sound>
 </category>

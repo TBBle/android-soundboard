@@ -14,4 +14,6 @@
 	<sound id="tlc" src="tlc" value="100">TLC</sound>
 	<sound id="whahuh" src="wha...huh" value="110">Wha... Huh?</sound>
 	<sound id="illdowhateveryouwantrainbowdash" src="i'll do whatever you want rainbow dash" value="20">Whatever you want, Dash</sound>
+	<sound src="dont call me things..." value="120">Don't call me things</sound>
+	<sound src="what are you, a dictionary" value="130">A dictionary?</sound>
 </category>

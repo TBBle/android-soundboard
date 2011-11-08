@@ -14,4 +14,5 @@
 	<sound id="scootaloo" src="scootaloo" value="60">SCOOTALOO</sound>
 	<sound id="trustme" src="trust me" value="110">Trust me</sound>
 	<sound id="whatathingtosay" src="what a thing to say" value="70">What a thing to say</sound>
+	<sound id="victoryfulatsomething" src="victoryful at something" value="120">Victoryful at something</sound>
 </category>

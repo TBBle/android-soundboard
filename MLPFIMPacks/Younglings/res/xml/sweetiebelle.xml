@@ -12,4 +12,8 @@
 	<sound id="suchasweetstory" src="such a sweet story" value="40">Such a sweet story</sound>
 	<sound id="thatsagreatsafeidea" src="thats a great safe idea" value="50">That's a great safe idea</sound>
 	<sound id="youcannotrunfromme" src="you cannot run from me" value="70">You cannot run from me</sound>
+	<sound src="i dont know what we're doing" value="100">I don't know what we're doing</sound>
+	<sound src="i really like her mane" value="110">I really like her... mane?</sound>
+	<sound src="its not chaos you dodo" value="120">It's not chaos</sound>
+	<sound src="thats not a word" value="130">That's not a word</sound>
 </category>

@@ -29,4 +29,9 @@
 	<sound id="youregoingtoloveme" src="you're going to love me" value="170">You're going to love me!</sound>
 	<sound id="youresuchaloudmouth" src="you're such a loudmouth" value="180">You're such a loudmouth</sound>
 	<sound id="yourethecutestthingever" src="you're the cutest thing ever" value="190">You're the cutest thing ever</sound>
+	<sound src="choo choo train" value="270">Here comes the choo-choo train</sound>
+	<sound src="i though something awful happened" value="280">I thought something awful happened</sound>
+	<sound src="okay" value="290">Okay</sound>
+	<sound src="that big dumb meanie" value="300">Big dumb meanie!</sound>
+	<sound src="your face" value="310">Your face!</sound>
 </category>

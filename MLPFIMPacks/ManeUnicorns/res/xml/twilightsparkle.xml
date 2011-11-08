@@ -30,4 +30,17 @@
 	<sound id="wowcatchy" src="wow catchy" value="250">Wow, catchy</sound>
 	<sound id="yesyesyes" src="yesyesyes" value="180">Yesyesyesyesyes</sound>
 	<sound id="yourfaithfulstudent" src="your faithful student..." value="190">Your faithful student...</sound>
+	<sound src="clock is ticking" value="280">Clock is ticking</sound>
+	<sound src="got any problems" value="290">Got any problems?</sound>
+	<sound src="hi girls" value="300">Hi girls</sound>
+	<sound src="hide your feelings from me" value="310">You don't have to hide your feelings</sound>
+	<sound src="its not over yet" value="320">Not over yet</sound>
+	<sound src="just wait" value="330">Just wait</sound>
+	<sound src="keep it together" value="340">Keep it together</sound>
+	<sound src="my whole life depends on it" value="350">My whole life</sound>
+	<sound src="no shrieking" value="360">No shrieking</sound>
+	<sound src="rift between good friends" value="370">I'd hate to cause a rift</sound>
+	<sound src="very efficient and gross" value="380">Very efficient</sound>
+	<sound src="what have i done" value="390">What have I done?</sound>
+	<sound src="you're yelling at me" value="400">You're yelling at me</sound>
 </category>

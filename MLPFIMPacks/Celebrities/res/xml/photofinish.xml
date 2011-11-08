@@ -7,4 +7,5 @@
 	<sound id="igo" src="i go" value="20">I go</sound>
 	<sound id="ohwunderbar" src="oh, wunderbar" value="30">Oh wunderbar</sound>
 	<sound id="timetomakethemagics" src="time to make the magics" value="40">Time to make the magics</sound>
+	<sound src="even her shneezes are greatful" value="50">Her sneezes are graceful</sound>
 </category>

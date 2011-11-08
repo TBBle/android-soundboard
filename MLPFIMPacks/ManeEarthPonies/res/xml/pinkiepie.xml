@@ -32,4 +32,11 @@
 	<sound id="andyouknowwhatthatmeans" src="and you know what that means" value="200">You know what that means</sound>
 	<sound id="youknowwhatthiscallsfor" src="you know what this calls for" value="260">You know what this calls for?</sound>
 	<sound id="youreallyneedtogetoutmore" src="you really need to get out more" value="190">You really need to get out more</sound>
+	<sound src="an enormously problem" value="300">A problem</sound>
+	<sound src="its nightmare moon run" value="310">It's Nightmare Moon! Run!</sound>
+	<sound src="mmmm, juicy" value="320">Mmmm, juicy</sound>
+	<sound src="no im not, im a chicken" value="330">I'm a chicken</sound>
+	<sound src="time is candy" value="340">Time is candy</sound>
+	<sound src="too old for free candy" value="350">Too old for free candy?</sound>
+	<sound src="well duh" value="360">Well, duh</sound>
 </category>

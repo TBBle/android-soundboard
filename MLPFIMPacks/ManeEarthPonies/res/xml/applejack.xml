@@ -27,4 +27,11 @@
 	<sound id="whoareyoucallingababy" src="who are you calling a baby" value="170">Who are you calling a baby?</sound>
 	<sound id="yeehaw" src="yeehaw" value="180">YEEHAW</sound>
 	<sound id="yourewelcome" src="you're welcome" value="190">You're welcome</sound>
+	<sound src="careful there, partner" value="250">Careful there, partner</sound>
+	<sound src="country music singer" value="260">Some sort of country music singer</sound>
+	<sound src="doesnt that sound like fun" value="270">Come on, kids</sound>
+	<sound src="fit in really" value="280">Fit in? Really?</sound>
+	<sound src="i'd take cover if i were you" value="290">I'd take cover</sound>
+	<sound src="loosen up a bit" value="300">Have some fun</sound>
+	<sound src="worked up over nothing" value="310">Getting all worked up over nothing</sound>
 </category>

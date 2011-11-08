@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<category id="luna" src="Luna">
-	<description>
-		Princess Luna
-	</description>
-	<sound id="imissedyousomuch" src="i missed you so much" value="10">I missed you so much</sound>
-	<sound id="imsosorry" src="i'm so sorry" value="20">I'm so sorry</sound>
-</category>

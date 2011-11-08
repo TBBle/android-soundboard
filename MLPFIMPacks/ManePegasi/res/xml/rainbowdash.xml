@@ -28,4 +28,6 @@
 	<sound id="whoareyoucallingachump" src="who are you calling a chump" value="180">Who are you calling a chump?</sound>
 	<sound id="youdontwannaknow" src="you dont wanna know" value="250">You don't wanna know</sound>
 	<sound id="youwannadothisthehardway" src="you wanna do this the hard way" value="190">Wanna do this the hard way?</sound>
+	<sound src="im staying here in cloudsdale" value="260">Staying in Cloudsdale</sound>
+	<sound src="what are you talking about" value="270">What are you talking about?</sound>
 </category>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<category id="princessluna" src="Princess Luna">
+	<description>
+		Princess Luna
+	</description>
+	<sound id="imissedyousomuch" src="i missed you so much" value="10">I missed you so much</sound>
+	<sound id="imsosorry" src="i'm so sorry" value="20">I'm so sorry</sound>
+	<sound src="be still" value="30">BE STILL</sound>
+	<sound src="call me luna" value="40">Call me luna</sound>
+	<sound src="charmed" value="50">CHARMED</sound>
+	<sound src="how many points do i receive" value="60">How many points do I receive?</sound>
+	<sound src="huzzah" value="70">Huzzah</sound>
+	<sound src="i am not certain..." value="80">I am not certain that did what you meant for it to do</sound>
+	<sound src="neigh, children wait" value="90">NEIGH, CHILDREN. WAIT</sound>
+	<sound src="not enough fun for you" value="100">Not enough fun?</sound>
+	<sound src="pray tell, what purpose do these serv" value="110">What purpose do these serve?</sound>
+	<sound src="screams of delight" value="120">Screams of delight</sound>
+	<sound src="the fun has been doubled" value="130">The fun has been doubled</sound>
+	<sound src="tis a lie" value="140">'tis a lie</sound>
+	<sound src="very well then, be that way" value="150">Be that way</sound>
+	<sound src="we could not be happier" value="160">We could not be happier</sound>
+	<sound src="what is the matter with you" value="170">What is the matter with you?</sound>
+	<sound src="what is this fun" value="180">What is this fun?</sound>
+	<sound src="withhold my enthusiasm" value="190">Withhold my enthusiasm</sound>
+</category>

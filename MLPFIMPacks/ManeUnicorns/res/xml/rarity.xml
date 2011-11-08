@@ -31,4 +31,11 @@
 	<sound id="youlooksmashing" src="you look smashing" value="260">You look smashing</sound>
 	<sound id="youmust" src="you must" value="190">You must!</sound>
 	<sound id="yourejustsayingthat" src="you're just saying that" value="230">You're just saying that</sound>
+	<sound src="do ponies do wallow in pity" value="290">Do ponies wallow?</sound>
+	<sound src="expect me to lay on the grass" value="300">Lay on the grass?</sound>
+	<sound src="i know where you live" value="310">I know where you live</sound>
+	<sound src="let us never speak of this again" value="320">Let us never speak of this</sound>
+	<sound src="mine" value="330">Mine!</sound>
+	<sound src="of all the worst things" value="340">Of all the worst things!</sound>
+	<sound src="what a drama queen" value="350">What a drama queen</sound>
 </category>

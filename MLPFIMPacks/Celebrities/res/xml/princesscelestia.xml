@@ -11,4 +11,7 @@
 	<sound id="run" src="run" value="50">Run!</sound>
 	<sound id="thesecreaturesareadorable" src="these creatures are adorable" value="70">These creatures are adorable</sound>
 	<sound id="willyouacceptmyfriendship" src="will you accept my friendship" value="60">Will you accept my friendship?</sound>
+	<sound src="im listening" value="90">I'm listening</sound>
+	<sound src="looks like you all learned" value="100">A pretty valuable lesson</sound>
+	<sound src="meet me in the library" value="110">Meet me in the library</sound>
 </category>

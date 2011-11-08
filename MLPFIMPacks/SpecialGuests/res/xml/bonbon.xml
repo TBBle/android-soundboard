@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<category id="bonbon" src="Bon-Bon">
+	<description>
+		Bon Bon
+	</description>
+	<sound src="and you are" value="10">And you are?</sound>
+	<sound src="i didnt put those in my bag" value="20">I didn't put those in my bag</sound>
+	<sound src="that incredible amazing doll" value="30">Amazing doll</sound>
+</category>
