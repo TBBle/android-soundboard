@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-      android:installLocation="preferExternal" package="com.bubblesworth.soundboard.mlpfim.packs.manepegasi" android:versionName="014" android:versionCode="14">
+      android:installLocation="preferExternal" package="com.bubblesworth.soundboard.mlpfim.packs.manepegasi" android:versionName="015" android:versionCode="15">
     <uses-sdk android:minSdkVersion="7" android:targetSdkVersion="8"/>
 
     <application android:icon="@drawable/icon" android:label="@string/app_name">
