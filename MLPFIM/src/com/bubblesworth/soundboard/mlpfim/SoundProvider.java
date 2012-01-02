@@ -351,30 +351,17 @@ public class SoundProvider extends ContentProvider implements CategoryColumns,
 		return true;
 	}
 
-	private synchronized void loadData() {
-		if (loaded)
-			return;
+	private final class SoundProviderInfo {
+		String name;
+		int version;
+		Uri categories;
+		Uri sounds;
+		Uri credits;
+	}
+
+	private ArrayList<SoundProviderInfo> findProviders() {
+		ArrayList<SoundProviderInfo> result = new ArrayList<SoundProviderInfo>();
 		Context context = getContext();
-		SQLiteDatabase db = dbHelper.getWritableDatabase();
-		ContentValues clearPackage = new ContentValues();
-		clearPackage.put(PACKAGE_INSTALLED, false);
-		db.update(SOURCE_TABLE, clearPackage, null, null);
-		packChangeReceiver.clearPackages();
-
-		ContentValues setPackage = new ContentValues();
-		setPackage.put(PACKAGE_INSTALLED, true);
-
-		final class NewProvider {
-			String name;
-			int version;
-			Uri categories;
-			Uri sounds;
-			Uri credits;
-		}
-		ArrayList<NewProvider> newProviders = new ArrayList<NewProvider>();
-
-		SQLiteQueryBuilder sourceQuery = new SQLiteQueryBuilder();
-		sourceQuery.setTables(SOURCE_TABLE);
 		PackageManager packageManager = context.getPackageManager();
 		List<ProviderInfo> providers = packageManager.queryContentProviders(
 				null, 0, PackageManager.GET_META_DATA);
@@ -400,18 +387,40 @@ public class SoundProvider extends ContentProvider implements CategoryColumns,
 						e);
 				continue;
 			}
+			SoundProviderInfo newProvider = new SoundProviderInfo();
+			newProvider.name = name;
+			newProvider.version = version;
+			newProvider.categories = Uri.parse(categories);
+			newProvider.sounds = Uri.parse(sounds);
+			newProvider.credits = Uri.parse(credits);
+			result.add(newProvider);
+		}
+		return result;
+	}
+
+	private synchronized void loadData() {
+		if (loaded)
+			return;
+		SQLiteDatabase db = dbHelper.getWritableDatabase();
+		ContentValues clearPackage = new ContentValues();
+		clearPackage.put(PACKAGE_INSTALLED, false);
+		db.update(SOURCE_TABLE, clearPackage, null, null);
+		packChangeReceiver.clearPackages();
+
+		ContentValues setPackage = new ContentValues();
+		setPackage.put(PACKAGE_INSTALLED, true);
+
+		ArrayList<SoundProviderInfo> newProviders = new ArrayList<SoundProviderInfo>();
+
+		SQLiteQueryBuilder sourceQuery = new SQLiteQueryBuilder();
+		sourceQuery.setTables(SOURCE_TABLE);
+		for (SoundProviderInfo provider : findProviders()) {
 			Cursor sourceCursor = sourceQuery.query(db, null, PACKAGE_NAME
-					+ "=?", new String[] { name }, null, null, null);
+					+ "=?", new String[] { provider.name }, null, null, null);
 			assert sourceCursor.getCount() == 0 || sourceCursor.getCount() == 1;
 			if (sourceCursor.getCount() == 0) {
 				// New pack
-				NewProvider newProvider = new NewProvider();
-				newProvider.name = name;
-				newProvider.version = version;
-				newProvider.categories = Uri.parse(categories);
-				newProvider.sounds = Uri.parse(sounds);
-				newProvider.credits = Uri.parse(credits);
-				newProviders.add(newProvider);
+				newProviders.add(provider);
 			} else {
 				sourceCursor.moveToFirst();
 				int sourceInstalled = sourceCursor.getInt(sourceCursor
@@ -424,22 +433,16 @@ public class SoundProvider extends ContentProvider implements CategoryColumns,
 				int sourceVersion = sourceCursor.getInt(sourceCursor
 						.getColumnIndexOrThrow(PACKAGE_VERSION));
 				// Version is what we already know
-				if (sourceVersion == version) {
+				if (sourceVersion == provider.version) {
 					db.update(SOURCE_TABLE, setPackage, _ID + " =?",
 							new String[] { "" + sourceId });
-					packChangeReceiver.registerPackage(name);
+					packChangeReceiver.registerPackage(provider.name);
 					continue;
 				}
 				// Known source, but new version. Easiest thing is to blow it
 				// away and reimport it.
 				deletePack(db, sourceId);
-				NewProvider newProvider = new NewProvider();
-				newProvider.name = name;
-				newProvider.version = version;
-				newProvider.categories = Uri.parse(categories);
-				newProvider.sounds = Uri.parse(sounds);
-				newProvider.credits = Uri.parse(credits);
-				newProviders.add(newProvider);
+				newProviders.add(provider);
 			}
 		}
 
@@ -451,7 +454,7 @@ public class SoundProvider extends ContentProvider implements CategoryColumns,
 						.getColumnIndexOrThrow(_ID)));
 			} while (goneProviders.moveToNext());
 		}
-		for (NewProvider newProvider : newProviders) {
+		for (SoundProviderInfo newProvider : newProviders) {
 			importPack(db, newProvider.name, newProvider.version,
 					newProvider.categories, newProvider.sounds,
 					newProvider.credits);
