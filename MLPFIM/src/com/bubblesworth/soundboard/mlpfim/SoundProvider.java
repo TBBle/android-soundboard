@@ -11,6 +11,7 @@ import java.util.List;
 
 import android.content.BroadcastReceiver;
 import android.content.ContentProvider;
+import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
@@ -281,7 +282,26 @@ public class SoundProvider extends ContentProvider implements CategoryColumns,
 	@Override
 	public int delete(Uri uri, String selection, String[] selectionArgs) {
 		// TODO: Favourites support
-		return 0;
+		int match = URI_MATCHER.match(uri);
+		switch (match) {
+		// Sneaky force-rescan method
+		case TRACKS:
+			synchronized (this) {
+				loaded = false;
+				ContentResolver resolver = getContext().getContentResolver();
+				for (SoundProviderInfo provider : findProviders()) {
+					resolver.delete(provider.sounds, null, null);
+				}
+				SQLiteDatabase db = dbHelper.getWritableDatabase();
+				db.delete(CATEGORY_TABLE, null, null);
+				db.delete(SOUND_TABLE, null, null);
+				db.delete(CREDIT_TABLE, null, null);
+				db.delete(SOURCE_TABLE, null, null);
+				return 1;
+			}
+		default:
+			return 0;
+		}
 	}
 
 	/*

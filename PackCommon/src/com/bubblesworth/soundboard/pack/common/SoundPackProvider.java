@@ -141,7 +141,21 @@ abstract public class SoundPackProvider extends ContentProvider implements
 	 */
 	@Override
 	public int delete(Uri uri, String selection, String[] selectionArgs) {
-		return 0;
+		int match = uriMatcher.match(uri);
+		switch (match) {
+		// Sneaky force-rescan method
+		case SOUNDS:
+			synchronized (this) {
+				loaded = false;
+				SQLiteDatabase db = dbHelper.getWritableDatabase();
+				db.delete(CATEGORY_TABLE, null, null);
+				db.delete(SOUND_TABLE, null, null);
+				db.delete(CREDIT_TABLE, null, null);
+				return 1;
+			}
+		default:
+			return 0;
+		}
 	}
 
 	/*

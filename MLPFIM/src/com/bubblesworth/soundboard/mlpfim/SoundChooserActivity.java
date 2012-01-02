@@ -202,6 +202,8 @@ public class SoundChooserActivity extends ExpandableListActivity {
 			return onMenuWidgetClick();
 		case R.id.menuContentPacks:
 			return onMenuContentPacksClick();
+		case R.id.menuRescan:
+			return onMenuRescanClick();
 		default:
 			return super.onOptionsItemSelected(item);
 		}
@@ -376,6 +378,12 @@ public class SoundChooserActivity extends ExpandableListActivity {
 					getResources().getText(R.string.toast_no_market),
 					Toast.LENGTH_SHORT).show();
 		}
+		return true;
+	}
+
+	private boolean onMenuRescanClick() {
+		this.getContentResolver().delete(SoundProvider.TRACK_URI, null, null);
+		new GetCategoryCursor().execute();
 		return true;
 	}
 

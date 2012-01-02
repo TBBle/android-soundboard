@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <resources>
     <string name="app_name">MLP FiM Soundboard</string>
     <string name="mime_type_asset">vnd.android.cursor.item/vnd.com.bubblesworth.soundboard.mlpfim.asset</string>
@@ -7,6 +7,7 @@
     <string name="menu_label_widget">AppWidgets</string>
     <string name="menu_label_ringtones">Ringtones</string>
     <string name="menu_label_content_packs">Content Packs</string>
+    <string name="menu_label_rescan">Rescan</string>
     <string name="about_label">About MLP FiM Soundboard</string>
     <string name="dialog_ringtones_help">Long-press on a sound to use it as a ringtone. You can also use the Sound Settings activity, or manage Soundboard Ringtones in the Manager</string>
     <string-array name="dialog_ringtones_help_buttons">
