@@ -222,10 +222,13 @@ public class SoundProvider extends ContentProvider implements CategoryColumns,
 				}
 			}
 			if (refresh) {
-				SoundProvider.this.loaded = false;
-				context.getContentResolver().notifyChange(CATEGORY_URI, null);
-				context.getContentResolver().notifyChange(TRACK_URI, null);
-				context.getContentResolver().notifyChange(CREDIT_URI, null);
+				synchronized (this) {
+					SoundProvider.this.loaded = false;
+					context.getContentResolver().notifyChange(CATEGORY_URI,
+							null);
+					context.getContentResolver().notifyChange(TRACK_URI, null);
+					context.getContentResolver().notifyChange(CREDIT_URI, null);
+				}
 			}
 		}
 	}
@@ -339,7 +342,7 @@ public class SoundProvider extends ContentProvider implements CategoryColumns,
 	 * @see android.content.ContentProvider#onCreate()
 	 */
 	@Override
-	public boolean onCreate() {
+	public synchronized boolean onCreate() {
 		loaded = false;
 		Context context = getContext();
 		packChangeReceiver = new PackChangeReceiver();
@@ -348,7 +351,7 @@ public class SoundProvider extends ContentProvider implements CategoryColumns,
 		return true;
 	}
 
-	private void loadData() {
+	private synchronized void loadData() {
 		if (loaded)
 			return;
 		Context context = getContext();

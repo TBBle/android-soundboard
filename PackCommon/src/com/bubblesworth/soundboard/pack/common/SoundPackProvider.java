@@ -205,7 +205,7 @@ abstract public class SoundPackProvider extends ContentProvider implements
 	 * @see android.content.ContentProvider#onCreate()
 	 */
 	@Override
-	public boolean onCreate() {
+	public synchronized boolean onCreate() {
 		loaded = false;
 		String authority = getAuthority();
 		uriMatcher.addURI(authority, "sounds", SOUNDS);
@@ -233,7 +233,7 @@ abstract public class SoundPackProvider extends ContentProvider implements
 		return true;
 	}
 
-	private void loadData() {
+	private synchronized void loadData() {
 		if (loaded)
 			return;
 		// Do we already have a populated database?
