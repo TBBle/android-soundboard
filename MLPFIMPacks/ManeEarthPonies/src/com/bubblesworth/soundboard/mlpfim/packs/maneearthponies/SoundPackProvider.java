@@ -22,7 +22,17 @@ public class SoundPackProvider extends
 	}
 
 	@Override
+	protected int getSoundsCount() {
+		return 67;
+	}
+
+	@Override
 	protected int getCreditsResource() {
 		return R.xml.credits;
+	}
+
+	@Override
+	protected int getCreditsCount() {
+		return 3;
 	}
 }

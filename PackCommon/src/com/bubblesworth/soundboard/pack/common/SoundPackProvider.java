@@ -38,7 +38,11 @@ abstract public class SoundPackProvider extends ContentProvider implements
 
 	abstract protected int getSoundsResource();
 
+	abstract protected int getSoundsCount();
+
 	abstract protected int getCreditsResource();
+
+	abstract protected int getCreditsCount();
 
 	private static final String TAG = "SoundPackProvider";
 
@@ -241,9 +245,19 @@ abstract public class SoundPackProvider extends ContentProvider implements
 		qb.setTables(SOUND_TABLE);
 		SQLiteDatabase db = dbHelper.getReadableDatabase();
 		Cursor c = qb.query(db, null, null, null, null, null, null);
-		if (c.getCount() != 0) {
+		int soundsCount = c.getCount();
+		qb.setTables(CREDIT_TABLE);
+		c = qb.query(db, null, null, null, null, null, null);
+		int creditsCount = c.getCount();
+		if (soundsCount == this.getSoundsCount()
+				&& creditsCount == this.getCreditsCount()) {
 			loaded = true;
 			return;
+		}
+
+		if (soundsCount != 0 || creditsCount != 0) {
+			Log.e(TAG, "Found " + soundsCount + " sounds and " + creditsCount
+					+ " credits in the expected-to-be-empty database.");
 		}
 
 		db = dbHelper.getWritableDatabase();
@@ -270,6 +284,7 @@ abstract public class SoundPackProvider extends ContentProvider implements
 	private boolean loadCredits(int creditsResource) {
 		if (creditsResource == 0)
 			return true;
+		int count = 0;
 		Resources resources = getContext().getResources();
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
 		// Load our credits.xml definition file
@@ -304,6 +319,7 @@ abstract public class SoundPackProvider extends ContentProvider implements
 				creditValues.put(CREDIT_NAME, creditName);
 				creditValues.put(CREDIT_LINK, creditUri);
 				db.insertOrThrow(CREDIT_TABLE, null, creditValues);
+				count++;
 			}
 		} catch (XmlPullParserException e) {
 			Log.e(TAG,
@@ -317,12 +333,19 @@ abstract public class SoundPackProvider extends ContentProvider implements
 			creditParser.close();
 			creditParser = null;
 		}
+		if (count != this.getCreditsCount()) {
+			Log.e(TAG,
+					"Only read " + count + " credits, expecting "
+							+ this.getCreditsCount());
+			return false;
+		}
 		return true;
 	}
 
 	private boolean loadSounds(int soundsResource) {
 		if (soundsResource == 0)
 			return true;
+		int count = 0;
 		Resources resources = getContext().getResources();
 
 		// Load our sounds.xml definition file.
@@ -354,7 +377,7 @@ abstract public class SoundPackProvider extends ContentProvider implements
 				soundParser.nextTag();
 
 				try {
-					loadCategory(baseDir, categoryId, categoryValue);
+					count += loadCategory(baseDir, categoryId, categoryValue);
 				} catch (Exception e) {
 					// Log.e called later with this new exception doesn't
 					// output the stacktrace from the chained exception.
@@ -384,12 +407,19 @@ abstract public class SoundPackProvider extends ContentProvider implements
 			soundParser.close();
 			soundParser = null;
 		}
+		if (count != this.getSoundsCount()) {
+			Log.e(TAG,
+					"Only read " + count + " sounds, expecting "
+							+ this.getCreditsCount());
+			return false;
+		}
 		return true;
 	}
 
 	// Bubble any exceptions to our caller...
-	private void loadCategory(String baseDir, String categoryId,
+	private int loadCategory(String baseDir, String categoryId,
 			int categoryValue) throws Exception {
+		int count = 0;
 		AssetManager assets = getContext().getAssets();
 		Resources resources = getContext().getResources();
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -470,6 +500,7 @@ abstract public class SoundPackProvider extends ContentProvider implements
 				long soundDbId = db.insertOrThrow(SOUND_TABLE, null,
 						soundValues);
 				assert soundDbId == soundFullValue;
+				count++;
 
 				catParser.require(XmlResourceParser.END_TAG, null, "sound");
 				eventType = catParser.next();
@@ -480,6 +511,7 @@ abstract public class SoundPackProvider extends ContentProvider implements
 			catParser.close();
 			catParser = null;
 		}
+		return count;
 	}
 
 	/*

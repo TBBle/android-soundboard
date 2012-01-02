@@ -16,8 +16,17 @@ public class CreditsProvider extends SoundPackProvider {
 	}
 
 	@Override
+	protected int getSoundsCount() {
+		return 0;
+	}
+
+	@Override
 	protected int getCreditsResource() {
 		return R.xml.credits;
 	}
 
+	@Override
+	protected int getCreditsCount() {
+		return 7;
+	}
 }
