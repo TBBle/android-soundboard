@@ -24,4 +24,7 @@
 	<sound src="snap out of it" value="190">Snap out of it!</sound>
 	<sound src="this won't end well" value="200">This won't end well</sound>
 	<sound src="yeah, im a sweet talker" value="210">I'm a sweet-talker</sound>
+	<sound src="not likely but possible" value="220">Not likely... but possible?</sound>
+	<sound src="say that 10 times fast" value="230">Say that ten times fast</sound>
+	<sound src="who else has a present for spikey-wikey" value="240">A present for Spikey-Wikey</sound>
 </category>

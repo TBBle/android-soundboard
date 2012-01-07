@@ -34,4 +34,6 @@
 	<sound src="okay" value="290">Okay</sound>
 	<sound src="that big dumb meanie" value="300">Big dumb meanie!</sound>
 	<sound src="your face" value="310">Your face!</sound>
+	<sound src="i bet you can't beat me" value="320">I bet you can't beat me</sound>
+	<sound src="were we arguing i'm sorry" value="330">Were we arguing?</sound>
 </category>

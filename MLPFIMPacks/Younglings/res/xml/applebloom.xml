@@ -15,4 +15,6 @@
 	<sound id="ofitsmisery" src="out of its misery" value="100">Out of its misery</sound>
 	<sound id="trustme" src="trust me" value="110">Trust me</sound>
 	<sound id="victoryfulatsomething" src="victoryful at something" value="120">Victoryful at something</sound>
+	<sound src="burp" value="130">(burp)</sound>
+	<sound src="that'll be 4 bits" value="140">That'll be four bits</sound>
 </category>

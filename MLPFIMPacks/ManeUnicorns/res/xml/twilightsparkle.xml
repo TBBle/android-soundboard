@@ -43,4 +43,6 @@
 	<sound src="very efficient and gross" value="380">Very efficient</sound>
 	<sound src="what have i done" value="390">What have I done?</sound>
 	<sound src="you're yelling at me" value="400">You're yelling at me</sound>
+	<sound src="sounds like you've got a letter to write to princess celestia" value="410">A letter to write</sound>
+	<sound src="very smart" value="420">Very smart</sound>
 </category>

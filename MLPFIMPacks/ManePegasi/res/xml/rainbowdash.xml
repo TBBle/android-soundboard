@@ -30,4 +30,9 @@
 	<sound id="youwannadothisthehardway" src="you wanna do this the hard way" value="190">Wanna do this the hard way?</sound>
 	<sound src="im staying here in cloudsdale" value="260">Staying in Cloudsdale</sound>
 	<sound src="what are you talking about" value="270">What are you talking about?</sound>
+	<sound src="danger is my middle name" value="280">Danger's my middle name</sound>
+	<sound src="for you own safety" value="290">For your own safety...</sound>
+	<sound src="gesundheit" value="300">Gesundheit</sound>
+	<sound src="pause for dramatic effect" value="310">For dramatic effect</sound>
+	<sound src="where is an out-of-control vehicle when you need one" value="320">An out-of-control vehicle</sound>
 </category>

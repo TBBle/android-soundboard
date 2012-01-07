@@ -38,4 +38,10 @@
 	<sound src="mine" value="330">Mine!</sound>
 	<sound src="of all the worst things" value="340">Of all the worst things!</sound>
 	<sound src="what a drama queen" value="350">What a drama queen</sound>
+	<sound src="as celestia is my witness" value="360">Celestia is my witness</sound>
+	<sound src="i didn't know you could burn juice" value="370">Burn juice?</sound>
+	<sound src="is that princess celestia" value="380">Princess Celestia?</sound>
+	<sound src="never fear my dear" value="390">Never fear, my dear</sound>
+	<sound src="now when you say a week is that 7 whole days" value="400">Seven whole days?</sound>
+	<sound src="why do you have to be so good and make me look so bad" value="410">Make me look so bad?</sound>
 </category>

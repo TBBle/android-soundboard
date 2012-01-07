@@ -39,4 +39,8 @@
 	<sound src="time is candy" value="340">Time is candy</sound>
 	<sound src="too old for free candy" value="350">Too old for free candy?</sound>
 	<sound src="well duh" value="360">Well, duh</sound>
+	<sound src="happy birthday" value="370">Happy Birthday</sound>
+	<sound src="i never leave home without my party cannon" value="380">Party cannon! Tada!</sound>
+	<sound src="somepony do something" value="390">Somepony do something!</sound>
+	<sound src="you may be right, silly" value="400">You may be right, Silly</sound>
 </category>

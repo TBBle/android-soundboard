@@ -14,4 +14,10 @@
 	<sound src="im listening" value="90">I'm listening</sound>
 	<sound src="looks like you all learned" value="100">A pretty valuable lesson</sound>
 	<sound src="meet me in the library" value="110">Meet me in the library</sound>
+	<sound src="are you not happy that your quest is complete" value="120">Are you not happy?</sound>
+	<sound src="nothing means more to me than the well being of all my subjects" value="130">Nothing means more to me</sound>
+	<sound src="rather melodramatic, if you ask me" value="140">Rather melodramatic</sound>
+	<sound src="the fate of equestria is in your hooves" value="150">The fate of Equestria</sound>
+	<sound src="what is going on here" value="160">What is going on here?</sound>
+	<sound src="you are a wonderful student" value="170">A wonderful student</sound>
 </category>

@@ -34,4 +34,8 @@
 	<sound src="i'd take cover if i were you" value="290">I'd take cover</sound>
 	<sound src="loosen up a bit" value="300">Have some fun</sound>
 	<sound src="worked up over nothing" value="310">Getting all worked up over nothing</sound>
+	<sound src="get my rope" value="320">Get my rope</sound>
+	<sound src="i think we're gettin off-topic here" value="330">We're gettin' off-topic</sound>
+	<sound src="nah, you just eat'em" value="340">Just eat 'em</sound>
+	<sound src="that's just stinkin thinkin" value="350">Stinkin' thinkin'</sound>
 </category>
