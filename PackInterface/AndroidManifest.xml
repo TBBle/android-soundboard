@@ -3,9 +3,4 @@
       package="com.bubblesworth.soundboard.pack"
       android:versionName="016" android:versionCode="16">
     <uses-sdk android:minSdkVersion="7" />
-
-    <application>
-
-
-    </application>
 </manifest>
