@@ -155,34 +155,34 @@ abstract public class SoundPackProvider extends ContentProvider implements
 		switch (match) {
 		case SOUNDS:
 			return getContext().getResources().getString(
-					com.bubblesworth.soundboard.pack.R.string.mime_type_tracks);
+					R.string.mime_type_tracks);
 		case SOUNDS_ID:
 			return getContext().getResources().getString(
-					com.bubblesworth.soundboard.pack.R.string.mime_type_track);
+					R.string.mime_type_track);
 		case ASSETS_ID:
 			return getContext().getResources().getString(
-					com.bubblesworth.soundboard.pack.R.string.mime_type_asset);
+					R.string.mime_type_asset);
 		case ICONS_ID:
 			return getContext().getResources().getString(
-					com.bubblesworth.soundboard.pack.R.string.mime_type_icon);
+					R.string.mime_type_icon);
 		case CATEGORIES:
 			return getContext()
 					.getResources()
 					.getString(
-							com.bubblesworth.soundboard.pack.R.string.mime_type_categories);
+							R.string.mime_type_categories);
 		case CATEGORIES_ID:
 			return getContext()
 					.getResources()
 					.getString(
-							com.bubblesworth.soundboard.pack.R.string.mime_type_category);
+							R.string.mime_type_category);
 		case CREDITS:
 			return getContext()
 					.getResources()
 					.getString(
-							com.bubblesworth.soundboard.pack.R.string.mime_type_credits);
+							R.string.mime_type_credits);
 		case CREDITS_ID:
 			return getContext().getResources().getString(
-					com.bubblesworth.soundboard.pack.R.string.mime_type_credit);
+					R.string.mime_type_credit);
 		default:
 			return null;
 		}
