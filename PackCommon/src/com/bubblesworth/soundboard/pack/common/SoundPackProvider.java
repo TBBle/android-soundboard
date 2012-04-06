@@ -242,9 +242,11 @@ abstract public class SoundPackProvider extends ContentProvider implements
 		SQLiteDatabase db = dbHelper.getReadableDatabase();
 		Cursor c = qb.query(db, null, null, null, null, null, null);
 		if (c.getCount() != 0) {
+			c.close();
 			loaded = true;
 			return;
 		}
+		c.close();
 
 		db = dbHelper.getWritableDatabase();
 
@@ -595,8 +597,12 @@ abstract public class SoundPackProvider extends ContentProvider implements
 			c = qb.query(db, new String[] { column }, null, null, null, null,
 					null);
 			if (!c.moveToFirst())
+			{
+				c.close();
 				throw new FileNotFoundException();
+			}
 			String path = c.getString(c.getColumnIndexOrThrow(column));
+			c.close();
 			try {
 				return getContext().getAssets().openFd(path);
 			} catch (IOException e) {
@@ -608,8 +614,12 @@ abstract public class SoundPackProvider extends ContentProvider implements
 			c = qb.query(db, new String[] { column }, null, null, null, null,
 					null);
 			if (!c.moveToFirst())
+			{
+				c.close();
 				throw new FileNotFoundException();
+			}
 			int iconResId = c.getInt(c.getColumnIndexOrThrow(column));
+			c.close();
 			return getContext().getResources().openRawResourceFd(iconResId);
 		default:
 			throw new FileNotFoundException();
