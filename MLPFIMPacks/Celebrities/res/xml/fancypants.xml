@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<category id="fancypants" src="Fancypants">
+	<description>
+		Fancy Pants
+	</description>
+	<sound src="eh yes now then" value="10">Eh, yes...</sound>
+	<sound src="excuse me might i ask where you got your ensemble" value="20">Where you got your ensemble?</sound>
+	<sound src="how about you introduce me to your friends" value="30">Introduce me to your friends</sound>
+	<sound src="i dare say everymare in canterlot will be wanting one" value="40">Every mare in Canterlot</sound>
+	<sound src="i say thats one way to make an introduction" value="50">One way to make an introduction</sound>
+	<sound src="jolly good to see you" value="60">Jolly good to see you</sound>
+	<sound src="ponyville you dont say" value="70">Ponyville...</sound>
+	<sound src="you are obviously some pony worth bumping into" value="80">Worth bumping into</sound>
+	<sound src="you know the princess" value="90">You know the princess?</sound>
+</category>

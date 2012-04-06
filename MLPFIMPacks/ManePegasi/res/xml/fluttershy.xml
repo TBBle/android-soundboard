@@ -36,4 +36,12 @@
 	<sound src="your face" value="310">Your face!</sound>
 	<sound src="i bet you can't beat me" value="320">I bet you can't beat me</sound>
 	<sound src="were we arguing i'm sorry" value="330">Were we arguing?</sound>
+	<sound src="for the record i dont mind" value="340">For the record...</sound>
+	<sound src="i know youll just love them and thell love you.." value="350">I know you'll love them...</sound>
+	<sound src="i love your new style" value="360">I love your new style</sound>
+	<sound src="i vote for calm" value="370">I vote for calm</sound>
+	<sound src="if you dont come back we never be able to fix the hole in our hearts" value="380">If you don't come back...</sound>
+	<sound src="oh, what a lovely compliment" value="390">A lovely compliment</sound>
+	<sound src="whats the rush" value="400">What's the rush?</sound>
+	<sound src="you startled me" value="410">You startled me</sound>
 </category>

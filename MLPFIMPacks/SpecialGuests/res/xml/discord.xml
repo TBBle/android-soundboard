@@ -12,4 +12,7 @@
 	<sound id="maybethemagicotfriendshipcanhelp you" src="maybe the magic ot friendship can help you" value="70">Maybe the magic of friendship?</sound>
 	<sound id="ughgag" src="ugh gag" value="80">Ugh, gag!</sound>
 	<sound id="whatfunisthereinmakingsense" src="what fun is there in making sense" value="90">What fun is there in making sense?</sound>
+	<sound src="arrivederci" value="100">Arrivederci</sound>
+	<sound src="oh, for goodness sake" value="110">For goodness' sake!</sound>
+	<sound src="when all the truth does is make your heart ache sometimes a lie is easier to take" value="120">Sometimes a lie is easier to take</sound>
 </category>

@@ -19,5 +19,4 @@ local.properties
 *.swp
 
 # Assets which we don't want to commit
-/MLPFIMPacks/*/assets/pony sounds v7.0
-/MLPFIMPacks/*/assets/pony sounds v7.1
+/MLPFIMPacks/*/assets/kyrospawn

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sounds src="pony sounds v7.0">
+<sounds src="kyrospawn">
 	<category id="bigmacintosh"		value= "30"/>
 	<category id="braeburn"			value= "40"/>
 	<category id="carrottop"		value= "50"/>
@@ -12,4 +12,6 @@
 	<category id="zecora"			value="270"/>
 	<category id="discord"			value="320"/>
 	<category id="bonbon"			value="340"/>
+	<category id="cheerilee"		value="370"/>
+	<category id="grannysmith"		value="380"/>
 </sounds>

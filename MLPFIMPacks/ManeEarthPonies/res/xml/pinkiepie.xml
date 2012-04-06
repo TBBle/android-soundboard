@@ -43,4 +43,10 @@
 	<sound src="i never leave home without my party cannon" value="380">Party cannon! Tada!</sound>
 	<sound src="somepony do something" value="390">Somepony do something!</sound>
 	<sound src="you may be right, silly" value="400">You may be right, Silly</sound>
+	<sound src="can you think inside a chimney" value="410">Think inside a chimney?</sound>
+	<sound src="it was a moment in time that will never exist again" value="420">A moment in time</sound>
+	<sound src="nopony breaks a pinkie promise" value="430">Nopony breaks a Pinkie Promise</sound>
+	<sound src="rimshot" value="440">(Rimshot)</sound>
+	<sound src="you can call me pinkie all of my friends do" value="450">You can call me Pinkie...</sound>
+	<sound src="you pinkie promised" value="460">You Pinkie Promised!</sound>
 </category>

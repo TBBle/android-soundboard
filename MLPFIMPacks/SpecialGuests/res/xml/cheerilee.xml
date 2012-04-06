@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<category id="cheerilee" src="Cheerilee">
+	<description>
+		Cheerilee
+	</description>
+	<sound src="break a leg" value="10">Break a leg</sound>
+	<sound src="i wish i had something to give you" value="20">Something to give you</sound>
+	<sound src="my flank was blank" value="30">My flank was blank</sound>
+	<sound src="that's how everypony was wearing their mane back then" value="40">Wearing their mane back then</sound>
+	<sound src="what's got you so excited" value="50">What's got you so excited?</sound>
+</category>

@@ -38,4 +38,6 @@
 	<sound src="i think we're gettin off-topic here" value="330">We're gettin' off-topic</sound>
 	<sound src="nah, you just eat'em" value="340">Just eat 'em</sound>
 	<sound src="that's just stinkin thinkin" value="350">Stinkin' thinkin'</sound>
+	<sound src="i didnt learn anything i was right all along" value="360">I was right all along</sound>
+	<sound src="is that a challenge" value="370">A challenge?</sound>
 </category>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<category id="fleur" src="Fleur">
+	<description>
+		Fleur-De-Lis
+	</description>
+	<sound src="a pony with expensive taste i see" value="10">Expensive taste I see</sound>
+</category>

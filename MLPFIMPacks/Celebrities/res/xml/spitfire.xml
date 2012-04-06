@@ -5,4 +5,6 @@
 	</description>
 	<sound id="heyiknowyou" src="hey, i know you" value="10">Hey, I know you</sound>
 	<sound id="lookslikeyourskillssavedusagain" src="looks like your skills saved us again" value="20">Saved us again</sound>
+	<sound src="always hungry after a show" value="30">After a show</sound>
+	<sound src="wanna come hang out with us" value="40">Wanna come hang out?</sound>
 </category>

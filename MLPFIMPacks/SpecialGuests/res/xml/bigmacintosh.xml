@@ -8,4 +8,6 @@
 	<sound id="morethanyoucanchew" src="more than you can chew" value="20">More than you can chew</sound>
 	<sound id="tobigtohandle" src="to big to handle" value="40">Too big for you</sound>
 	<sound src="nnope" value="50">Nope</sound>
+	<sound src="no deal" value="60">No deal</sound>
+	<sound src="shmoopy doo" value="70">Shmoopy doo!</sound>
 </category>

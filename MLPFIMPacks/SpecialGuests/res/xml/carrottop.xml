@@ -4,4 +4,5 @@
 		Carrot Top
 	</description>
 	<sound id="wecouldnfititallin" src="we couldn' fit it all in" value="10">Couldn't fit it all in</sound>
+	<sound src="well i never" value="20">Well, I never!</sound>
 </category>

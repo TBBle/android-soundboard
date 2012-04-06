@@ -21,7 +21,7 @@
 	<sound id="mylifeisruined" src="my life is ruined" value="120">My life is ruined</sound>
 	<sound id="notcool" src="not cool" value="240">Not cool</sound>
 	<sound id="omgomgomg" src="omgomgomg" value="130">OMG OMG OMG</sound>
-	<sound id="pinkieusorandom" src="pinkie u so random" value="140">Pinkie, you're so random</sound>
+	<sound id="pinkieusorandom" src="you are so random" value="140">You are so random</sound>
 	<sound id="soundslikesourapplestome" src="sounds like sour apples to me" value="150">Sounds like sour apples to me</sound>
 	<sound id="timetotakeouttheadorabletrash" src="time to take out the adorable trash" value="160">Time to take out the...</sound>
 	<sound id="whatdoyouhaveinmind" src="what do you have in mind" value="170">What do you have in mind?</sound>
@@ -35,4 +35,14 @@
 	<sound src="gesundheit" value="300">Gesundheit</sound>
 	<sound src="pause for dramatic effect" value="310">For dramatic effect</sound>
 	<sound src="where is an out-of-control vehicle when you need one" value="320">An out-of-control vehicle</sound>
+	<sound src="Derpy" value="330">Derpy</sound>
+	<sound src="darn it now you got me acting all sappy" value="340">Acting all sappy</sound>
+	<sound src="dundundun" value="350">Dun dun dunnn!</sound>
+	<sound src="how would you like to be immortalized as my friend" value="360">Immortalised as my friend?</sound>
+	<sound src="im an egghead" value="370">I'm an egghead</sound>
+	<sound src="is this some kind of cruel joke" value="380">Some kind of cruel joke?</sound>
+	<sound src="kazaam" value="390">Kazaam!</sound>
+	<sound src="never fear your friendly neighborhood rainbow dash is here" value="400">Never fear!</sound>
+	<sound src="that's it i'm outta here" value="410">I'm outta here</sound>
+	<sound src="this is way to boring for me" value="420">Way too boring</sound>
 </category>

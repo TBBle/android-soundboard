@@ -27,4 +27,9 @@
 	<sound src="not likely but possible" value="220">Not likely... but possible?</sound>
 	<sound src="say that 10 times fast" value="230">Say that ten times fast</sound>
 	<sound src="who else has a present for spikey-wikey" value="240">A present for Spikey-Wikey</sound>
+	<sound src="gosh you really like it huh" value="250">You really like it?</sound>
+	<sound src="i wish this party could last forever" value="260">This party could last forever</sound>
+	<sound src="spike want" value="270">Spike want!</sound>
+	<sound src="way to go little guy" value="280">Way to go, little guy</sound>
+	<sound src="yeah just look at me" value="290">Just look at me!</sound>
 </category>

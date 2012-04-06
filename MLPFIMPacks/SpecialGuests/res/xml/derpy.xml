@@ -4,4 +4,10 @@
 		Derpy Hooves
 	</description>
 	<sound id="muffin" src="muffin" value="10">Muffin</sound>
+	<sound src="anything i can do to help" value="20">Anything I can do?</sound>
+	<sound src="i just dont know what went wrong" value="30">I just don't know...</sound>
+	<sound src="nice work" value="40">Nice work</sound>
+	<sound src="oops my bad" value="50">Oops</sound>
+	<sound src="yeah applejack woohoo" value="60">Yeah, Applejack</sound>
+	<sound src="you are okay rainbow dash" value="70">You okay?</sound>
 </category>

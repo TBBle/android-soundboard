@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sounds src="pony sounds v7.1">
+<sounds src="kyrospawn">
 	<category id="nightmaremoon"	value="120"/>
 	<category id="photofinish"		value="140"/>
 	<category id="princeblueblood"	value="280"/>
@@ -9,4 +9,6 @@
 	<category id="soarin"			value="300"/>
 	<category id="spitfire"			value="310"/>
 	<category id="trixie"			value="250"/>
+	<category id="fancypants"		value="350"/>
+	<category id="fleur"			value="360"/>
 </sounds>

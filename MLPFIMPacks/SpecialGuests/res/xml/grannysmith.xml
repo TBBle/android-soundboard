@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<category id="grannysmith" src="Granny Smith">
+	<description>
+		Granny Smith
+	</description>
+	<sound src="court-martialed" value="10">Court-martialed!</sound>
+	<sound src="i should have been asleep five hours ago" value="20">I should have been asleep...</sound>
+	<sound src="i wouldnt miss it for all the tea in canterlot" value="30">For all the tea in Canterlot</sound>
+	<sound src="is this thing on i dont think this thing is on" value="40">Is this thing on?</sound>
+	<sound src="military speech" value="50">Now listen here troops!</sound>
+	<sound src="now it aint about the speed youngun its about quality" value="60">It ain't about the speed...</sound>
+	<sound src="oh ponyfeathers bet id forget my mane if it wasnt attached to my head" value="70">I'd forget my mane...</sound>
+	<sound src="thats what i said" value="80">That's what I said</sound>
+	<sound src="what did you call me sonny" value="90">What did you call me?</sound>
+</category>

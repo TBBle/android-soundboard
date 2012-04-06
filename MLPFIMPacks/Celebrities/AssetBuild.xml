@@ -24,6 +24,10 @@
 		<globmapper handledirsep="true" from="prince_blueblood_by_peachspices-d3rh86i.png" to="cat_princeblueblood.png"/>
 		<globmapper handledirsep="true" from="mlp_user_icons_vol__2_by_shelltoontv-d3h2go1/soarin1.png" to="cat_soarin.png"/>
 		<globmapper handledirsep="true" from="mlp_user_icons_vol__2_by_shelltoontv-d3h2go1/spitfire1.png" to="cat_spitfire.png"/>
+		<!-- This one's under Creative Commons Attribution-Noncommercial-Share Alike 3.0 License -->
+		<globmapper handledirsep="true" from="fleur_de_lis_vector_by_romansiii-d4u37c9.png" to="cat_fleur.png"/>
+		<!-- This one's under Creative Commons Attribution-Noncommercial-Share Alike 3.0 License -->
+		<globmapper handledirsep="true" from="fancy_pants_by_rildraw-d4v4kv8.png" to="cat_fancypants.png"/>
 	</firstmatchmapper>
 
 	<firstmatchmapper id="caticons-srccrop">
@@ -32,6 +36,8 @@
 		<globmapper handledirsep="true" from="happy_luna_by_blackm3sh-d3jowkk.png" to="692x692+184+322"/>
 		<globmapper handledirsep="true" from="nightmare_moon___no_hair_by_moongazeponies-d3jw389.png" to="1300x1300+508+320"/>
 		<globmapper handledirsep="true" from="prince_blueblood_by_peachspices-d3rh86i.png" to="5328x5328+5200+336"/>
+		<globmapper handledirsep="true" from="fleur_de_lis_vector_by_romansiii-d4u37c9.png" to="3619x3619+4345+77"/>
+		<globmapper handledirsep="true" from="fancy_pants_by_rildraw-d4v4kv8.png" to="1568x1568+310+81"/>
 	</firstmatchmapper>
 
 	<fileset id="assets" dir="../../../SrcAssets/MLPFIM" />

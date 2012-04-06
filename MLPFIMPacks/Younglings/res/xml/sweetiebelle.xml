@@ -18,4 +18,5 @@
 	<sound src="thats not a word" value="130">That's not a word</sound>
 	<sound src="i'm so bored" value="140">So bored</sound>
 	<sound src="it's not that burnt" value="150">Not that burnt</sound>
+	<sound src="oh come on" value="160">Oh, come on!</sound>
 </category>
