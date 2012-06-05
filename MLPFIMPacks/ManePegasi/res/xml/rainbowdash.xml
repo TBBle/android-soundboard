@@ -45,4 +45,5 @@
 	<sound src="never fear your friendly neighborhood rainbow dash is here" value="400">Never fear!</sound>
 	<sound src="that's it i'm outta here" value="410">I'm outta here</sound>
 	<sound src="this is way to boring for me" value="420">Way too boring</sound>
+	<sound src="i dont like ponies touching my hooves" value="430">Touching my hoofs</sound>
 </category>

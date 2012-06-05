@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<category id="ironwill" src="Iron Will">
+	<description>
+		Iron Will
+	</description>
+	<sound src="iron wills my name" value="10">Iron Will's my name</sound>
+	<sound src="when somepony tries to block" value="20">Somepony tries to block</sound>
+</category>

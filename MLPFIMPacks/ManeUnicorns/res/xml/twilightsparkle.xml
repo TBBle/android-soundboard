@@ -45,4 +45,7 @@
 	<sound src="you're yelling at me" value="400">You're yelling at me</sound>
 	<sound src="sounds like you've got a letter to write to princess celestia" value="410">A letter to write</sound>
 	<sound src="very smart" value="420">Very smart</sound>
+	<sound src="for them for me for equestria" value="430">For Equestria</sound>
+	<sound src="shes evil" value="440">She's evil</sound>
+	<sound src="sunshine sunshine" value="450">Sunshine sunshine...</sound>
 </category>

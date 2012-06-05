@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<category id="lyra" src="Lyra">
+	<description>
+		Lyra Heartstrings
+	</description>
+	<sound src="i love them" value="10">I love them</sound>
+</category>

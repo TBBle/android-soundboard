@@ -44,4 +44,5 @@
 	<sound src="oh, what a lovely compliment" value="390">A lovely compliment</sound>
 	<sound src="whats the rush" value="400">What's the rush?</sound>
 	<sound src="you startled me" value="410">You startled me</sound>
+	<sound src="i said no" value="420">I said no!</sound>
 </category>

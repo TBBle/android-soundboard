@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<category id="flimflam" src="Flim Flam brothers">
+	<description>
+		Flim and Flam
+	</description>
+	<sound src="2 bits for a barrel" value="10">Two bits for the barrel?</sound>
+	<sound src="dont you worry everypony there will be plenty of cider for all of you" value="20">Plenty of cider</sound>
+	<sound src="lets put it to the test" value="30">Put it to the test</sound>
+	<sound src="look at these poor dissatisfied ponies" value="40">Dissatisfied ponies</sound>
+	<sound src="we split those sweet sweet profits" value="50">Sweet profits</sound>
+</category>

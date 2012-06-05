@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<category id="queenchrysalis" src="Queen Chrysalis">
+	<description>
+		Queen Chrysalis
+	</description>
+	<sound src="as queen of the changlings" value="10">Food for my subjects</sound>
+	<sound src="consuming it has made me even more powerful than celestia" value="20">More powerful than Celestia</sound>
+	<sound src="first we take canterlot and then all of equestria" value="30">First we take Canterlot</sound>
+	<sound src="giggle" value="40">*giggle*</sound>
+	<sound src="its all over" value="50">It's all over</sound>
+	<sound src="what a lovely but absolutely ridiculous sentiment" value="60">Ridiculous sentiment</sound>
+	<sound src="you can run but you cant hide" value="70">You can't hide</sound>
+	<sound src="you do realize the receptions been canceld dont you" value="80">Reception's been cancelled</sound>
+	<sound src="you were saying" value="90">You were saying?</sound>
+</category>

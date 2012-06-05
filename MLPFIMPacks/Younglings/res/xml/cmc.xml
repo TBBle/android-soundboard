@@ -4,4 +4,5 @@
 		Cutie Mark Crusaders
 	</description>
 	<sound id="cmcsyay" src="cmcs, yay" value="10">Cutie Mark Crusaders, yay</sound>
+	<sound src="cmc sleepover" value="20">Cutie Mark Crusaders sleepover</sound>
 </category>

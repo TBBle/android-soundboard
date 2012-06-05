@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<category id="snowflake" src="Snowflake">
+	<description>
+		Snowflake
+	</description>
+	<sound src="yeah" value="10">Yeah!</sound>
+</category>

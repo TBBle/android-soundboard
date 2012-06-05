@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<category id="gustave" src="Gustave">
+	<description>
+		Gustave LeGrand
+	</description>
+	<sound src="le champion" value="10">Le champion</sound>
+	<sound src="this is not so" value="20">This is not so</sound>
+	<sound src="tres manifique" value="30">Très magnifique</sound>
+</category>

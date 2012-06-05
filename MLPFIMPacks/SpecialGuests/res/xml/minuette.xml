@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<category id="minuette" src="Colgate">
+	<description>
+		Minuette
+	</description>
+	<sound src="me too" value="10">Me too</sound>
+</category>

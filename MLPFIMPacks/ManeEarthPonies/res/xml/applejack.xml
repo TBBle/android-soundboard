@@ -40,4 +40,8 @@
 	<sound src="that's just stinkin thinkin" value="350">Stinkin' thinkin'</sound>
 	<sound src="i didnt learn anything i was right all along" value="360">I was right all along</sound>
 	<sound src="is that a challenge" value="370">A challenge?</sound>
+	<sound src="chocolate milk" value="380">Chocolate milk</sound>
+	<sound src="im the getalonginist pony yer ever gonna meet" value="390">Getalong'nist pony</sound>
+	<sound src="nope" value="400">Nope</sound>
+	<sound src="yup" value="410">Yup</sound>
 </category>

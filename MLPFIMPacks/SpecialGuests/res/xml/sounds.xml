@@ -14,4 +14,7 @@
 	<category id="bonbon"			value="340"/>
 	<category id="cheerilee"		value="370"/>
 	<category id="grannysmith"		value="380"/>
+	<category id="lyra"				value="430"/>
+	<category id="minuette"			value="440"/>
+	<category id="snowflake"		value="450"/>
 </sounds>

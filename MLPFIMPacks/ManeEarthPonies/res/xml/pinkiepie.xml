@@ -49,4 +49,5 @@
 	<sound src="rimshot" value="440">(Rimshot)</sound>
 	<sound src="you can call me pinkie all of my friends do" value="450">You can call me Pinkie...</sound>
 	<sound src="you pinkie promised" value="460">You Pinkie Promised!</sound>
+	<sound src="its true i do have a problem" value="470">I do have a problem</sound>
 </category>

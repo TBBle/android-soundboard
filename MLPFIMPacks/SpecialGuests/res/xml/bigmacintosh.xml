@@ -10,4 +10,5 @@
 	<sound src="nnope" value="50">Nope</sound>
 	<sound src="no deal" value="60">No deal</sound>
 	<sound src="shmoopy doo" value="70">Shmoopy doo!</sound>
+	<sound src="go away" value="80">Go away!</sound>
 </category>

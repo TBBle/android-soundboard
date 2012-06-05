@@ -6,4 +6,6 @@
 	<sound src="and you are" value="10">And you are?</sound>
 	<sound src="i didnt put those in my bag" value="20">I didn't put those in my bag</sound>
 	<sound src="that incredible amazing doll" value="30">Amazing doll</sound>
+	<sound src="mines got rocks in it" value="40">Rocks in it</sound>
+	<sound src="try one of your jokes" value="50">Try one of your jokes</sound>
 </category>

@@ -28,6 +28,12 @@
 		<globmapper handledirsep="true" from="fleur_de_lis_vector_by_romansiii-d4u37c9.png" to="cat_fleur.png"/>
 		<!-- This one's under Creative Commons Attribution-Noncommercial-Share Alike 3.0 License -->
 		<globmapper handledirsep="true" from="fancy_pants_by_rildraw-d4v4kv8.png" to="cat_fancypants.png"/>
+		<!-- This one just says "YES - you are allowed to use it if you credit me!" -->
+		<globmapper handledirsep="true" from="the_world_famous_flim_flam_brothers_by_catnipfairy-d4ofsrc.png" to="cat_flimflam.png"/>
+		<!-- This one's under Creative Commons Attribution-Noncommercial-Share Alike 3.0 License -->
+		<globmapper handledirsep="true" from="gustave___le_griffon_francais__the_french_griffin__by_linkboss-d4vhs4u.png" to="cat_gustave.png"/>
+		<globmapper handledirsep="true" from="iron_will_by_mattwheeliebin-d4yin1s.png" to="cat_ironwill.png"/>
+		<globmapper handledirsep="true" from="queen_chrysalis_by_mattwheeliebin-d4xvix0.png" to="cat_queenchrysalis.png"/>
 	</firstmatchmapper>
 
 	<firstmatchmapper id="caticons-srccrop">
@@ -38,6 +44,10 @@
 		<globmapper handledirsep="true" from="prince_blueblood_by_peachspices-d3rh86i.png" to="5328x5328+5200+336"/>
 		<globmapper handledirsep="true" from="fleur_de_lis_vector_by_romansiii-d4u37c9.png" to="3619x3619+4345+77"/>
 		<globmapper handledirsep="true" from="fancy_pants_by_rildraw-d4v4kv8.png" to="1568x1568+310+81"/>
+		<globmapper handledirsep="true" from="the_world_famous_flim_flam_brothers_by_catnipfairy-d4ofsrc.png" to="1320x1320+780+0"/>
+		<globmapper handledirsep="true" from="gustave___le_griffon_francais__the_french_griffin__by_linkboss-d4vhs4u.png" to="590x590+632+84"/>
+		<globmapper handledirsep="true" from="iron_will_by_mattwheeliebin-d4yin1s.png" to="2500x2500+785+0"/>
+		<globmapper handledirsep="true" from="queen_chrysalis_by_mattwheeliebin-d4xvix0.png" to="2600x2600+2190+900"/>
 	</firstmatchmapper>
 
 	<fileset id="assets" dir="../../../SrcAssets/MLPFIM" />

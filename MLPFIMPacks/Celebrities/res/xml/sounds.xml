@@ -11,4 +11,8 @@
 	<category id="trixie"			value="250"/>
 	<category id="fancypants"		value="350"/>
 	<category id="fleur"			value="360"/>
+	<category id="flimflam"			value="390"/>
+	<category id="gustave"			value="400"/>
+	<category id="ironwill"			value="410"/>
+	<category id="queenchrysalis"	value="420"/>
 </sounds>
