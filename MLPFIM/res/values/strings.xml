@@ -13,7 +13,7 @@
         <item>Manager</item>
         <item>Settings</item>
     </string-array>
-    <string name="dialog_widget_help">Soundboard Widget is already installed. You can add widgets to your launcher by long-pressing on your home screen, selecting "Widgets" and then "Soundboard Widget"</string>
+    <string name="dialog_widget_help">Soundboard Widget is already installed. You can add widgets to your launcher by long-pressing on your home screen, selecting &#8220;Widgets&#8221; and then &#8220;Soundboard Widget&#8221;</string>
     <string name="dialog_no_content">You don\'t appear to have any content packs installed.</string>
     <string-array name="dialog_no_content_buttons">
         <item>Go to Market</item>
