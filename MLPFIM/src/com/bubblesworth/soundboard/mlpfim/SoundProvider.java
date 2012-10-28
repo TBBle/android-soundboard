@@ -4,24 +4,24 @@
 package com.bubblesworth.soundboard.mlpfim;
 
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
+import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 
-import android.content.BroadcastReceiver;
+import org.xmlpull.v1.XmlPullParserException;
+
 import android.content.ContentProvider;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.UriMatcher;
-import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.content.pm.PackageManager.NameNotFoundException;
-import android.content.pm.ProviderInfo;
 import android.content.res.AssetFileDescriptor;
+import android.content.res.AssetManager;
+import android.content.res.Resources;
+import android.content.res.XmlResourceParser;
+import android.content.res.Resources.NotFoundException;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -45,42 +45,34 @@ public class SoundProvider extends ContentProvider implements CategoryColumns,
 	private static final String AUTHORITY = "com.bubblesworth.soundboard.mlpfim.soundprovider";
 
 	/* Define our databases */
-	private static final String SOURCE_TABLE = "Sources";
-	// _ID
-	private static final String PACKAGE_NAME = "package_name";
-	private static final String PACKAGE_VERSION = "package_version";
-	private static final String PACKAGE_INSTALLED = "package_installed";
-
 	private static final String CATEGORY_TABLE = "Categories";
 	// _ID
-	private static final String SOURCE_ID = "source_id";
 	// CategoryColumns.DESCRIPTION
 	// CategoryColumns.ICON
+	private static final String ICON_RESOURCE = "icon_resource";
 
 	private static final String SOUND_TABLE = "Sounds";
 	// _ID
 	// CATEGORY_ID
 	// SoundColumns.DESCRIPTION
-	// ACTION
-	// ASSET
+	// SoundColumns.ACTION
+	// SoundColumns.ASSET
 	// SoundColumns.ICON
+	private static final String ASSET_PATH = "asset_path";
 
 	private static final String CREDIT_TABLE = "Credits";
-
 	// _ID
-	// SOURCE_ID
-	// CREDIT_TYPE
-	// CREDIT_NAME
-	// CREDIT_LINK
-	// CREDIT_ORDER
+	// CreditColumns.CREDIT_TYPE
+	// CreditColumns.CREDIT_NAME
+	// CreditColumns.CREDIT_LINK
+	// CreditColumns.CREDIT_ORDER
 
 	static class DatabaseHelper extends SQLiteOpenHelper {
 		// private static final String TAG = "DatabaseHelper";
 		private static final String NAME = "sounds.db";
-		private static final int VERSION = 3;
 
-		DatabaseHelper(Context context) {
-			super(context, NAME, null, VERSION);
+		DatabaseHelper(Context context, int version) {
+			super(context, NAME, null, version);
 		}
 
 		/*
@@ -92,23 +84,27 @@ public class SoundProvider extends ContentProvider implements CategoryColumns,
 		 */
 		@Override
 		public void onCreate(SQLiteDatabase db) {
-			db.execSQL("CREATE TABLE " + SOURCE_TABLE + " (" + _ID
-					+ " INTEGER PRIMARY KEY AUTOINCREMENT, " + PACKAGE_NAME
-					+ " TEXT UNIQUE, " + PACKAGE_VERSION + " INTEGER, "
-					+ PACKAGE_INSTALLED + " INTEGER" + ");");
 			db.execSQL("CREATE TABLE " + CATEGORY_TABLE + " (" + _ID
-					+ " INTEGER PRIMARY KEY, " + SOURCE_ID + " INTEGER, "
+					+ " INTEGER PRIMARY KEY, "
 					+ CategoryColumns.DESCRIPTION + " TEXT, "
-					+ CategoryColumns.ICON + " TEXT" + ");");
+					+ CategoryColumns.ICON + " TEXT, "
+					+ ICON_RESOURCE + " TEXT"
+					+ ");");
 			db.execSQL("CREATE TABLE " + SOUND_TABLE + " (" + _ID
 					+ " INTEGER PRIMARY KEY, " + CATEGORY_ID + " INTEGER, "
-					+ SoundColumns.DESCRIPTION + " TEXT, " + ACTION + " TEXT, "
-					+ ASSET + " TEXT, " + SoundColumns.ICON + " TEXT" + ");");
+					+ SoundColumns.DESCRIPTION + " TEXT, "
+					+ SoundColumns.ACTION + " TEXT, "
+					+ SoundColumns.ASSET + " TEXT, "
+					+ SoundColumns.ICON + " TEXT, "
+					+ ASSET_PATH + " TEXT"
+					+ ");");
 			db.execSQL("CREATE TABLE " + CREDIT_TABLE + " (" + _ID
-					+ " INTEGER PRIMARY KEY AUTOINCREMENT, " + SOURCE_ID
-					+ " INTEGER, " + CREDIT_TYPE + " TEXT, " + CREDIT_NAME
-					+ " TEXT, " + CREDIT_LINK + " TEXT," + CREDIT_ORDER
-					+ " INTEGER" + ");");
+					+ " INTEGER PRIMARY KEY AUTOINCREMENT, "
+					+ CreditColumns.CREDIT_TYPE + " TEXT, "
+					+ CreditColumns.CREDIT_NAME + " TEXT, "
+					+ CreditColumns.CREDIT_LINK + " TEXT,"
+					+ CreditColumns.CREDIT_ORDER + " INTEGER"
+					+ ");");
 		}
 
 		/*
@@ -120,106 +116,15 @@ public class SoundProvider extends ContentProvider implements CategoryColumns,
 		 */
 		@Override
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-			// Version 3: Blow away old asset database as lack of locking in
-			// version 2 would accept bad data reads from content packs if a
-			// second thread requested a cursor while a previous cursor request
-			// was still in the loadData() method.
-			// This completely subsumes version 2's change.
-			if (oldVersion < 3) {
-				db.execSQL("DROP TABLE IF EXISTS " + SOURCE_TABLE);
-				db.execSQL("DROP TABLE IF EXISTS " + CATEGORY_TABLE);
-				db.execSQL("DROP TABLE IF EXISTS " + SOUND_TABLE);
-				db.execSQL("DROP TABLE IF EXISTS " + CREDIT_TABLE);
-				onCreate(db);
-			}
+			// Every version change needs to re-read the database
+			db.execSQL("DROP TABLE IF EXISTS " + CATEGORY_TABLE);
+			db.execSQL("DROP TABLE IF EXISTS " + SOUND_TABLE);
+			db.execSQL("DROP TABLE IF EXISTS " + CREDIT_TABLE);
+			onCreate(db);
 		}
 	}
 
 	private DatabaseHelper dbHelper;
-
-	private class PackChangeReceiver extends BroadcastReceiver {
-		private static final String TAG = "PackChangeReceiver";
-
-		private HashSet<String> knownPackages = new HashSet<String>();
-
-		public void register(Context context) {
-			IntentFilter packChangeFilter = new IntentFilter();
-			packChangeFilter.addAction(Intent.ACTION_PACKAGE_ADDED);
-			packChangeFilter.addAction(Intent.ACTION_PACKAGE_DATA_CLEARED);
-			packChangeFilter.addAction(Intent.ACTION_PACKAGE_REMOVED);
-			packChangeFilter.addAction(Intent.ACTION_PACKAGE_REPLACED);
-			// Found via
-			// http://stackoverflow.com/questions/3838794/android-response-from-market-activity/3872814#3872814
-			packChangeFilter.addDataScheme("package");
-			context.registerReceiver(this, packChangeFilter);
-		}
-
-		public void clearPackages() {
-			knownPackages.clear();
-		}
-
-		public void registerPackage(String packName) {
-			knownPackages.add(packName);
-		}
-
-		@Override
-		public void onReceive(Context context, Intent intent) {
-			// Also via
-			// http://stackoverflow.com/questions/3838794/android-response-from-market-activity/3872814#3872814
-			String packName = intent.getData().getSchemeSpecificPart();
-			String action = intent.getAction();
-			boolean refresh = false;
-			// Did we know about this?
-			if (!action.equals(Intent.ACTION_PACKAGE_ADDED)) {
-				refresh = knownPackages.contains(packName);
-			}
-			if (!refresh
-					&& (action.equals(Intent.ACTION_PACKAGE_ADDED) || action
-							.equals(Intent.ACTION_PACKAGE_REPLACED))) {
-				// If it's a new package, or might have grown a content
-				// provider, we need to know.
-				PackageManager packageManager = context.getPackageManager();
-				PackageInfo packInfo;
-				try {
-					packInfo = packageManager.getPackageInfo(packName,
-							PackageManager.GET_PROVIDERS
-									+ PackageManager.GET_META_DATA);
-				} catch (NameNotFoundException e) {
-					Log.e(TAG, "Added/Replaced package " + packName
-							+ " isn't found in PackageManager", e);
-					return;
-				}
-				if (packInfo.providers == null)
-					return;
-				for (ProviderInfo provider : packInfo.providers) {
-					if (provider.metaData == null)
-						continue;
-					String categories = provider.metaData
-							.getString("com.bubblesworth.soundboard.mlpfim.packs.categories");
-					String sounds = provider.metaData
-							.getString("com.bubblesworth.soundboard.mlpfim.packs.sounds");
-					String credits = provider.metaData
-							.getString("com.bubblesworth.soundboard.mlpfim.packs.credits");
-					// Not one of our providers...
-					if (categories == null || sounds == null || credits == null)
-						continue;
-					refresh = true;
-					break;
-				}
-			}
-			if (refresh) {
-				synchronized (this) {
-					SoundProvider.this.loaded = false;
-					context.getContentResolver().notifyChange(CATEGORY_URI,
-							null);
-					context.getContentResolver().notifyChange(TRACK_URI, null);
-					context.getContentResolver().notifyChange(CREDIT_URI, null);
-				}
-			}
-		}
-	}
-
-	private PackChangeReceiver packChangeReceiver;
 
 	private boolean loaded; // Was any data loaded?
 
@@ -243,6 +148,26 @@ public class SoundProvider extends ContentProvider implements CategoryColumns,
 		URI_MATCHER.addURI(AUTHORITY, "categories/#", CATEGORIES_ID);
 		URI_MATCHER.addURI(AUTHORITY, "credits", CREDITS);
 		URI_MATCHER.addURI(AUTHORITY, "credits/#", CREDITS_ID);
+		
+	}
+	// Legacy support for content packs system in case anyone
+	// has content Uris pointing to them:
+	private static final String[] LEGACY_AUTHORITIES =
+		{
+			"com.bubblesworth.soundboard.mlpfim.packs.celebrities",
+			"com.bubblesworth.soundboard.mlpfim.packs.maneearthponies",
+			"com.bubblesworth.soundboard.mlpfim.packs.manepegasi",
+			"com.bubblesworth.soundboard.mlpfim.packs.maneunicorns",
+			"com.bubblesworth.soundboard.mlpfim.packs.specialguests",
+			"com.bubblesworth.soundboard.mlpfim.packs.younglings"
+		};
+	
+	static {
+		for (int i = 0; i < 6; ++i)
+		{
+			URI_MATCHER.addURI( LEGACY_AUTHORITIES[ i ], "assets/#", ASSETS_ID);
+			URI_MATCHER.addURI( LEGACY_AUTHORITIES[ i ], "icons/#", ICONS_ID);
+		}
 	}
 
 	public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY);
@@ -331,151 +256,303 @@ public class SoundProvider extends ContentProvider implements CategoryColumns,
 	public synchronized boolean onCreate() {
 		loaded = false;
 		Context context = getContext();
-		packChangeReceiver = new PackChangeReceiver();
-		packChangeReceiver.register(context);
-		dbHelper = new DatabaseHelper(context);
+		PackageManager packageManager = context.getPackageManager();
+		try {
+		dbHelper = new DatabaseHelper(context,
+				packageManager.getPackageInfo( context.getPackageName(), 0).versionCode);
+		} catch (PackageManager.NameNotFoundException e) {
+			Log.e( TAG, "Failed to get version of package", e);
+			return false;
+		}
 		return true;
 	}
 
 	private synchronized void loadData() {
 		if (loaded)
 			return;
-		Context context = getContext();
-		SQLiteDatabase db = dbHelper.getWritableDatabase();
-		ContentValues clearPackage = new ContentValues();
-		clearPackage.put(PACKAGE_INSTALLED, false);
-		db.update(SOURCE_TABLE, clearPackage, null, null);
-		packChangeReceiver.clearPackages();
-
-		ContentValues setPackage = new ContentValues();
-		setPackage.put(PACKAGE_INSTALLED, true);
-
-		final class NewProvider {
-			String name;
-			int version;
-			Uri categories;
-			Uri sounds;
-			Uri credits;
+		// Do we already have a populated database?
+		
+		SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
+		qb.setTables(SOUND_TABLE);
+		SQLiteDatabase db = dbHelper.getReadableDatabase();
+		Cursor c = qb.query(db, null, null, null, null, null, null);
+		if (c.getCount() != 0) {
+			c.close();
+			loaded = true;
+			return;
 		}
-		ArrayList<NewProvider> newProviders = new ArrayList<NewProvider>();
+		c.close();
 
-		SQLiteQueryBuilder sourceQuery = new SQLiteQueryBuilder();
-		sourceQuery.setTables(SOURCE_TABLE);
-		PackageManager packageManager = context.getPackageManager();
-		List<ProviderInfo> providers = packageManager.queryContentProviders(
-				null, 0, PackageManager.GET_META_DATA);
-		for (ProviderInfo provider : providers) {
-			if (provider.metaData == null)
-				continue;
-			String categories = provider.metaData
-					.getString("com.bubblesworth.soundboard.mlpfim.packs.categories");
-			String sounds = provider.metaData
-					.getString("com.bubblesworth.soundboard.mlpfim.packs.sounds");
-			String credits = provider.metaData
-					.getString("com.bubblesworth.soundboard.mlpfim.packs.credits");
-			// Not one of our providers...
-			if (categories == null || sounds == null || credits == null)
-				continue;
-			String name = provider.applicationInfo.packageName;
-			int version;
-			try {
-				version = packageManager.getPackageInfo(name, 0).versionCode;
-			} catch (PackageManager.NameNotFoundException e) {
-				Log.e(TAG,
-						"Package responded to activity query but not found by package manager",
-						e);
-				continue;
-			}
-			Cursor sourceCursor = sourceQuery.query(db, null, PACKAGE_NAME
-					+ "=?", new String[] { name }, null, null, null);
-			assert sourceCursor.getCount() == 0 || sourceCursor.getCount() == 1;
-			if (sourceCursor.getCount() == 0) {
-				// New pack
-				NewProvider newProvider = new NewProvider();
-				newProvider.name = name;
-				newProvider.version = version;
-				newProvider.categories = Uri.parse(categories);
-				newProvider.sounds = Uri.parse(sounds);
-				newProvider.credits = Uri.parse(credits);
-				newProviders.add(newProvider);
-			} else {
-				sourceCursor.moveToFirst();
-				int sourceInstalled = sourceCursor.getInt(sourceCursor
-						.getColumnIndexOrThrow(PACKAGE_INSTALLED));
-				// Already processed... Duplicate activity result?
-				if (sourceInstalled == 1)
-					continue;
-				long sourceId = sourceCursor.getLong(sourceCursor
-						.getColumnIndexOrThrow(_ID));
-				int sourceVersion = sourceCursor.getInt(sourceCursor
-						.getColumnIndexOrThrow(PACKAGE_VERSION));
-				// Version is what we already know
-				if (sourceVersion == version) {
-					db.update(SOURCE_TABLE, setPackage, _ID + " =?",
-							new String[] { "" + sourceId });
-					packChangeReceiver.registerPackage(name);
-					continue;
-				}
-				// Known source, but new version. Easiest thing is to blow it
-				// away and reimport it.
-				deletePack(db, sourceId);
-				NewProvider newProvider = new NewProvider();
-				newProvider.name = name;
-				newProvider.version = version;
-				newProvider.categories = Uri.parse(categories);
-				newProvider.sounds = Uri.parse(sounds);
-				newProvider.credits = Uri.parse(credits);
-				newProviders.add(newProvider);
-			}
+		db = dbHelper.getWritableDatabase();
+
+		// Make sure there's not already sounds there...
+		db.delete(CATEGORY_TABLE, null, null);
+		db.delete(SOUND_TABLE, null, null);
+		db.delete(CREDIT_TABLE, null, null);
+
+		if (!loadSounds(R.xml.sounds)) {
+			db.delete(CATEGORY_TABLE, null, null);
+			db.delete(SOUND_TABLE, null, null);
+			return;
 		}
 
-		Cursor goneProviders = sourceQuery.query(db, new String[] { _ID },
-				PACKAGE_INSTALLED + "=0", null, null, null, null);
-		if (goneProviders.moveToFirst()) {
-			do {
-				deletePack(db, goneProviders.getLong(goneProviders
-						.getColumnIndexOrThrow(_ID)));
-			} while (goneProviders.moveToNext());
-		}
-		for (NewProvider newProvider : newProviders) {
-			importPack(db, newProvider.name, newProvider.version,
-					newProvider.categories, newProvider.sounds,
-					newProvider.credits);
-			packChangeReceiver.registerPackage(newProvider.name);
+		if (!loadCredits(R.xml.credits)) {
+			db.delete(CATEGORY_TABLE, null, null);
+			db.delete(SOUND_TABLE, null, null);
+			db.delete(CREDIT_TABLE, null, null);
+			return;
 		}
 
-		// dumpDatabases();
+		// TODO: Disable this
+		dumpDatabases();
 
 		loaded = true;
 		return;
+	}
+
+	private boolean loadCredits(int creditsResource) {
+		if (creditsResource == 0)
+			return true;
+		Resources resources = getContext().getResources();
+		SQLiteDatabase db = dbHelper.getWritableDatabase();
+		// Load our credits.xml definition file
+		XmlResourceParser creditParser = null;
+		try {
+			creditParser = resources.getXml(creditsResource);
+		} catch (NotFoundException e) {
+			Log.e(TAG, "loadCredits", e);
+			return false;
+		}
+		try {
+			int eventType = creditParser.getEventType();
+			// Skip anything before the first tag
+			while (eventType != XmlResourceParser.START_TAG) {
+				eventType = creditParser.next();
+			}
+			// Expect that we just hit a "credits" tag
+			creditParser.require(XmlResourceParser.START_TAG, null, "credits");
+			eventType = creditParser.next();
+			while (eventType != XmlResourceParser.END_TAG) {
+				creditParser.require(XmlResourceParser.START_TAG, null,
+						"credit");
+				String creditType = creditParser
+						.getAttributeValue(null, "type");
+				String creditUri = creditParser.getAttributeValue(null, "uri");
+				String creditName = creditParser.nextText();
+				creditParser.require(XmlResourceParser.END_TAG, null, "credit");
+				eventType = creditParser.next();
+
+				ContentValues creditValues = new ContentValues(4);
+				creditValues.put(CreditColumns.CREDIT_TYPE, creditType);
+				creditValues.put(CreditColumns.CREDIT_NAME, creditName);
+				creditValues.put(CreditColumns.CREDIT_LINK, creditUri);
+				// Credit display ordering
+				int order;
+				if (creditType.equalsIgnoreCase("header")) {
+					order = 0;
+				} else if (creditType.equalsIgnoreCase("code")) {
+					order = 10;
+				} else if (creditType.equalsIgnoreCase("sounds")) {
+					order = 20;
+				} else if (creditType.equalsIgnoreCase("series")) {
+					order = 30;
+				} else if (creditType.equalsIgnoreCase("trademark")) {
+					order = 40;
+				} else if (creditType.equalsIgnoreCase("music")) {
+					order = 50;
+				} else if (creditType.equalsIgnoreCase("art")) {
+					order = 60;
+				} else {
+					Log.e(TAG, "Unexpected credit type " + creditType);
+					order = 100;
+				}
+				if (creditUri.length() != 0) {
+					order += 5;
+				}
+				creditValues.put(CreditColumns.CREDIT_ORDER, order);
+				db.insertOrThrow(CREDIT_TABLE, null, creditValues);
+			}
+		} catch (XmlPullParserException e) {
+			Log.e(TAG,
+					"Failed to parse credits description " + creditsResource, e);
+			return false;
+		} catch (IOException e) {
+			Log.e(TAG,
+					"Failed to parse credits description " + creditsResource, e);
+			return false;
+		} finally {
+			creditParser.close();
+			creditParser = null;
+		}
+		return true;
+	}
+
+	private boolean loadSounds(int soundsResource) {
+		if (soundsResource == 0)
+			return true;
+		Resources resources = getContext().getResources();
+
+		// Load our sounds.xml definition file.
+		XmlResourceParser soundParser = null;
+		try {
+			soundParser = resources.getXml(soundsResource);
+		} catch (NotFoundException e) {
+			Log.e(TAG, "loadSounds", e);
+			return false;
+		}
+
+		try {
+			int eventType = soundParser.getEventType();
+			// Skip anything before the first tag
+			while (eventType != XmlResourceParser.START_TAG) {
+				eventType = soundParser.next();
+			}
+			// Expect that we just hit a "sounds" tag
+			soundParser.require(XmlResourceParser.START_TAG, null, "sounds");
+			String baseDir = soundParser.getAttributeValue(null, "src");
+			eventType = soundParser.next();
+			while (eventType != XmlResourceParser.END_TAG) {
+				soundParser.require(XmlResourceParser.START_TAG, null,
+						"category");
+				String categoryId = soundParser.getAttributeValue(null, "id");
+				int categoryValue = soundParser.getAttributeIntValue(null,
+						"value", -1);
+				assert categoryValue > 0 && categoryValue < 1000;
+				soundParser.nextTag();
+
+				try {
+					loadCategory(baseDir, categoryId, categoryValue);
+				} catch (Exception e) {
+					// Log.e called later with this new exception doesn't
+					// output the stacktrace from the chained exception.
+					// So spam the logs a little...
+					Log.e(TAG, "Error in loadCategory for " + categoryId, e);
+					throw new XmlPullParserException(
+							"Error in loadCategory for " + categoryId + " ( "
+									+ categoryValue + " ): ("
+									+ soundParser.getPositionDescription()
+									+ ")", soundParser, e);
+				}
+				soundParser
+						.require(XmlResourceParser.END_TAG, null, "category");
+				eventType = soundParser.next();
+			}
+			soundParser.require(XmlResourceParser.END_TAG, null, "sounds");
+			eventType = soundParser.next();
+		} catch (XmlPullParserException e) {
+			Log.e(TAG, "Failed to parse sounds description " + soundsResource,
+					e);
+			return false;
+		} catch (IOException e) {
+			Log.e(TAG, "Failed to parse sounds description " + soundsResource,
+					e);
+			return false;
+		} finally {
+			soundParser.close();
+			soundParser = null;
+		}
+		return true;
+	}
+
+	// Bubble any exceptions to our caller...
+	private void loadCategory(String baseDir, String categoryId,
+			int categoryValue) throws Exception {
+		AssetManager assets = getContext().getAssets();
+		Resources resources = getContext().getResources();
+		SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+		// Read the category XML file and ensure the sounds are present, then
+		// add a SoundInfo object to sounds
+		XmlResourceParser catParser = null;
+		int catIconResource = resources.getIdentifier("drawable/cat_"
+				+ categoryId, null, getContext().getPackageName());
+		String catIconUri = ContentUris.withAppendedId(ICON_URI,
+				(long) categoryValue).toString();
+		int catXmlResource = resources.getIdentifier("xml/" + categoryId, null,
+				getContext().getPackageName());
+		catParser = resources.getXml(catXmlResource);
+		// Cleanup block for catParser
+		try {
+			int eventType = catParser.getEventType();
+			while (eventType != XmlResourceParser.START_TAG) {
+				eventType = catParser.next();
+			}
+			catParser.require(XmlResourceParser.START_TAG, null, "category");
+			String tagId = catParser.getAttributeValue(null, "id");
+			if (!tagId.equals(categoryId)) {
+				throw new XmlPullParserException("Got id " + tagId
+						+ " but expected id " + categoryId + " ("
+						+ catParser.getPositionDescription() + ")", catParser,
+						null);
+			}
+			String catDir = catParser.getAttributeValue(null, "src");
+			HashSet<String> soundFiles = new HashSet<String>(
+					Arrays.asList(assets.list(baseDir + "/" + catDir)));
+			eventType = catParser.next();
+			catParser.require(XmlResourceParser.START_TAG, null, "description");
+			String catDesc = catParser.nextText();
+			catParser.require(XmlResourceParser.END_TAG, null, "description");
+			eventType = catParser.next();
+
+			ContentValues categoryValues = new ContentValues(4);
+			categoryValues.put(_ID, categoryValue);
+			categoryValues.put(CategoryColumns.DESCRIPTION, catDesc);
+			categoryValues.put(CategoryColumns.ICON, catIconUri);
+			categoryValues.put(ICON_RESOURCE, catIconResource);
+			long categoryDbId = db.insertOrThrow(CATEGORY_TABLE, null,
+					categoryValues);
+			assert categoryDbId == categoryValue;
+
+			while (eventType != XmlResourceParser.END_TAG) {
+				catParser.require(XmlResourceParser.START_TAG, null, "sound");
+				String soundFile = catParser.getAttributeValue(null, "src");
+				int soundValue = catParser.getAttributeIntValue(null, "value",
+						-1);
+				assert soundValue >= 0;
+				assert soundValue < 1000;
+				String soundDesc = catParser.nextText();
+
+				if (!soundFiles.contains(soundFile + ".mp3")) {
+					throw new FileNotFoundException(baseDir + "/" + catDir
+							+ "/" + soundFile + ".mp3");
+				}
+
+				ContentValues soundValues = new ContentValues();
+				long soundFullValue = categoryValue * 1000 + soundValue;
+				soundValues.put(_ID, soundFullValue);
+				soundValues.put(CATEGORY_ID, categoryValue);
+				if (catIconResource == 0)
+					soundValues.put(SoundColumns.DESCRIPTION, catDesc + " - "
+							+ soundDesc);
+				else
+					soundValues.put(SoundColumns.DESCRIPTION, soundDesc);
+				soundValues.put(ACTION, "com.bubblesworth.soundboard.PLAY");
+				soundValues.put(ASSET,
+						ContentUris.withAppendedId(ASSET_URI, soundFullValue)
+								.toString());
+				soundValues.put(ASSET_PATH, baseDir + "/" + catDir + "/"
+						+ soundFile + ".mp3");
+				soundValues.put(SoundColumns.ICON, catIconUri);
+				soundValues.put(ICON_RESOURCE, 0);
+				long soundDbId = db.insertOrThrow(SOUND_TABLE, null,
+						soundValues);
+				assert soundDbId == soundFullValue;
+
+				catParser.require(XmlResourceParser.END_TAG, null, "sound");
+				eventType = catParser.next();
+			}
+			catParser.require(XmlResourceParser.END_TAG, null, "category");
+			catParser.next();
+		} finally {
+			catParser.close();
+			catParser = null;
+		}
 	}
 
 	@SuppressWarnings("unused")
 	private void dumpDatabases() {
 		SQLiteDatabase db = dbHelper.getReadableDatabase();
 		SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
-		qb.setTables(SOURCE_TABLE);
-		Cursor source = qb.query(db, null, null, null, null, null, null);
-		Log.d(TAG, "dump " + SOURCE_TABLE);
-		if (source.moveToFirst()) {
-			do {
-				Log.d(TAG,
-						"|"
-								+ source.getLong(source
-										.getColumnIndexOrThrow(_ID))
-								+ "|"
-								+ source.getString(source
-										.getColumnIndexOrThrow(PACKAGE_NAME))
-								+ "|"
-								+ source.getInt(source
-										.getColumnIndexOrThrow(PACKAGE_VERSION))
-								+ "|"
-								+ source.getInt(source
-										.getColumnIndexOrThrow(PACKAGE_INSTALLED)));
-			} while (source.moveToNext());
-		}
-		source.close();
-
 		qb.setTables(CATEGORY_TABLE);
 		Cursor category = qb.query(db, null, null, null, null, null, null);
 		Log.d(TAG, "dump " + CATEGORY_TABLE);
@@ -486,13 +563,12 @@ public class SoundProvider extends ContentProvider implements CategoryColumns,
 								+ category.getLong(category
 										.getColumnIndexOrThrow(_ID))
 								+ "|"
-								+ category.getInt(category
-										.getColumnIndexOrThrow(SOURCE_ID))
-								+ "|"
 								+ category.getString(category
 										.getColumnIndexOrThrow(CategoryColumns.DESCRIPTION))
 				// + "|" +
 				// category.getString(category.getColumnIndexOrThrow(CategoryColumns.ICON))
+				// + "|" +
+				// category.getString(category.getColumnIndexOrThrow(ICON_RESOURCE))
 				);
 			} while (category.moveToNext());
 		}
@@ -513,9 +589,6 @@ public class SoundProvider extends ContentProvider implements CategoryColumns,
 								+ credit.getLong(credit
 										.getColumnIndexOrThrow(_ID))
 								+ "|"
-								+ credit.getInt(credit
-										.getColumnIndexOrThrow(SOURCE_ID))
-								+ "|"
 								+ credit.getString(credit
 										.getColumnIndexOrThrow(CREDIT_TYPE))
 								+ "|"
@@ -532,176 +605,6 @@ public class SoundProvider extends ContentProvider implements CategoryColumns,
 		credit.close();
 
 		Log.d(TAG, "dump ends");
-	}
-
-	private void importPack(SQLiteDatabase db, String name, int version,
-			Uri categoriesUri, Uri soundsUri, Uri creditsUri) {
-		/*
-		 * Theory: Query the content provider at categoriesUri, make sure
-		 * there's no categories overlap. Then add the categories to my known
-		 * list, and the sounds to my known list. And record the pack itself.
-		 */
-		ContentValues sourceValues = new ContentValues(3);
-		sourceValues.put(PACKAGE_NAME, name);
-		sourceValues.put(PACKAGE_VERSION, version);
-		sourceValues.put(PACKAGE_INSTALLED, 1);
-
-		long sourceId = db.insertOrThrow(SOURCE_TABLE, null, sourceValues);
-		Cursor sourceCategories = getContext()
-				.getContentResolver()
-				.query(categoriesUri,
-						new String[] {
-								com.bubblesworth.soundboard.pack.CategoryColumns._ID,
-								com.bubblesworth.soundboard.pack.CategoryColumns.DESCRIPTION,
-								com.bubblesworth.soundboard.pack.CategoryColumns.ICON },
-						null, null, null);
-		Cursor sourceSounds = getContext().getContentResolver().query(
-				soundsUri, null, null, null, null);
-		Cursor sourceCredits = getContext()
-				.getContentResolver()
-				.query(creditsUri,
-						new String[] {
-								com.bubblesworth.soundboard.pack.CreditColumns.CREDIT_TYPE,
-								com.bubblesworth.soundboard.pack.CreditColumns.CREDIT_NAME,
-								com.bubblesworth.soundboard.pack.CreditColumns.CREDIT_LINK },
-						null, null, null);
-
-		try {
-			if (sourceCategories.moveToFirst() && sourceSounds.moveToFirst()) {
-				do {
-					ContentValues categoryValues = new ContentValues(4);
-					long categoryId = sourceCategories
-							.getLong(sourceCategories
-									.getColumnIndexOrThrow(com.bubblesworth.soundboard.pack.CategoryColumns._ID));
-					categoryValues.put(_ID, categoryId);
-					categoryValues.put(SOURCE_ID, sourceId);
-					categoryValues
-							.put(CategoryColumns.DESCRIPTION,
-									sourceCategories.getString(sourceCategories
-											.getColumnIndexOrThrow(com.bubblesworth.soundboard.pack.CategoryColumns.DESCRIPTION)));
-					categoryValues
-							.put(CategoryColumns.ICON,
-									sourceCategories.getString(sourceCategories
-											.getColumnIndexOrThrow(com.bubblesworth.soundboard.pack.CategoryColumns.ICON)));
-					long storedCategoryId = db.insertOrThrow(CATEGORY_TABLE,
-							null, categoryValues);
-					assert storedCategoryId < 1000;
-					assert storedCategoryId == categoryId;
-				} while (sourceCategories.moveToNext());
-				do {
-					ContentValues soundValues = new ContentValues(6);
-					long soundId = sourceSounds
-							.getLong(sourceSounds
-									.getColumnIndexOrThrow(com.bubblesworth.soundboard.pack.SoundColumns._ID));
-					soundValues.put(_ID, soundId);
-					soundValues
-							.put(CATEGORY_ID,
-									sourceSounds.getString(sourceSounds
-											.getColumnIndexOrThrow(com.bubblesworth.soundboard.pack.SoundColumns.CATEGORY_ID)));
-					soundValues
-							.put(SoundColumns.DESCRIPTION,
-									sourceSounds.getString(sourceSounds
-											.getColumnIndexOrThrow(com.bubblesworth.soundboard.pack.SoundColumns.DESCRIPTION)));
-					soundValues
-							.put(ACTION,
-									sourceSounds.getString(sourceSounds
-											.getColumnIndexOrThrow(com.bubblesworth.soundboard.pack.SoundColumns.ACTION)));
-					soundValues
-							.put(ASSET,
-									sourceSounds.getString(sourceSounds
-											.getColumnIndexOrThrow(com.bubblesworth.soundboard.pack.SoundColumns.ASSET)));
-					soundValues
-							.put(SoundColumns.ICON,
-									sourceSounds.getString(sourceSounds
-											.getColumnIndexOrThrow(com.bubblesworth.soundboard.pack.SoundColumns.ICON)));
-					long storedSoundId = db.insertOrThrow(SOUND_TABLE, null,
-							soundValues);
-					assert storedSoundId == soundId;
-				} while (sourceSounds.moveToNext());
-			}
-			// This is a little odd... Pack with credits but no sounds?
-			// The actual Soundboard itself does this. Hopefully no one else
-			// does...
-			if (sourceCredits.moveToFirst()) {
-				do {
-					ContentValues creditValues = new ContentValues(5);
-					creditValues.put(SOURCE_ID, sourceId);
-					creditValues
-							.put(CREDIT_NAME,
-									sourceCredits.getString(sourceCredits
-											.getColumnIndexOrThrow(com.bubblesworth.soundboard.pack.CreditColumns.CREDIT_NAME)));
-					String creditType = sourceCredits
-							.getString(sourceCredits
-									.getColumnIndexOrThrow(com.bubblesworth.soundboard.pack.CreditColumns.CREDIT_TYPE));
-					creditValues.put(CREDIT_TYPE, creditType);
-					String creditLink = sourceCredits
-							.getString(sourceCredits
-									.getColumnIndexOrThrow(com.bubblesworth.soundboard.pack.CreditColumns.CREDIT_LINK));
-					creditValues.put(CREDIT_LINK, creditLink);
-					// Credit display ordering
-					int order;
-					if (creditType.equalsIgnoreCase("header")) {
-						order = 0;
-					} else if (creditType.equalsIgnoreCase("code")) {
-						order = 10;
-					} else if (creditType.equalsIgnoreCase("sounds")) {
-						order = 20;
-					} else if (creditType.equalsIgnoreCase("series")) {
-						order = 30;
-					} else if (creditType.equalsIgnoreCase("trademark")) {
-						order = 40;
-					} else if (creditType.equalsIgnoreCase("music")) {
-						order = 50;
-					} else if (creditType.equalsIgnoreCase("art")) {
-						order = 60;
-					} else {
-						Log.e(TAG, "Unexpected credit type " + creditType);
-						order = 100;
-					}
-					if (creditLink.length() != 0) {
-						order += 5;
-					}
-					creditValues.put(CREDIT_ORDER, order);
-					db.insertOrThrow(CREDIT_TABLE, null, creditValues);
-				} while (sourceCredits.moveToNext());
-			}
-		} catch (Exception e) {
-			Log.e(TAG, "error in importPack", e);
-			deletePack(db, sourceId);
-		} finally {
-			sourceCategories.close();
-			sourceSounds.close();
-			sourceCredits.close();
-		}
-	}
-
-	private void deletePack(SQLiteDatabase db, long packId) {
-		// Log.d(TAG, "Deleting by packId " + packId);
-		SQLiteQueryBuilder categoryQuery = new SQLiteQueryBuilder();
-		categoryQuery.setTables(CATEGORY_TABLE);
-		categoryQuery.appendWhere(SOURCE_ID + "=?");
-		Cursor categories = categoryQuery.query(db, new String[] { _ID }, null,
-				new String[] { "" + packId }, null, null, null);
-		if (categories.moveToFirst()) {
-			StringBuilder categoriesMatch = new StringBuilder();
-			do {
-				categoriesMatch.append(categories.getLong(categories
-						.getColumnIndexOrThrow(_ID)));
-				if (!categories.isLast())
-					categoriesMatch.append(",");
-			} while (categories.moveToNext());
-			String categoriesList = categoriesMatch.toString();
-			// Can't use the whereArgs for this, it gets string-escaped.
-			/* int soundRows = */db.delete(SOUND_TABLE, CATEGORY_ID + " IN ("
-					+ categoriesList + ")", null);
-			/* int catRows = */db.delete(CATEGORY_TABLE, _ID + " IN ("
-					+ categoriesList + ")", null);
-			// Log.d(TAG, "Deleted " + soundRows + " sounds and " + catRows +
-			// " categories" );
-		}
-		db.delete(CREDIT_TABLE, SOURCE_ID + " = ?",
-				new String[] { "" + packId });
-		db.delete(SOURCE_TABLE, _ID + " = ?", new String[] { "" + packId });
 	}
 
 	/*
@@ -729,6 +632,12 @@ public class SoundProvider extends ContentProvider implements CategoryColumns,
 				sortOrder = CATEGORY_ID + " ASC, " + SoundColumns.DESCRIPTION
 						+ " ASC";
 			}
+			if (projection == null) {
+				// Hide the ICON_RESOURCE and ASSET_RESOURCE columns
+				projection = new String[] { _ID, CATEGORY_ID,
+						SoundColumns.DESCRIPTION, SoundColumns.ACTION, SoundColumns.ASSET,
+						SoundColumns.ICON };
+			}
 			break;
 		case CATEGORIES_ID:
 			qb.appendWhere(_ID + "=" + ContentUris.parseId(uri));
@@ -739,7 +648,7 @@ public class SoundProvider extends ContentProvider implements CategoryColumns,
 				sortOrder = CategoryColumns.DESCRIPTION + " ASC";
 			}
 			if (projection == null) {
-				// Hide the SOURCE_ID column
+				// Hide the ICON_RESOURCE column
 				projection = new String[] { _ID, CategoryColumns.DESCRIPTION,
 						CategoryColumns.ICON };
 			}
@@ -752,16 +661,9 @@ public class SoundProvider extends ContentProvider implements CategoryColumns,
 			if (TextUtils.isEmpty(sortOrder)) {
 				sortOrder = CREDIT_ORDER + " ASC, " + CREDIT_NAME + " ASC";
 			}
-			if (projection == null) {
-				// Hide the SOURCE_ID column
-				projection = new String[] { _ID, CREDIT_TYPE, CREDIT_NAME,
-						CREDIT_LINK, CREDIT_ORDER };
-			}
 			groupBy = CREDIT_ORDER + ", " + CREDIT_NAME;
 			HashMap<String, String> projectionMap = new HashMap<String, String>();
 			projectionMap.put(_ID, "MIN(" + _ID + ") AS " + _ID);
-			projectionMap.put(SOURCE_ID, "MIN(" + SOURCE_ID + ") AS "
-					+ SOURCE_ID);
 			projectionMap.put(CREDIT_TYPE, "MIN(" + CREDIT_TYPE + ") AS "
 					+ CREDIT_TYPE);
 			projectionMap.put(CREDIT_NAME, CREDIT_NAME);

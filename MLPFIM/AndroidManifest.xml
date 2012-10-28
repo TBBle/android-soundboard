@@ -1,32 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-      package="com.bubblesworth.soundboard.mlpfim"
-      android:versionName="018" android:versionCode="18">
-    <uses-sdk android:minSdkVersion="7" android:targetSdkVersion="8"></uses-sdk>
-    <supports-screens android:normalScreens="true" android:anyDensity="true" android:largeScreens="true" android:smallScreens="true" android:resizeable="true"></supports-screens>
+    package="com.bubblesworth.soundboard.mlpfim"
+    android:versionCode="18"
+    android:versionName="018" >
 
+    <uses-sdk
+        android:minSdkVersion="7"
+        android:targetSdkVersion="8" >
+    </uses-sdk>
 
-    <application android:icon="@drawable/icon" android:label="@string/app_name">
-        <activity android:label="@string/app_name" android:name=".SoundChooserActivity">
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:resizeable="true"
+        android:smallScreens="true" >
+    </supports-screens>
+
+    <application
+        android:icon="@drawable/icon"
+        android:label="@string/app_name" >
+        <activity
+            android:name=".SoundChooserActivity"
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER"/>
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             <intent-filter>
-                <action android:name="com.bubblesworth.soundboard.APPWIDGET_CONFIGURE"></action>
-                <category android:name="android.intent.category.DEFAULT"></category>
+                <action android:name="com.bubblesworth.soundboard.APPWIDGET_CONFIGURE" >
+                </action>
+
+                <category android:name="android.intent.category.DEFAULT" >
+                </category>
             </intent-filter>
         </activity>
-        <service android:name=".SoundboardService">
+
+        <service android:name=".SoundboardService" >
             <intent-filter>
-                <action android:name="com.bubblesworth.soundboard.PLAY"></action>
-                <data android:mimeType="vnd.android.cursor.item/vnd.com.bubblesworth.soundboard.mlpfim.asset"></data>
-                <category android:name="android.intent.category.DEFAULT"></category>
+                <action android:name="com.bubblesworth.soundboard.PLAY" >
+                </action>
+
+                <data android:mimeType="vnd.android.cursor.item/vnd.com.bubblesworth.soundboard.mlpfim.asset" >
+                </data>
+
+                <category android:name="android.intent.category.DEFAULT" >
+                </category>
             </intent-filter>
         </service>
-        <provider android:name=".SoundProvider" android:authorities="com.bubblesworth.soundboard.mlpfim.soundprovider"></provider>
-        <activity android:name=".AboutActivity" android:label="@string/about_label"></activity>
-        <provider android:name=".CreditsProvider" android:authorities="com.bubblesworth.soundboard.mlpfim.creditsprovider"><meta-data android:name='com.bubblesworth.soundboard.mlpfim.packs.categories' android:value="content://com.bubblesworth.soundboard.mlpfim.creditsprovider/categories"></meta-data><meta-data android:name="com.bubblesworth.soundboard.mlpfim.packs.sounds" android:value="content://com.bubblesworth.soundboard.mlpfim.creditsprovider/sounds"></meta-data><meta-data android:name="com.bubblesworth.soundboard.mlpfim.packs.credits" android:value="content://com.bubblesworth.soundboard.mlpfim.creditsprovider/credits"></meta-data></provider>
 
+        <provider
+            android:name=".SoundProvider"
+            android:authorities="com.bubblesworth.soundboard.mlpfim.soundprovider;com.bubblesworth.soundboard.mlpfim.packs.celebrities;com.bubblesworth.soundboard.mlpfim.packs.maneearthponies;com.bubblesworth.soundboard.mlpfim.packs.manepegasi;com.bubblesworth.soundboard.mlpfim.packs.maneunicorns;com.bubblesworth.soundboard.mlpfim.packs.specialguests;com.bubblesworth.soundboard.mlpfim.packs.younglings" >
+        </provider>
+
+        <activity
+            android:name=".AboutActivity"
+            android:label="@string/about_label" >
+        </activity>
     </application>
+
 </manifest>
