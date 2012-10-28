@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sounds src="kyrospawn">
+	<category id="applebloom"		value= "10"/>
+	<category id="applejack"		value= "20"/>
+	<category id="bigmacintosh"		value= "30"/>
+	<category id="braeburn"			value= "40"/>
+	<category id="carrottop"		value= "50"/>
+	<category id="cmc"				value= "60"/>
+	<category id="derpy"			value= "70"/>
+	<category id="drwhoof"			value= "80"/>
+	<category id="fluttershy"		value= "90"/>
+	<category id="gilda"			value="100"/>
+	<category id="princessluna"		value="110"/>
+	<category id="nightmaremoon"	value="120"/>
+	<category id="owl"				value="130"/>
+	<category id="photofinish"		value="140"/>
+	<category id="pinkiepie"		value="150"/>
+	<category id="princesscelestia"	value="160"/>
+	<category id="rainbowdash"		value="170"/>
+	<category id="rarity"			value="180"/>
+	<category id="roseluck"			value="190"/>
+	<category id="sapphireshores"	value="200"/>
+	<category id="scootaloo"		value="210"/>
+	<category id="spike"			value="220"/>
+	<category id="stevenmagnet"		value="230"/>
+	<category id="sweetiebelle"		value="240"/>
+	<category id="trixie"			value="250"/>
+	<category id="twilightsparkle"	value="260"/>
+	<category id="zecora"			value="270"/>
+	<category id="princeblueblood"	value="280"/>
+	<category id="silverspoonndiamontiara"	value="290"/>
+	<category id="soarin"			value="300"/>
+	<category id="spitfire"			value="310"/>
+	<category id="discord"			value="320"/>
+	<category id="twist"			value="330"/>
+	<category id="bonbon"			value="340"/>
+	<category id="fancypants"		value="350"/>
+	<category id="fleur"			value="360"/>
+	<category id="cheerilee"		value="370"/>
+	<category id="grannysmith"		value="380"/>
+	<category id="flimflam"			value="390"/>
+	<category id="gustave"			value="400"/>
+	<category id="ironwill"			value="410"/>
+	<category id="queenchrysalis"	value="420"/>
+	<category id="lyra"				value="430"/>
+	<category id="minuette"			value="440"/>
+	<category id="snowflake"		value="450"/>
+</sounds>

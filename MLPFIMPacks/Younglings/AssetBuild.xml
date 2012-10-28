@@ -14,18 +14,6 @@
 
 	<!-- Mapping from assets to category icon names -->
 	<firstmatchmapper id="caticons">
-		<globmapper handledirsep="true" from="MLP User Icons Vol 1/applebloom1.png" to="cat_applebloom.png"/>
-		<globmapper handledirsep="true" from="MLP User Icons Vol 1/scootaloo1.png" to="cat_scootaloo.png"/>
-		<globmapper handledirsep="true" from="MLP User Icons Vol 1/spike1.png" to="cat_spike.png"/>
-		<globmapper handledirsep="true" from="MLP User Icons Vol 1/sweetiebelle1.png" to="cat_sweetiebelle.png"/>
-		<globmapper handledirsep="true" from="cutie_mark_crusaders____yay_by_atomicgreymon-d3akttt.png" to="cat_cmc.png"/>
-		<globmapper handledirsep="true" from="bump__bump_by_purplefairy456-d3jwgcc.png" to="cat_silverspoonndiamontiara.png"/>
-		<globmapper handledirsep="true" from="twist_reveals_her_cutie_mark_by_ronaldhennessy-d4c5a3d.png" to="cat_twist.png"/>
-	</firstmatchmapper>
-
-	<firstmatchmapper id="caticons-srccrop">
-		<globmapper handledirsep="true" from="bump__bump_by_purplefairy456-d3jwgcc.png" to="702x702+294+0"/>
-		<globmapper handledirsep="true" from="twist_reveals_her_cutie_mark_by_ronaldhennessy-d4c5a3d.png" to="566x566+328+4"/>
 	</firstmatchmapper>
 
 	<fileset id="assets" dir="../../../SrcAssets/MLPFIM" />
@@ -36,7 +24,6 @@
 		<ac:for list="ldpi,mdpi,hdpi,xhdpi" param="density">
 			<sequential>
 				<resize mapperref="icon" resourceref="assets" widthdp="20" heightdp="20" density="@{density}" canvaswidthdp="48" canvasheightdp="48" canvasbgref="iconbg"/>
-				<resize mapperref="caticons" cropref="caticons-srccrop" resourceref="assets" widthdp="72" heightdp="72" density="@{density}"/>
 			</sequential>
 		</ac:for>
 		<resize mapperref="icon" resourceref="assets" widthdp="214" heightdp="214" density="none" canvaswidthdp="512" canvasheightdp="512" canvasbgref="iconbg"/>

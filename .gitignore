@@ -19,4 +19,4 @@ local.properties
 *.swp
 
 # Assets which we don't want to commit
-/MLPFIMPacks/*/assets/kyrospawn
+/MLPFIM/assets/kyrospawn

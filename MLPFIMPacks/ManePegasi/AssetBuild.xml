@@ -14,8 +14,6 @@
 
 	<!-- Mapping from assets to category icon names -->
 	<firstmatchmapper id="caticons">
-		<globmapper handledirsep="true" from="MLP User Icons Vol 1/fluttershy1.png" to="cat_fluttershy.png"/>
-		<globmapper handledirsep="true" from="MLP User Icons Vol 1/rainbowdash1.png" to="cat_rainbowdash.png"/>
 	</firstmatchmapper>
 
 	<fileset id="assets" dir="../../../SrcAssets/MLPFIM" />
@@ -26,7 +24,6 @@
 		<ac:for list="ldpi,mdpi,hdpi,xhdpi" param="density">
 			<sequential>
 				<resize mapperref="icon" resourceref="assets" widthdp="20" heightdp="20" density="@{density}" canvaswidthdp="48" canvasheightdp="48" canvasbgref="iconbg"/>
-				<resize mapperref="caticons" resourceref="assets" widthdp="72" heightdp="72" density="@{density}"/>
 			</sequential>
 		</ac:for>
 		<resize mapperref="icon" resourceref="assets" widthdp="214" heightdp="214" density="none" canvaswidthdp="512" canvasheightdp="512" canvasbgref="iconbg"/>
