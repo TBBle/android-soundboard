@@ -59,6 +59,7 @@ public class SoundProvider extends ContentProvider implements CategoryColumns,
 	// SoundColumns.ASSET
 	// SoundColumns.ICON
 	private static final String ASSET_PATH = "asset_path";
+	// ICON_RESOURCE // 0 when using the category icon
 
 	private static final String CREDIT_TABLE = "Credits";
 	// _ID
@@ -96,7 +97,8 @@ public class SoundProvider extends ContentProvider implements CategoryColumns,
 					+ SoundColumns.ACTION + " TEXT, "
 					+ SoundColumns.ASSET + " TEXT, "
 					+ SoundColumns.ICON + " TEXT, "
-					+ ASSET_PATH + " TEXT"
+					+ ASSET_PATH + " TEXT, "
+					+ ICON_RESOURCE + " TEXT"
 					+ ");");
 			db.execSQL("CREATE TABLE " + CREDIT_TABLE + " (" + _ID
 					+ " INTEGER PRIMARY KEY AUTOINCREMENT, "
@@ -703,10 +705,6 @@ public class SoundProvider extends ContentProvider implements CategoryColumns,
 	 * @see android.content.ContentProvider#openAssetFile(android.net.Uri,
 	 * java.lang.String)
 	 */
-	// Note that this is now a legacy API. AssetFileDescriptor URIs now
-	// point directly to their content pack.
-	// However, existing AppWidgets will be pointing at these icons
-	// and asset URIs until they are recreated .
 	@Override
 	public AssetFileDescriptor openAssetFile(Uri uri, String mode)
 			throws FileNotFoundException {
@@ -726,30 +724,40 @@ public class SoundProvider extends ContentProvider implements CategoryColumns,
 		SQLiteDatabase db = dbHelper.getReadableDatabase();
 
 		String column;
+		Cursor c;
 		int match = URI_MATCHER.match(uri);
 		switch (match) {
 		case ASSETS_ID:
-			column = ASSET;
-			break;
-
-		case ICONS_ID:
-			if (id < 1000) {
-				column = CategoryColumns.ICON;
-			} else {
-				column = SoundColumns.ICON;
+			column = ASSET_PATH;
+			c = qb.query(db, new String[] { column }, null, null, null, null,
+					null);
+			if (!c.moveToFirst())
+			{
+				c.close();
+				throw new FileNotFoundException();
 			}
-			break;
-
+			String path = c.getString(c.getColumnIndexOrThrow(column));
+			c.close();
+			try {
+				return getContext().getAssets().openFd(path);
+			} catch (IOException e) {
+				Log.e(TAG, "openAssetFileDescriptor", e);
+				throw new FileNotFoundException(e.getLocalizedMessage());
+			}
+		case ICONS_ID:
+			column = ICON_RESOURCE;
+			c = qb.query(db, new String[] { column }, null, null, null, null,
+					null);
+			if (!c.moveToFirst())
+			{
+				c.close();
+				throw new FileNotFoundException();
+			}
+			int iconResId = c.getInt(c.getColumnIndexOrThrow(column));
+			c.close();
+			return getContext().getResources().openRawResourceFd(iconResId);
 		default:
 			throw new FileNotFoundException();
 		}
-		Cursor c = qb.query(db, new String[] { column }, null, null, null,
-				null, null);
-
-		if (!c.moveToFirst())
-			throw new FileNotFoundException();
-
-		return getContext().getContentResolver().openAssetFileDescriptor(
-				Uri.parse(c.getString(c.getColumnIndexOrThrow(column))), mode);
 	}
 }

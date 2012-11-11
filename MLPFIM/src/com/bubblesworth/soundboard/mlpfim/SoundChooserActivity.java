@@ -34,7 +34,7 @@ import android.widget.Toast;
 import com.bubblesworth.soundboard.SoundColumns;
 
 /**
- * @author paulh
+ * @author Paul "TBBle" Hampson <Paul.Hampson@Pobox.com>
  * 
  */
 public class SoundChooserActivity extends ExpandableListActivity {
@@ -42,6 +42,7 @@ public class SoundChooserActivity extends ExpandableListActivity {
 
 	private static final int DIALOG_WIDGET_HELP = 0;
 	private static final int DIALOG_RINGTONES_HELP = 1;
+	// TODO: Remove
 	private static final int DIALOG_NO_CONTENT = 2;
 
 	private boolean widgetConfig;
@@ -200,8 +201,6 @@ public class SoundChooserActivity extends ExpandableListActivity {
 			return onMenuRingtonesClick();
 		case R.id.menuWidget:
 			return onMenuWidgetClick();
-		case R.id.menuContentPacks:
-			return onMenuContentPacksClick();
 		default:
 			return super.onOptionsItemSelected(item);
 		}
@@ -360,21 +359,6 @@ public class SoundChooserActivity extends ExpandableListActivity {
 		boolean installed = requestInstallOfPackage("com.bubblesworth.soundboard.widget");
 		if (installed) {
 			showDialog(DIALOG_WIDGET_HELP);
-		}
-		return true;
-	}
-
-	private boolean onMenuContentPacksClick() {
-		String market = "market://search?q=com.bubblesworth.soundboard.mlpfim.packs";
-		Intent i = new Intent(Intent.ACTION_VIEW);
-		i.setData(Uri.parse(market));
-		try {
-			startActivity(i);
-		} catch (ActivityNotFoundException e) {
-			Log.e(TAG, "No activity for " + market, e);
-			Toast.makeText(SoundChooserActivity.this,
-					getResources().getText(R.string.toast_no_market),
-					Toast.LENGTH_SHORT).show();
 		}
 		return true;
 	}
